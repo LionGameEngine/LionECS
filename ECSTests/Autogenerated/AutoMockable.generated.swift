@@ -29,10 +29,14 @@ class PSystemMock: PSystem {
 
     //MARK: - init
 
-    var initClosure: (() -> Void)?
+    var initWorldEntityManagerReceivedArguments: (world: World, entityManager: EntityManager)?
+    var initWorldEntityManagerReceivedInvocations: [(world: World, entityManager: EntityManager)] = []
+    var initWorldEntityManagerClosure: ((World, EntityManager) -> Void)?
 
-    required init() {
-        initClosure?()
+    required init(world: World, entityManager: EntityManager) {
+        initWorldEntityManagerReceivedArguments = (world: world, entityManager: entityManager)
+        initWorldEntityManagerReceivedInvocations.append((world: world, entityManager: entityManager))
+        initWorldEntityManagerClosure?(world, entityManager)
     }
     //MARK: - update
 

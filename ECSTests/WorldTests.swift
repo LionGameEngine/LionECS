@@ -17,8 +17,8 @@ class WorldTest: XCTestCase {
     
     func testUpdate_WhenCalled_ShouldUpdateAllSystemsOnce() {
         // given
-        let sys1 = PSystemMock()
-        let sys2 = PSystemMock()
+        let sys1 = PSystemMock(world: sut, entityManager: sut.entityManager)
+        let sys2 = PSystemMock(world: sut, entityManager: sut.entityManager)
         sut.systems.append(sys1)
         sut.systems.append(sys2)
         // when
@@ -30,7 +30,7 @@ class WorldTest: XCTestCase {
     
     func testGetOrCreateSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
         // given
-        let system = PSystemMock()
+        let system = PSystemMock(world: sut, entityManager: sut.entityManager)
         sut.systems.append(system)
         // when
         let returnedSystem: PSystemMock = sut.getOrCreateSystem()
@@ -48,7 +48,7 @@ class WorldTest: XCTestCase {
     
     func testGetExistingSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
         // given
-        let system = PSystemMock()
+        let system = PSystemMock(world: sut, entityManager: sut.entityManager)
         sut.systems.append(system)
         // when
         let returnedSystem: PSystemMock? = sut.getExistingSystem()

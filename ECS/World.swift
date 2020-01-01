@@ -21,7 +21,7 @@ public final class World {
     
     public func getOrCreateSystem<System: PSystem>() -> System {
         guard let system: System = getExistingSystem() else {
-            return System()
+            return System(world: self, entityManager: entityManager)
         }
         return system
     }

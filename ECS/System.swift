@@ -7,6 +7,6 @@
 
 // sourcery: AutoMockable
 public protocol PSystem {
-    init()
+    init(world: World, entityManager: EntityManager)
     func update()
 }
