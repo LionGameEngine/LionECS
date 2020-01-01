@@ -18,6 +18,8 @@
 		F149B0B023BC3589007AD7D7 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0AF23BC3589007AD7D7 /* World.swift */; };
 		F149B0B423BC4067007AD7D7 /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0B323BC4067007AD7D7 /* AutoMockable.generated.swift */; };
 		F149B0B623BC4267007AD7D7 /* WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0B523BC4267007AD7D7 /* WorldTests.swift */; };
+		F149B0B823BC4F66007AD7D7 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0B723BC4F66007AD7D7 /* EntityManager.swift */; };
+		F149B0BA23BC5127007AD7D7 /* EntityManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0B923BC5127007AD7D7 /* EntityManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		F149B0AF23BC3589007AD7D7 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		F149B0B323BC4067007AD7D7 /* AutoMockable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
 		F149B0B523BC4267007AD7D7 /* WorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTests.swift; sourceTree = "<group>"; };
+		F149B0B723BC4F66007AD7D7 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
+		F149B0B923BC5127007AD7D7 /* EntityManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManagerTests.swift; sourceTree = "<group>"; };
 		FF46C007367B1636F53BCBB5 /* Pods-ECS-ECSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECS-ECSTests.debug.xcconfig"; path = "Target Support Files/Pods-ECS-ECSTests/Pods-ECS-ECSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,7 @@
 				F149B0AB23BC33C4007AD7D7 /* Component.swift */,
 				F149B0AD23BC33CE007AD7D7 /* System.swift */,
 				F149B0AF23BC3589007AD7D7 /* World.swift */,
+				F149B0B723BC4F66007AD7D7 /* EntityManager.swift */,
 			);
 			path = ECS;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 				F149B0A223BC3230007AD7D7 /* EntityTests.swift */,
 				F149B0A423BC3230007AD7D7 /* Info.plist */,
 				F149B0B523BC4267007AD7D7 /* WorldTests.swift */,
+				F149B0B923BC5127007AD7D7 /* EntityManagerTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = LionSoftware;
 				TargetAttributes = {
 					F149B09023BC3100007AD7D7 = {
 						CreatedOnToolsVersion = 11.3;
@@ -302,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F149B0B823BC4F66007AD7D7 /* EntityManager.swift in Sources */,
 				F149B09B23BC31D1007AD7D7 /* Entity.swift in Sources */,
 				F149B0AE23BC33CE007AD7D7 /* System.swift in Sources */,
 				F149B0B023BC3589007AD7D7 /* World.swift in Sources */,
@@ -315,6 +323,7 @@
 			files = (
 				F149B0B623BC4267007AD7D7 /* WorldTests.swift in Sources */,
 				F149B0A323BC3230007AD7D7 /* EntityTests.swift in Sources */,
+				F149B0BA23BC5127007AD7D7 /* EntityManagerTests.swift in Sources */,
 				F149B0B423BC4067007AD7D7 /* AutoMockable.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
