@@ -6,4 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-import Foundation
+public enum ComponentManagerError: Error {
+    case invalidComponentType
+    case componentMissing
+}

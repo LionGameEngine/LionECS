@@ -6,4 +6,11 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-import Foundation
+public protocol PComponentManager {
+    func getEntities() -> Set<Entity>
+    func hasComponent(entity: Entity) -> Bool
+    func addComponent<Component: PComponent>(_ component: Component, toEntity entity: Entity) throws
+    func getComponent<Component: PComponent>(ofEntity entity: Entity) throws -> Component
+    func getEntitiesWithComponents<Component: PComponent>() throws -> Dictionary<Entity, Component>
+    func verify<Component: PComponent>(componentType: Component.Type) throws
+}

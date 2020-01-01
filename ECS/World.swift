@@ -5,12 +5,13 @@
 //  Created by Tomasz Lewandowski on 01/01/2020.
 //
 
-public final class World {
+public final class World<ComponentManagers: PComponentManagers> {
     var systems: [PSystem] = []
     let entityManager: EntityManager = EntityManager()
+    let componentManagers: ComponentManagers
     
-    public init() {
-        
+    public init(componentManagers: ComponentManagers) {
+        self.componentManagers = componentManagers
     }
     
     public func update() {
@@ -19,9 +20,11 @@ public final class World {
         }
     }
     
-    public func getOrCreateSystem<System: PSystem>() -> System {
+    public func getOrCreateSystem<System: PCreatableSystem>() -> System where System.ComponentManagers == ComponentManagers {
         guard let system: System = getExistingSystem() else {
-            return System(world: self, entityManager: entityManager)
+            let system = System(world: self, entityManager: entityManager)
+            systems.append(system)
+            return system
         }
         return system
     }

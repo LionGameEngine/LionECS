@@ -25,15 +25,35 @@ import AppKit
 
 
 
-class PSystemMock: PSystem {
+class PComponentMock: PComponent {
+
+}
+class PComponentManagersMock: PComponentManagers {
+
+    //MARK: - getAllManagers
+
+    var getAllManagersCallsCount = 0
+    var getAllManagersCalled: Bool {
+        return getAllManagersCallsCount > 0
+    }
+    var getAllManagersReturnValue: [PComponentManager]!
+    var getAllManagersClosure: (() -> [PComponentManager])?
+
+    func getAllManagers() -> [PComponentManager] {
+        getAllManagersCallsCount += 1
+        return getAllManagersClosure.map({ $0() }) ?? getAllManagersReturnValue
+    }
+
+}
+class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSystem {
 
     //MARK: - init
 
-    var initWorldEntityManagerReceivedArguments: (world: World, entityManager: EntityManager)?
-    var initWorldEntityManagerReceivedInvocations: [(world: World, entityManager: EntityManager)] = []
-    var initWorldEntityManagerClosure: ((World, EntityManager) -> Void)?
+    var initWorldEntityManagerReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager)?
+    var initWorldEntityManagerReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager)] = []
+    var initWorldEntityManagerClosure: ((World<ComponentManagers>, EntityManager) -> Void)?
 
-    required init(world: World, entityManager: EntityManager) {
+    required init(world: World<ComponentManagers>, entityManager: EntityManager) {
         initWorldEntityManagerReceivedArguments = (world: world, entityManager: entityManager)
         initWorldEntityManagerReceivedInvocations.append((world: world, entityManager: entityManager))
         initWorldEntityManagerClosure?(world, entityManager)
@@ -52,5 +72,22 @@ class PSystemMock: PSystem {
     }
 
 }
+class PSystemMock: PSystem {
 
+    //MARK: - update
+
+    var updateCallsCount = 0
+    var updateCalled: Bool {
+        return updateCallsCount > 0
+    }
+    var updateClosure: (() -> Void)?
+
+    func update() {
+        updateCallsCount += 1
+        updateClosure?()
+    }
+
+}
+
+//  Copyright © 2020 LionSoftware. All rights reserved.
 @testable import ECS

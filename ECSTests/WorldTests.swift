@@ -9,16 +9,16 @@ import XCTest
 @testable import ECS
 
 class WorldTest: XCTestCase {
-    var sut: World!
+    var sut: World<PComponentManagersMock>!
     
     override func setUp() {
-        sut = World()
+        sut = World<PComponentManagersMock>(componentManagers: PComponentManagersMock())
     }
     
     func testUpdate_WhenCalled_ShouldUpdateAllSystemsOnce() {
         // given
-        let sys1 = PSystemMock(world: sut, entityManager: sut.entityManager)
-        let sys2 = PSystemMock(world: sut, entityManager: sut.entityManager)
+        let sys1 = PSystemMock()
+        let sys2 = PSystemMock()
         sut.systems.append(sys1)
         sut.systems.append(sys2)
         // when
@@ -30,10 +30,10 @@ class WorldTest: XCTestCase {
     
     func testGetOrCreateSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
         // given
-        let system = PSystemMock(world: sut, entityManager: sut.entityManager)
+        let system = PCreatableSystemMock(world: sut, entityManager: sut.entityManager)
         sut.systems.append(system)
         // when
-        let returnedSystem: PSystemMock = sut.getOrCreateSystem()
+        let returnedSystem: PCreatableSystemMock = sut.getOrCreateSystem()
         // then
         XCTAssertTrue(system === returnedSystem)
     }
@@ -41,14 +41,23 @@ class WorldTest: XCTestCase {
     func testGetOrCreateSystem_WhenCalledAndSystemDoesNotExist_ShouldReturnNewSystem() {
         // when
         sut.update()
-        let returnedSystem: PSystemMock = sut.getOrCreateSystem()
+        let returnedSystem: PCreatableSystemMock = sut.getOrCreateSystem()
         // then
         XCTAssertFalse(returnedSystem.updateCalled)
     }
     
+    func testGetOrCreateSystem_WhenCalledAndSystemDoesNotExist_ShouldReturnThatSystemInSubsequentCalls() {
+        // when
+        sut.update()
+        let returnedSystem1: PCreatableSystemMock = sut.getOrCreateSystem()
+        let returnedSystem2: PCreatableSystemMock = sut.getOrCreateSystem()
+        // then
+        XCTAssertTrue(returnedSystem1 === returnedSystem2)
+    }
+    
     func testGetExistingSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
         // given
-        let system = PSystemMock(world: sut, entityManager: sut.entityManager)
+        let system = PSystemMock()
         sut.systems.append(system)
         // when
         let returnedSystem: PSystemMock? = sut.getExistingSystem()
