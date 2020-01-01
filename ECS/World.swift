@@ -17,4 +17,11 @@ public final class World {
             system.update()
         }
     }
+    
+    public func getOrCreateSystem<System: PSystem>() -> System {
+        guard let system = systems.first(where: { $0 is System }) as? System else {
+            return System()
+        }
+        return system
+    }
 }

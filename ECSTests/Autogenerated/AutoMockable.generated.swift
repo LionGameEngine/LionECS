@@ -27,6 +27,13 @@ import AppKit
 
 class PSystemMock: PSystem {
 
+    //MARK: - init
+
+    var initClosure: (() -> Void)?
+
+    required init() {
+        initClosure?()
+    }
     //MARK: - update
 
     var updateCallsCount = 0

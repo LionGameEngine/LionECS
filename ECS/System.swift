@@ -7,5 +7,6 @@
 
 // sourcery: AutoMockable
 public protocol PSystem {
+    init()
     func update()
 }
