@@ -39,11 +39,27 @@ class WorldTest: XCTestCase {
     }
     
     func testGetOrCreateSystem_WhenCalledAndSystemDoesNotExist_ShouldReturnNewSystem() {
-        // given
         // when
         sut.update()
         let returnedSystem: PSystemMock = sut.getOrCreateSystem()
         // then
         XCTAssertFalse(returnedSystem.updateCalled)
+    }
+    
+    func testGetExistingSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
+        // given
+        let system = PSystemMock()
+        sut.systems.append(system)
+        // when
+        let returnedSystem: PSystemMock? = sut.getExistingSystem()
+        // then
+        XCTAssertTrue(system === returnedSystem)
+    }
+    
+    func testGetExistingSystem_WhenCalledAndSystemDoesNotExist_ShouldReturnNil() {
+        // when
+        let returnedSystem: PSystemMock? = sut.getExistingSystem()
+        // then
+        XCTAssertNil(returnedSystem)
     }
 }
