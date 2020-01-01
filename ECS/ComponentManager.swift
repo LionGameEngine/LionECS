@@ -9,6 +9,10 @@
 public final class ComponentManager<Component: PComponent>: PComponentManager {
     private var entitiesWithComponents: Dictionary<Entity, Component> = [:]
     
+    public init() {
+        
+    }
+    
     public func getEntities() -> Set<Entity> {
         return Set(entitiesWithComponents.keys)
     }
