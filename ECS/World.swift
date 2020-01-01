@@ -7,6 +7,7 @@
 
 public final class World {
     var systems: [PSystem] = []
+    let entityManager: EntityManager = EntityManager()
     
     public init() {
         
