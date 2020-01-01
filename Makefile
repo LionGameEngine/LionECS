@@ -1,4 +1,4 @@
-SOURCERY = Pods/Sourcery/bin/sourcery
+SOURCERY = bundle exec Pods/Sourcery/bin/sourcery
 
 sourcery: auto-mocks
 
