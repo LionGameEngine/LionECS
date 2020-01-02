@@ -7,6 +7,14 @@
 //
 
 public final class ComponentManager<Component: PComponent>: PComponentManager {
+    public static var managerIdentifier: ComponentManagerIdentifier {
+        return NSStringFromClass(self)
+    }
+    
+    public var managerIdentifier: ComponentManagerIdentifier {
+        return ComponentManager<Component>.managerIdentifier
+    }
+    
     private var entitiesWithComponents: Dictionary<Entity, Component> = [:]
     
     public init() {

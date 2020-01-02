@@ -34,6 +34,12 @@
 		F149B0DA23BD46ED007AD7D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F149B0D823BD46ED007AD7D7 /* Main.storyboard */; };
 		F149B0E123BD4A74007AD7D7 /* GameComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E023BD4A74007AD7D7 /* GameComponentManagers.swift */; };
 		F149B0E323BD4DAC007AD7D7 /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E223BD4DAC007AD7D7 /* HealthComponent.swift */; };
+		F149B0E523BD5F1C007AD7D7 /* EntityRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E423BD5F1C007AD7D7 /* EntityRequester.swift */; };
+		F149B0E723BD60E0007AD7D7 /* EntityQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E623BD60E0007AD7D7 /* EntityQuery.swift */; };
+		F149B0E923BD6A5D007AD7D7 /* PEntityQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E823BD6A5D007AD7D7 /* PEntityQueryResult.swift */; };
+		F149B0EB23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */; };
+		F149B0ED23BD70F1007AD7D7 /* ComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EC23BD70F1007AD7D7 /* ComponentManagers.swift */; };
+		F149B0EF23BD7827007AD7D7 /* ComponentManagersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +89,12 @@
 		F149B0DC23BD46ED007AD7D7 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		F149B0E023BD4A74007AD7D7 /* GameComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameComponentManagers.swift; sourceTree = "<group>"; };
 		F149B0E223BD4DAC007AD7D7 /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
+		F149B0E423BD5F1C007AD7D7 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
+		F149B0E623BD60E0007AD7D7 /* EntityQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQuery.swift; sourceTree = "<group>"; };
+		F149B0E823BD6A5D007AD7D7 /* PEntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityQueryResult.swift; sourceTree = "<group>"; };
+		F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerIdentifier.swift; sourceTree = "<group>"; };
+		F149B0EC23BD70F1007AD7D7 /* ComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagers.swift; sourceTree = "<group>"; };
+		F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagersTests.swift; sourceTree = "<group>"; };
 		FF46C007367B1636F53BCBB5 /* Pods-ECS-ECSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECS-ECSTests.debug.xcconfig"; path = "Target Support Files/Pods-ECS-ECSTests/Pods-ECS-ECSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +184,11 @@
 				F149B0C323BD3098007AD7D7 /* ComponentManagerError.swift */,
 				F149B0C523BD30B6007AD7D7 /* PComponentManager.swift */,
 				F149B0C723BD3A5C007AD7D7 /* ComponentSystem.swift */,
+				F149B0E423BD5F1C007AD7D7 /* EntityRequester.swift */,
+				F149B0E623BD60E0007AD7D7 /* EntityQuery.swift */,
+				F149B0E823BD6A5D007AD7D7 /* PEntityQueryResult.swift */,
+				F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */,
+				F149B0EC23BD70F1007AD7D7 /* ComponentManagers.swift */,
 			);
 			path = ECS;
 			sourceTree = "<group>";
@@ -185,6 +202,7 @@
 				F149B0B523BC4267007AD7D7 /* WorldTests.swift */,
 				F149B0B923BC5127007AD7D7 /* EntityManagerTests.swift */,
 				F149B0C123BD2F38007AD7D7 /* ComponentManagerTests.swift */,
+				F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -412,9 +430,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F149B0C623BD30B6007AD7D7 /* PComponentManager.swift in Sources */,
+				F149B0EB23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift in Sources */,
 				F149B0C023BD2ED8007AD7D7 /* PCreatableSystem.swift in Sources */,
+				F149B0ED23BD70F1007AD7D7 /* ComponentManagers.swift in Sources */,
+				F149B0E923BD6A5D007AD7D7 /* PEntityQueryResult.swift in Sources */,
 				F149B0B823BC4F66007AD7D7 /* EntityManager.swift in Sources */,
 				F149B09B23BC31D1007AD7D7 /* Entity.swift in Sources */,
+				F149B0E523BD5F1C007AD7D7 /* EntityRequester.swift in Sources */,
 				F149B0AE23BC33CE007AD7D7 /* PSystem.swift in Sources */,
 				F149B0C423BD3098007AD7D7 /* ComponentManagerError.swift in Sources */,
 				F149B0B023BC3589007AD7D7 /* World.swift in Sources */,
@@ -422,6 +444,7 @@
 				F149B0C823BD3A5C007AD7D7 /* ComponentSystem.swift in Sources */,
 				F149B0BC23BD0F1B007AD7D7 /* ComponentManager.swift in Sources */,
 				F149B0BE23BD1C45007AD7D7 /* PComponentManagers.swift in Sources */,
+				F149B0E723BD60E0007AD7D7 /* EntityQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F149B0B623BC4267007AD7D7 /* WorldTests.swift in Sources */,
+				F149B0EF23BD7827007AD7D7 /* ComponentManagersTests.swift in Sources */,
 				F149B0C223BD2F38007AD7D7 /* ComponentManagerTests.swift in Sources */,
 				F149B0A323BC3230007AD7D7 /* EntityTests.swift in Sources */,
 				F149B0BA23BC5127007AD7D7 /* EntityManagerTests.swift in Sources */,

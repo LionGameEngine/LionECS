@@ -9,4 +9,5 @@
 public enum ComponentManagerError: Error {
     case invalidComponentType
     case componentMissing
+    case managerMissing
 }

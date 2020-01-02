@@ -8,10 +8,10 @@
 
 import ECS
 
-class GameComponentManagers: PComponentManagers {
-    let healthComponentManager: ComponentManager<HealthComponent> = ComponentManager()
-
-    public func getAllManagers() -> [PComponentManager] {
-        return [healthComponentManager]
+class GameComponentsManagers: ComponentManagers {
+    private(set) var healthComponentManager: ComponentManager<HealthComponent>!
+    override init() {
+        super.init()
+        healthComponentManager = getOrCreateManagerOfType()
     }
 }

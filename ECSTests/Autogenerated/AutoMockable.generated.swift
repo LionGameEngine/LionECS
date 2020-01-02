@@ -28,23 +28,6 @@ import AppKit
 class PComponentMock: PComponent {
 
 }
-class PComponentManagersMock: PComponentManagers {
-
-    //MARK: - getAllManagers
-
-    var getAllManagersCallsCount = 0
-    var getAllManagersCalled: Bool {
-        return getAllManagersCallsCount > 0
-    }
-    var getAllManagersReturnValue: [PComponentManager]!
-    var getAllManagersClosure: (() -> [PComponentManager])?
-
-    func getAllManagers() -> [PComponentManager] {
-        getAllManagersCallsCount += 1
-        return getAllManagersClosure.map({ $0() }) ?? getAllManagersReturnValue
-    }
-
-}
 class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSystem {
 
     //MARK: - init

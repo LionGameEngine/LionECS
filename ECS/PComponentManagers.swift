@@ -6,7 +6,8 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol PComponentManagers {
     func getAllManagers() -> [PComponentManager]
+    func getOrCreateManagerOfType<ComponentManager: PComponentManager>() -> ComponentManager
+    func getExistingManagerOfType<ComponentManager: PComponentManager>() throws -> ComponentManager
 }

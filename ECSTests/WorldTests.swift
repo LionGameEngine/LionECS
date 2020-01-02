@@ -10,6 +10,8 @@ import XCTest
 @testable import ECS
 
 class WorldTest: XCTestCase {
+    class PComponentManagersMock: ComponentManagers { }
+    
     var sut: World<PComponentManagersMock>!
     
     override func setUp() {
