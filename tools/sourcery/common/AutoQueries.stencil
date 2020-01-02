@@ -19,7 +19,7 @@ public struct Requires{{x}}ComponentQuery<ComponentManagers: PComponentManagers{
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = ({% if x > 0 %}{% for y in 1...x %}r{{y}}Components[entity]!{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %})
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     
     public func getFilters() -> [PEntityFilter] {

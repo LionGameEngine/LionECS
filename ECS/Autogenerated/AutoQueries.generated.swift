@@ -16,7 +16,7 @@ public struct Requires0ComponentQuery<ComponentManagers: PComponentManagers>: PE
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = ()
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return exclusionFilters
@@ -37,7 +37,7 @@ public struct Requires1ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>()] + exclusionFilters
@@ -60,7 +60,7 @@ public struct Requires2ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>()] + exclusionFilters
@@ -85,7 +85,7 @@ public struct Requires3ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>()] + exclusionFilters
@@ -112,7 +112,7 @@ public struct Requires4ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>()] + exclusionFilters
@@ -141,7 +141,7 @@ public struct Requires5ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>()] + exclusionFilters
@@ -172,7 +172,7 @@ public struct Requires6ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>()] + exclusionFilters
@@ -205,7 +205,7 @@ public struct Requires7ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>()] + exclusionFilters
@@ -240,7 +240,7 @@ public struct Requires8ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>()] + exclusionFilters
@@ -277,7 +277,7 @@ public struct Requires9ComponentQuery<ComponentManagers: PComponentManagers, R1:
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!, r9Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>(), Requires<R9>()] + exclusionFilters
@@ -316,7 +316,7 @@ public struct Requires10ComponentQuery<ComponentManagers: PComponentManagers, R1
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!, r9Components[entity]!, r10Components[entity]!)
         }
-        return Result.init(comp: result)
+        return Result(result)
     }
     public func getFilters() -> [PEntityFilter] {
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>(), Requires<R9>(), Requires<R10>()] + exclusionFilters

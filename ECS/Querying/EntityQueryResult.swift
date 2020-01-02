@@ -9,8 +9,8 @@
 public struct EntityQueryResult<Components>: PEntityQueryResult {
     private let comp: Dictionary<Entity, Components>
     
-    public init(comp: Dictionary<Entity, Components>) {
-        self.comp = comp
+    public init(_ components: Dictionary<Entity, Components>) {
+        self.comp = components
     }
     
     public func components() -> [Components] {

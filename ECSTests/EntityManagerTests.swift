@@ -90,4 +90,14 @@ class EntityManagerTests: XCTestCase {
         // then
         XCTAssertEqual(Entity(id: 0, version: 1), entity)
     }
+    
+    func testGetExistingEntities_WhenCalled_ShouldReturnAllCreatedEntities() {
+        // given
+        let entity1 = sut.createEntity()
+        let entity2 = sut.createEntity()
+        // when
+        let entities = sut.getExistingEntities()
+        // then
+        XCTAssertEqual(Set([entity1, entity2]), entities)
+    }
 }
