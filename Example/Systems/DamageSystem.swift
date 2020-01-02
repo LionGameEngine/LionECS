@@ -15,6 +15,7 @@ class DamageSystem: ComponentSystem<GameComponentsManagers> {
         for var entityWithComponents in result.entityWithComponents() {
             entityWithComponents.value.0.health -= entityWithComponents.value.1.damage
             try! world.componentManagers.healthComponentManager.addComponent(entityWithComponents.value.0, toEntity: entityWithComponents.key)
+            print("Entity \(entityWithComponents.key) damaged \(entityWithComponents.value.1.damage) remaining health: \(entityWithComponents.value.0.health)")
         }
     }
 }
