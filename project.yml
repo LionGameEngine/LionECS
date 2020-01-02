@@ -1,0 +1,86 @@
+name: LionEngine
+options:
+  createIntermediateGroups: true
+  xcodeVersion: 11.3
+  groupSortPosition: top
+  deploymentTarget:
+    iOS: "11.0"
+    macOS: "10.15"
+configs:
+  Debug: debug
+  Release: release
+fileGroups:
+  - Configurations
+configFiles:
+  Debug: Configurations/Debug.xcconfig
+  Release: Configurations/Release.xcconfig
+schemes:
+  ECS:
+    build:
+      targets:
+        ECS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [ECSTests]
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  Example:
+    build:
+      targets:
+        Example: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [ECSTests]
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+targets:
+  ECS:
+    type: framework
+    platform: macOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(ECS_BUNDLE_IDENTIFIER)
+        PROVISIONING_PROFILE_SPECIFIER: $(ECS_PROVISIONING_PROFILE_SPECIFIER)
+    sources:
+      - path: ECS
+  ECSTests:
+    type: bundle.unit-test
+    platform: macOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.tests
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER: 
+    sources:
+      - path: ECSTests
+    dependencies:
+      - target: ECS
+  Example:
+    type: application
+    platform: macOS
+    settings:
+      base:
+        CURRENT_PROJECT_VERSION: 1
+    sources:
+      - path: Example
+    dependencies:
+      - target: ECS
+    postBuildScripts:
+      - script: |
+                "${PODS_ROOT}/SwiftLint/swiftlint"
+        name: SwiftLint

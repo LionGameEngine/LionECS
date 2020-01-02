@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-               BuildableName = "ECS.framework"
-               BlueprintName = "ECS"
+               BlueprintIdentifier = "A234FC03635253169F885CFF"
+               BuildableName = "Example.app"
+               BlueprintName = "Example"
                ReferencedContainer = "container:LionEngine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
+            BlueprintIdentifier = "A234FC03635253169F885CFF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
             ReferencedContainer = "container:LionEngine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,15 +67,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
+            BlueprintIdentifier = "A234FC03635253169F885CFF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
             ReferencedContainer = "container:LionEngine.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <CommandLineArguments>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -91,9 +92,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
+            BlueprintIdentifier = "A234FC03635253169F885CFF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
             ReferencedContainer = "container:LionEngine.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
