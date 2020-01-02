@@ -10,8 +10,10 @@ import ECS
 
 class GameComponentsManagers: ComponentManagers {
     private(set) var healthComponentManager: ComponentManager<HealthComponent>!
+    private(set) var damageComponentsManager: ComponentManager<DamageComponent>!
     override init() {
         super.init()
-        healthComponentManager = getOrCreateManagerOfType()
+        healthComponentManager = getOrCreateManagerOfType(HealthComponent.self)
+        damageComponentsManager = getOrCreateManagerOfType(DamageComponent.self)
     }
 }

@@ -8,11 +8,13 @@
 
 public final class World<ComponentManagers: PComponentManagers> {
     var systems: [PSystem] = []
-    let entityManager: EntityManager = EntityManager()
-    let componentManagers: ComponentManagers
+    public let entityManager: EntityManager = EntityManager()
+    public let componentManagers: ComponentManagers
+    public let entityRequester: EntityRequester<ComponentManagers>
     
     public init(componentManagers: ComponentManagers) {
         self.componentManagers = componentManagers
+        self.entityRequester = EntityRequester(entityManager: entityManager, componentManagers: componentManagers)
     }
     
     public func update() {
@@ -23,7 +25,7 @@ public final class World<ComponentManagers: PComponentManagers> {
     
     public func getOrCreateSystem<System: PCreatableSystem>() -> System where System.ComponentManagers == ComponentManagers {
         guard let system: System = getExistingSystem() else {
-            let system = System(world: self, entityManager: entityManager)
+            let system = System(world: self, entityManager: entityManager, entityRequester: entityRequester)
             systems.append(system)
             return system
         }

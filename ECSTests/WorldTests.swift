@@ -33,7 +33,7 @@ class WorldTest: XCTestCase {
     
     func testGetOrCreateSystem_WhenCalledAndSystemExists_ShouldReturnThatSystem() {
         // given
-        let system = PCreatableSystemMock(world: sut, entityManager: sut.entityManager)
+        let system = PCreatableSystemMock(world: sut, entityManager: sut.entityManager, entityRequester: sut.entityRequester)
         sut.systems.append(system)
         // when
         let returnedSystem: PCreatableSystemMock = sut.getOrCreateSystem()

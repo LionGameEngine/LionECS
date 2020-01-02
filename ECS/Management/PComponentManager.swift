@@ -7,8 +7,6 @@
 //
 
 public protocol PComponentManager {
-    static var managerIdentifier: ComponentManagerIdentifier { get }
-    var managerIdentifier: ComponentManagerIdentifier { get }
     init()
     func getEntities() -> Set<Entity>
     func hasComponent(entity: Entity) -> Bool

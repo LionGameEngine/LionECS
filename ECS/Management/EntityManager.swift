@@ -33,4 +33,8 @@ public final class EntityManager {
     public func isExisting(entity: Entity) -> Bool {
         return entities.contains(entity)
     }
+    
+    public func getExistingEntities() -> Set<Entity> {
+        return entities
+    }
 }

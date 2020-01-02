@@ -6,15 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class ComponentManager<Component: PComponent>: PComponentManager {
-    public static var managerIdentifier: ComponentManagerIdentifier {
-        return NSStringFromClass(self)
-    }
-    
-    public var managerIdentifier: ComponentManagerIdentifier {
-        return ComponentManager<Component>.managerIdentifier
-    }
-    
+public final class ComponentManager<Component: PComponent>: PComponentManager {    
     private var entitiesWithComponents: Dictionary<Entity, Component> = [:]
     
     public init() {

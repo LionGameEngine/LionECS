@@ -6,4 +6,4 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public typealias ComponentManagerIdentifier = String
+public typealias ComponentIdentifier = String

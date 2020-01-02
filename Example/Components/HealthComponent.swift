@@ -9,5 +9,5 @@
 import ECS
 
 struct HealthComponent: PComponent {
-    let health: Int
+    var health: Float
 }

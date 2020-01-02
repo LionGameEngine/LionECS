@@ -9,6 +9,6 @@
 public protocol PEntityQueryResult {
     associatedtype Components
     
-    func components() -> Components
+    func components() -> [Components]
     func entityWithComponents() -> Dictionary<Entity, Components>
 }

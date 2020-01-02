@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var game: Game
+    
     var body: some View {
-        Text("Hello, World!")
+        Text(HealthComponent.componentIdentifier)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
@@ -18,6 +20,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(game: Game())
     }
 }

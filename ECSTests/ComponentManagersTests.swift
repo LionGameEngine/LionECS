@@ -23,7 +23,7 @@ class ComponentManagersTests: XCTestCase {
     
     func testGetAllManagers_WhenCalledAfterCreatingManager_ShouldReturnArrayWithThatManager() {
         // when
-        let _: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType()
+        let _: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
         // then
         XCTAssertEqual(1, sut.getAllManagers().count)
     }
@@ -31,7 +31,7 @@ class ComponentManagersTests: XCTestCase {
     func testGetExistingManager_WhenManagerDoesNotExist_ShouldThrow() {
         // then
         do {
-            let _: ComponentManager<PComponentMock> = try sut.getExistingManagerOfType()
+            let _: ComponentManager<PComponentMock> = try sut.getExistingManagerOfType(PComponentMock.self)
             XCTFail()
         } catch {
         }
@@ -39,15 +39,15 @@ class ComponentManagersTests: XCTestCase {
     
     func testGetExistingManager_WhenManagerExist_ShouldReturnThatManager() {
         // given
-        let manager: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType()
+        let manager: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
         // when
-        let existingManager: ComponentManager<PComponentMock>? = try? sut.getExistingManagerOfType()
+        let existingManager: ComponentManager<PComponentMock>? = try? sut.getExistingManagerOfType(PComponentMock.self)
         // then
         XCTAssertTrue(manager === existingManager)
     }
     
     func testGetOrCreateManager_WhenCalled_ShouldReturnManager() {
         // then
-        let _: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType()
+        let _: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
     }
 }

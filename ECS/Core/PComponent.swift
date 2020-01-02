@@ -8,5 +8,11 @@
 
 // sourcery: AutoMockable
 public protocol PComponent {
-    
+    static var componentIdentifier: ComponentIdentifier { get }
+}
+
+extension PComponent {
+    public static var componentIdentifier: ComponentIdentifier {
+        return String(reflecting: self)
+    }
 }

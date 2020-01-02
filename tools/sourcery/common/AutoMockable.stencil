@@ -44,8 +44,7 @@ import AppKit
 
 {% macro mockMethod method %}
     //MARK: - {{ method.shortName }}
-    {% if method.isGeneric %} LOL {% endif %}
-
+    
     {% if method.throws %}
         {% call methodThrowableErrorDeclaration method %}
     {% endif %}

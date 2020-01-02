@@ -26,23 +26,26 @@ import AppKit
 
 
 class PComponentMock: PComponent {
+    var componentIdentifier: ComponentIdentifier {
+        get { return underlyingComponentIdentifier }
+        set(value) { underlyingComponentIdentifier = value }
+    }
+    var underlyingComponentIdentifier: ComponentIdentifier!
 
 }
 class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSystem {
 
     //MARK: - init
+    var initWorldEntityManagerEntityRequesterReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager, entityRequester: EntityRequester<ComponentManagers>)?
+    var initWorldEntityManagerEntityRequesterReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager, entityRequester: EntityRequester<ComponentManagers>)] = []
+    var initWorldEntityManagerEntityRequesterClosure: ((World<ComponentManagers>, EntityManager, EntityRequester<ComponentManagers>) -> Void)?
 
-    var initWorldEntityManagerReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager)?
-    var initWorldEntityManagerReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager)] = []
-    var initWorldEntityManagerClosure: ((World<ComponentManagers>, EntityManager) -> Void)?
-
-    required init(world: World<ComponentManagers>, entityManager: EntityManager) {
-        initWorldEntityManagerReceivedArguments = (world: world, entityManager: entityManager)
-        initWorldEntityManagerReceivedInvocations.append((world: world, entityManager: entityManager))
-        initWorldEntityManagerClosure?(world, entityManager)
+    required init(world: World<ComponentManagers>, entityManager: EntityManager, entityRequester: EntityRequester<ComponentManagers>) {
+        initWorldEntityManagerEntityRequesterReceivedArguments = (world: world, entityManager: entityManager, entityRequester: entityRequester)
+        initWorldEntityManagerEntityRequesterReceivedInvocations.append((world: world, entityManager: entityManager, entityRequester: entityRequester))
+        initWorldEntityManagerEntityRequesterClosure?(world, entityManager, entityRequester)
     }
     //MARK: - update
-
     var updateCallsCount = 0
     var updateCalled: Bool {
         return updateCallsCount > 0
@@ -58,7 +61,6 @@ class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSys
 class PSystemMock: PSystem {
 
     //MARK: - update
-
     var updateCallsCount = 0
     var updateCalled: Bool {
         return updateCallsCount > 0
@@ -73,4 +75,5 @@ class PSystemMock: PSystem {
 }
 
 //  Copyright © 2020 LionSoftware. All rights reserved.
+
 @testable import ECS
