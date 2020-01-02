@@ -1,4 +1,6 @@
 name: LionEngine
+attributes:
+  ORGANIZATIONNAME: LionSoftware
 options:
   createIntermediateGroups: true
   xcodeVersion: 11.3
