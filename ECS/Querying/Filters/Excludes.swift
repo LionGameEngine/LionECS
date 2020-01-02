@@ -1,5 +1,5 @@
 //
-//  Exclude.swift
+//  Excludes.swift
 //  ECS
 //
 //  Created by Tomasz Lewandowski on 02/01/2020.

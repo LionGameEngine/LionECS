@@ -42,7 +42,7 @@
 		F149B0EF23BD7827007AD7D7 /* ComponentManagersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */; };
 		F149B0FA23BE211C007AD7D7 /* PEntityFIlter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0F923BE211C007AD7D7 /* PEntityFIlter.swift */; };
 		F149B0FE23BE283C007AD7D7 /* Require.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0FD23BE283C007AD7D7 /* Require.swift */; };
-		F149B10023BE2853007AD7D7 /* Exclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0FF23BE2853007AD7D7 /* Exclude.swift */; };
+		F149B10023BE2853007AD7D7 /* Excludes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0FF23BE2853007AD7D7 /* Excludes.swift */; };
 		F149B10E23BE524A007AD7D7 /* EntityQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B10D23BE524A007AD7D7 /* EntityQueryResult.swift */; };
 		F149B11223BE55FA007AD7D7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B11123BE55FA007AD7D7 /* Game.swift */; };
 		F149B11723BE56B6007AD7D7 /* DamageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B11623BE56B6007AD7D7 /* DamageSystem.swift */; };
@@ -106,7 +106,7 @@
 		F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagersTests.swift; sourceTree = "<group>"; };
 		F149B0F923BE211C007AD7D7 /* PEntityFIlter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityFIlter.swift; sourceTree = "<group>"; };
 		F149B0FD23BE283C007AD7D7 /* Require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Require.swift; sourceTree = "<group>"; };
-		F149B0FF23BE2853007AD7D7 /* Exclude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exclude.swift; sourceTree = "<group>"; };
+		F149B0FF23BE2853007AD7D7 /* Excludes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Excludes.swift; sourceTree = "<group>"; };
 		F149B10D23BE524A007AD7D7 /* EntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryResult.swift; sourceTree = "<group>"; };
 		F149B11123BE55FA007AD7D7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F149B11623BE56B6007AD7D7 /* DamageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageSystem.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				F149B0FD23BE283C007AD7D7 /* Require.swift */,
-				F149B0FF23BE2853007AD7D7 /* Exclude.swift */,
+				F149B0FF23BE2853007AD7D7 /* Excludes.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				F149B0E923BD6A5D007AD7D7 /* PEntityQueryResult.swift in Sources */,
 				F149B0B823BC4F66007AD7D7 /* EntityManager.swift in Sources */,
 				F149B09B23BC31D1007AD7D7 /* Entity.swift in Sources */,
-				F149B10023BE2853007AD7D7 /* Exclude.swift in Sources */,
+				F149B10023BE2853007AD7D7 /* Excludes.swift in Sources */,
 				F149B0E523BD5F1C007AD7D7 /* EntityRequester.swift in Sources */,
 				F149B0AE23BC33CE007AD7D7 /* PSystem.swift in Sources */,
 				F149B0C423BD3098007AD7D7 /* ComponentManagerError.swift in Sources */,
