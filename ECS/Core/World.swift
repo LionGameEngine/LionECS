@@ -25,7 +25,7 @@ public final class World<ComponentManagers: PComponentManagers> {
     
     public func getOrCreateSystem<System: PCreatableSystem>() -> System where System.ComponentManagers == ComponentManagers {
         guard let system: System = getExistingSystem() else {
-            let system = System(world: self, entityManager: entityManager, entityRequester: entityRequester)
+            let system = System(world: self, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester)
             systems.append(system)
             return system
         }

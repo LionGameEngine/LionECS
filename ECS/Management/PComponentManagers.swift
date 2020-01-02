@@ -6,7 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public protocol PComponentManagers {
+public protocol PComponentManagers: class {
     func getAllManagers() -> [PComponentManager]
     func getOrCreateManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) -> ComponentManager
     func getExistingManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) throws -> ComponentManager

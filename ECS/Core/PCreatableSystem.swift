@@ -11,5 +11,5 @@
 // sourcery: AutoMockableFirstGenericConformances=PComponentManagers
 public protocol PCreatableSystem: PSystem {
     associatedtype ComponentManagers: PComponentManagers
-    init(world: World<ComponentManagers>, entityManager: EntityManager, entityRequester: EntityRequester<ComponentManagers>)
+    init(world: World<ComponentManagers>, entityManager: EntityManager, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)
 }

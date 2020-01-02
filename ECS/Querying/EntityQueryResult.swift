@@ -9,7 +9,7 @@
 public struct EntityQueryResult<Components>: PEntityQueryResult {
     private let comp: Dictionary<Entity, Components>
     
-    init(comp: Dictionary<Entity, Components>) {
+    public init(comp: Dictionary<Entity, Components>) {
         self.comp = comp
     }
     
