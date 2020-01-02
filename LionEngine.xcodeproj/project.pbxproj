@@ -48,6 +48,7 @@
 		F149B11723BE56B6007AD7D7 /* DamageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B11623BE56B6007AD7D7 /* DamageSystem.swift */; };
 		F149B11923BE56C4007AD7D7 /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B11823BE56C4007AD7D7 /* DamageComponent.swift */; };
 		F149B13223BE755D007AD7D7 /* AutoQueries.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B13123BE755D007AD7D7 /* AutoQueries.generated.swift */; };
+		F173C56E23BE8B3C00F9EF6E /* EntityRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C56D23BE8B3C00F9EF6E /* EntityRequesterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		F149B11623BE56B6007AD7D7 /* DamageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageSystem.swift; sourceTree = "<group>"; };
 		F149B11823BE56C4007AD7D7 /* DamageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageComponent.swift; sourceTree = "<group>"; };
 		F149B13123BE755D007AD7D7 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
+		F173C56D23BE8B3C00F9EF6E /* EntityRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequesterTests.swift; sourceTree = "<group>"; };
 		FF46C007367B1636F53BCBB5 /* Pods-ECS-ECSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECS-ECSTests.debug.xcconfig"; path = "Target Support Files/Pods-ECS-ECSTests/Pods-ECS-ECSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +209,7 @@
 				F149B0B923BC5127007AD7D7 /* EntityManagerTests.swift */,
 				F149B0C123BD2F38007AD7D7 /* ComponentManagerTests.swift */,
 				F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */,
+				F173C56D23BE8B3C00F9EF6E /* EntityRequesterTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				F149B0EF23BD7827007AD7D7 /* ComponentManagersTests.swift in Sources */,
 				F149B0C223BD2F38007AD7D7 /* ComponentManagerTests.swift in Sources */,
 				F149B0A323BC3230007AD7D7 /* EntityTests.swift in Sources */,
+				F173C56E23BE8B3C00F9EF6E /* EntityRequesterTests.swift in Sources */,
 				F149B0BA23BC5127007AD7D7 /* EntityManagerTests.swift in Sources */,
 				F149B0B423BC4067007AD7D7 /* AutoMockable.generated.swift in Sources */,
 			);

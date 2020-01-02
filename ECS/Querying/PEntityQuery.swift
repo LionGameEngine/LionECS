@@ -6,6 +6,8 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
+// sourcery: AutoMockable
+// sourcery: AutoMockableGenerics="<ComponentManagers: PComponentManagers, Result: PEntityQueryResult>"
 public protocol PEntityQuery {
     associatedtype ComponentManagers: PComponentManagers
     associatedtype Result: PEntityQueryResult
