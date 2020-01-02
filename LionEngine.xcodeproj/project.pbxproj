@@ -37,7 +37,7 @@
 		F149B0E523BD5F1C007AD7D7 /* EntityRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E423BD5F1C007AD7D7 /* EntityRequester.swift */; };
 		F149B0E723BD60E0007AD7D7 /* PEntityQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E623BD60E0007AD7D7 /* PEntityQuery.swift */; };
 		F149B0E923BD6A5D007AD7D7 /* PEntityQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0E823BD6A5D007AD7D7 /* PEntityQueryResult.swift */; };
-		F149B0EB23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */; };
+		F149B0EB23BD6ECD007AD7D7 /* ComponentIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EA23BD6ECD007AD7D7 /* ComponentIdentifier.swift */; };
 		F149B0ED23BD70F1007AD7D7 /* ComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EC23BD70F1007AD7D7 /* ComponentManagers.swift */; };
 		F149B0EF23BD7827007AD7D7 /* ComponentManagersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */; };
 		F149B0FA23BE211C007AD7D7 /* PEntityFIlter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F149B0F923BE211C007AD7D7 /* PEntityFIlter.swift */; };
@@ -100,7 +100,7 @@
 		F149B0E423BD5F1C007AD7D7 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		F149B0E623BD60E0007AD7D7 /* PEntityQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityQuery.swift; sourceTree = "<group>"; };
 		F149B0E823BD6A5D007AD7D7 /* PEntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityQueryResult.swift; sourceTree = "<group>"; };
-		F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerIdentifier.swift; sourceTree = "<group>"; };
+		F149B0EA23BD6ECD007AD7D7 /* ComponentIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentIdentifier.swift; sourceTree = "<group>"; };
 		F149B0EC23BD70F1007AD7D7 /* ComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagers.swift; sourceTree = "<group>"; };
 		F149B0EE23BD7827007AD7D7 /* ComponentManagersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagersTests.swift; sourceTree = "<group>"; };
 		F149B0F923BE211C007AD7D7 /* PEntityFIlter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityFIlter.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		F149B0F423BD96B3007AD7D7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F149B0EA23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift */,
+				F149B0EA23BD6ECD007AD7D7 /* ComponentIdentifier.swift */,
 				F149B0C723BD3A5C007AD7D7 /* ComponentSystem.swift */,
 				F149B0AF23BC3589007AD7D7 /* World.swift */,
 				F149B0BF23BD2ED8007AD7D7 /* PCreatableSystem.swift */,
@@ -510,7 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F149B0C623BD30B6007AD7D7 /* PComponentManager.swift in Sources */,
-				F149B0EB23BD6ECD007AD7D7 /* ComponentManagerIdentifier.swift in Sources */,
+				F149B0EB23BD6ECD007AD7D7 /* ComponentIdentifier.swift in Sources */,
 				F149B0C023BD2ED8007AD7D7 /* PCreatableSystem.swift in Sources */,
 				F149B0ED23BD70F1007AD7D7 /* ComponentManagers.swift in Sources */,
 				F149B0FA23BE211C007AD7D7 /* PEntityFIlter.swift in Sources */,
