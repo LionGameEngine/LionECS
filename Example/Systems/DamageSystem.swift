@@ -17,5 +17,9 @@ class DamageSystem: ComponentSystem<GameComponentsManagers> {
             try! componentManagers.healthComponentManager.addComponent(entityWithComponents.value.0, toEntity: entityWithComponents.key)
             print("Entity \(entityWithComponents.key) damaged \(entityWithComponents.value.1.damage) remaining health: \(entityWithComponents.value.0.health)")
         }
+        let itemPrototype = PrototypeBuilder()
+            .addComponentType(DamageComponent.self)
+            .addComponentType(HealthComponent.self)
+            .build()
     }
 }

@@ -7,6 +7,10 @@
 //
 
 public struct Excludes<Component: PComponent>: PEntityFilter {
+    public var componentIdentifier: ComponentIdentifier {
+        return Component.componentIdentifier
+    }
+    
     public func filter<ComponentManagers: PComponentManagers>(requester: EntityRequester<ComponentManagers>, entities: Set<Entity>) throws -> Set<Entity> {
         return try entities.subtracting(
             requester.getComponentManagers()
