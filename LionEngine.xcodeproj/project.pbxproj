@@ -57,6 +57,9 @@
 		EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BC658C18B9D6C6BDDD0CA /* Excludes.swift */; };
 		EEF66F543548A53F6EAC61A1 /* Requires.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB5C5C435005FE4001E319B /* Requires.swift */; };
 		EF9B909E24340503A69F1CBF /* EntityQueryResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DD3B264FE69D9AEC7E5FC /* EntityQueryResultTests.swift */; };
+		F173C58223BECFC100F9EF6E /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C58123BECFC100F9EF6E /* Chunk.swift */; };
+		F173C5A123BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */; };
+		F173C5A423BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */; };
 		F8AE6C1D2B220F976871B490 /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27EC0110EBBB5B78D2A865 /* DamageComponent.swift */; };
 		FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA220F2C565ED64A8C67AC /* EntityManager.swift */; };
 		FD77119A7C0B42953FDB73A4 /* ComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72E14188B38E071F59493F /* ComponentManager.swift */; };
@@ -168,6 +171,9 @@
 		EA3A3EF5C12870AA4D28FD2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EE069010605CC0C99B48671F /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
 		EE5DF3222C0F89A1F9551279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F173C58123BECFC100F9EF6E /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
+		F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescription.swift; sourceTree = "<group>"; };
+		F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilder.swift; sourceTree = "<group>"; };
 		FB8837D8232F416F4828C339 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		FE5B27DDF76C10D1E3FFB1AE /* EntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +211,7 @@
 		102C17872745E63D8BF9CC38 /* Management */ = {
 			isa = PBXGroup;
 			children = (
+				F173C5A223BF883A00F9EF6E /* Memory */,
 				3B72E14188B38E071F59493F /* ComponentManager.swift */,
 				586195C9A01E0BB1F03064AF /* ComponentManagerError.swift */,
 				25EE48059FE30189F09AF9CC /* ComponentManagers.swift */,
@@ -382,8 +389,17 @@
 				3C0842AC2305D90D3637EB9A /* Pods-Example.debug.xcconfig */,
 				0C6FF90E9C778170BE8FF54C /* Pods-Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F173C5A223BF883A00F9EF6E /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */,
+				F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */,
+				F173C58123BECFC100F9EF6E /* Chunk.swift */,
+			);
+			path = Memory;
 			sourceTree = "<group>";
 		};
 		FFCB92C78EA0614D0A831DC0 /* Core */ = {
@@ -499,6 +515,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 			);
 			mainGroup = 31E5B85BD918AF3C47F17FF9;
@@ -647,12 +664,14 @@
 				FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */,
 				92A1F6DC869799F1FE46C940 /* EntityQueryResult.swift in Sources */,
 				B5725EF28ED317C08D1A7F67 /* EntityRequester.swift in Sources */,
+				F173C5A423BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */,
 				EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */,
 				C2F4BFC24531EE7ED192134E /* PComponent.swift in Sources */,
 				840762CDB89F28274C7EA140 /* PComponentManager.swift in Sources */,
 				7AFB8362465F2D1B337D313D /* PComponentManagers.swift in Sources */,
 				3D4A060E7E13C12E17EE37BA /* PCreatableSystem.swift in Sources */,
 				B92064122A6A1B219CD18AE9 /* PEntityFIlter.swift in Sources */,
+				F173C5A123BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift in Sources */,
 				BA0CFCAF33B030CDA18C637A /* PEntityQuery.swift in Sources */,
 				7EE5C5A754A9D7039944A335 /* PEntityQueryResult.swift in Sources */,
 				8C6BE047369849C2C79EE7B8 /* PSystem.swift in Sources */,
@@ -660,6 +679,7 @@
 				A2C0ADD679D22C40578039BE /* PrototypeBuilder.swift in Sources */,
 				EEF66F543548A53F6EAC61A1 /* Requires.swift in Sources */,
 				44B1CC8E254C1FF9753D6E17 /* World.swift in Sources */,
+				F173C58223BECFC100F9EF6E /* Chunk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

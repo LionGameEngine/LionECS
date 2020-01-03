@@ -12,10 +12,11 @@ class DamageSystem: ComponentSystem<GameComponentsManagers> {
     override func update() {
         let query = Requires2ComponentQuery<ComponentManagers, HealthComponent, DamageComponent>()
         guard let result = try? entityRequester.queryEntities(query: query) else { return }
-        for var entityWithComponents in result.entityWithComponents() {
-            entityWithComponents.value.0.health -= entityWithComponents.value.1.damage
-            try! componentManagers.healthComponentManager.addComponent(entityWithComponents.value.0, toEntity: entityWithComponents.key)
-            print("Entity \(entityWithComponents.key) damaged \(entityWithComponents.value.1.damage) remaining health: \(entityWithComponents.value.0.health)")
+        for result in result.entityWithComponents() {
+            var (entity, (health, damage)) = result
+            health.health -= damage.damage
+            try! componentManagers.healthComponentManager.addComponent(health, toEntity: entity)
+            print("Entity \(entity) damaged \(damage.damage) remaining health: \(health.health)")
         }
         let itemPrototype = PrototypeBuilder()
             .addComponentType(DamageComponent.self)

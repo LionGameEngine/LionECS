@@ -7,10 +7,14 @@
 //
 
 public class PrototypeBuilder {
-    public private(set) var filters: [PEntityFilter] = []
+    private var filters: [PEntityFilter]
     
     public init() {
-        
+        self.filters = []
+    }
+    
+    public init(prototype: Prototype) {
+        self.filters = prototype.filters
     }
     
     public func addComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {

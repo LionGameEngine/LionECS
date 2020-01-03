@@ -8,6 +8,7 @@
 
 public enum ComponentManagerError: Error {
     case invalidComponentType
+    case entityMissing
     case componentMissing
     case managerMissing
 }
