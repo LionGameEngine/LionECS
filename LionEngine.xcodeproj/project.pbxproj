@@ -53,6 +53,8 @@
 		EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BC658C18B9D6C6BDDD0CA /* Excludes.swift */; };
 		EF8C7E785C925EFE9744FEFE /* Pods_ECSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6864B9E3AF7641AE7D524E3 /* Pods_ECSTests.framework */; };
 		EF9B909E24340503A69F1CBF /* EntityQueryResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DD3B264FE69D9AEC7E5FC /* EntityQueryResultTests.swift */; };
+		F173C57723BEB94300F9EF6E /* ComponentSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C57623BEB94300F9EF6E /* ComponentSystemTests.swift */; };
+		F173C57923BEBAD900F9EF6E /* EntityQueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C57823BEBAD900F9EF6E /* EntityQueryTests.swift */; };
 		F8AE6C1D2B220F976871B490 /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27EC0110EBBB5B78D2A865 /* DamageComponent.swift */; };
 		FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA220F2C565ED64A8C67AC /* EntityManager.swift */; };
 		FD77119A7C0B42953FDB73A4 /* ComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72E14188B38E071F59493F /* ComponentManager.swift */; };
@@ -160,6 +162,8 @@
 		EA3A3EF5C12870AA4D28FD2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EE069010605CC0C99B48671F /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
 		EE5DF3222C0F89A1F9551279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F173C57623BEB94300F9EF6E /* ComponentSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentSystemTests.swift; sourceTree = "<group>"; };
+		F173C57823BEBAD900F9EF6E /* EntityQueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryTests.swift; sourceTree = "<group>"; };
 		FB8837D8232F416F4828C339 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		FE5B27DDF76C10D1E3FFB1AE /* EntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,6 +259,8 @@
 				CFA8380E15D7572B16E00D67 /* Info.plist */,
 				2250D78B144E5F3734730C1C /* RequiresTests.swift */,
 				BBBEF9DB4FAFC2B726C0E7B0 /* WorldTests.swift */,
+				F173C57623BEB94300F9EF6E /* ComponentSystemTests.swift */,
+				F173C57823BEBAD900F9EF6E /* EntityQueryTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -339,7 +345,6 @@
 				C0076D6A55CC40220EA7FAA6 /* Pods-Example.debug.xcconfig */,
 				DE158DFD8EDA7271BA82FE6A /* Pods-Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -487,6 +492,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 			);
 			mainGroup = 31E5B85BD918AF3C47F17FF9;
@@ -609,6 +615,8 @@
 				92C57011483BB66ACA0EE531 /* AutoMockable.generated.swift in Sources */,
 				B70F63E869DB98BF935E3A4A /* ComponentManagerTests.swift in Sources */,
 				BA4841F332763ECF598623DF /* ComponentManagersTests.swift in Sources */,
+				F173C57723BEB94300F9EF6E /* ComponentSystemTests.swift in Sources */,
+				F173C57923BEBAD900F9EF6E /* EntityQueryTests.swift in Sources */,
 				B33518945525D87B10700954 /* EntityManagerTests.swift in Sources */,
 				EF9B909E24340503A69F1CBF /* EntityQueryResultTests.swift in Sources */,
 				72B7E6AA8F08202E2273F275 /* EntityRequesterTests.swift in Sources */,
