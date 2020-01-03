@@ -60,6 +60,13 @@
 		F173C58223BECFC100F9EF6E /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C58123BECFC100F9EF6E /* Chunk.swift */; };
 		F173C5A123BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */; };
 		F173C5A423BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */; };
+		F173C5A623BFADE600F9EF6E /* ChunkMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A523BFADE600F9EF6E /* ChunkMemoryManager.swift */; };
+		F173C5A823BFB00200F9EF6E /* EntityAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A723BFB00200F9EF6E /* EntityAccessor.swift */; };
+		F173C5AA23BFB18A00F9EF6E /* ComponentAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5A923BFB18A00F9EF6E /* ComponentAccessor.swift */; };
+		F173C5AC23BFB6DA00F9EF6E /* PMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5AB23BFB6DA00F9EF6E /* PMemoryManager.swift */; };
+		F173C5AE23BFB9D600F9EF6E /* PEntityAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5AD23BFB9D600F9EF6E /* PEntityAccessor.swift */; };
+		F173C5B023BFBA1300F9EF6E /* PComponentAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5AF23BFBA1300F9EF6E /* PComponentAccessor.swift */; };
+		F173C5B223BFBF9500F9EF6E /* ChunkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5B123BFBF9500F9EF6E /* ChunkError.swift */; };
 		F8AE6C1D2B220F976871B490 /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27EC0110EBBB5B78D2A865 /* DamageComponent.swift */; };
 		FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DA220F2C565ED64A8C67AC /* EntityManager.swift */; };
 		FD77119A7C0B42953FDB73A4 /* ComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72E14188B38E071F59493F /* ComponentManager.swift */; };
@@ -174,6 +181,13 @@
 		F173C58123BECFC100F9EF6E /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
 		F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescription.swift; sourceTree = "<group>"; };
 		F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilder.swift; sourceTree = "<group>"; };
+		F173C5A523BFADE600F9EF6E /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
+		F173C5A723BFB00200F9EF6E /* EntityAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityAccessor.swift; sourceTree = "<group>"; };
+		F173C5A923BFB18A00F9EF6E /* ComponentAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentAccessor.swift; sourceTree = "<group>"; };
+		F173C5AB23BFB6DA00F9EF6E /* PMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMemoryManager.swift; sourceTree = "<group>"; };
+		F173C5AD23BFB9D600F9EF6E /* PEntityAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityAccessor.swift; sourceTree = "<group>"; };
+		F173C5AF23BFBA1300F9EF6E /* PComponentAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PComponentAccessor.swift; sourceTree = "<group>"; };
+		F173C5B123BFBF9500F9EF6E /* ChunkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkError.swift; sourceTree = "<group>"; };
 		FB8837D8232F416F4828C339 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		FE5B27DDF76C10D1E3FFB1AE /* EntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -398,6 +412,13 @@
 				F173C5A023BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift */,
 				F173C5A323BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift */,
 				F173C58123BECFC100F9EF6E /* Chunk.swift */,
+				F173C5A523BFADE600F9EF6E /* ChunkMemoryManager.swift */,
+				F173C5A723BFB00200F9EF6E /* EntityAccessor.swift */,
+				F173C5A923BFB18A00F9EF6E /* ComponentAccessor.swift */,
+				F173C5AB23BFB6DA00F9EF6E /* PMemoryManager.swift */,
+				F173C5AD23BFB9D600F9EF6E /* PEntityAccessor.swift */,
+				F173C5AF23BFBA1300F9EF6E /* PComponentAccessor.swift */,
+				F173C5B123BFBF9500F9EF6E /* ChunkError.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -661,9 +682,12 @@
 				00024EC6513E866E979B0DE7 /* ComponentManagers.swift in Sources */,
 				71F7A3E73767B5CF800AAB23 /* ComponentSystem.swift in Sources */,
 				EB9EDC9A04387659E2DC6C04 /* Entity.swift in Sources */,
+				F173C5A623BFADE600F9EF6E /* ChunkMemoryManager.swift in Sources */,
 				FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */,
+				F173C5B023BFBA1300F9EF6E /* PComponentAccessor.swift in Sources */,
 				92A1F6DC869799F1FE46C940 /* EntityQueryResult.swift in Sources */,
 				B5725EF28ED317C08D1A7F67 /* EntityRequester.swift in Sources */,
+				F173C5AC23BFB6DA00F9EF6E /* PMemoryManager.swift in Sources */,
 				F173C5A423BF885C00F9EF6E /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */,
 				EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */,
 				C2F4BFC24531EE7ED192134E /* PComponent.swift in Sources */,
@@ -672,6 +696,9 @@
 				3D4A060E7E13C12E17EE37BA /* PCreatableSystem.swift in Sources */,
 				B92064122A6A1B219CD18AE9 /* PEntityFIlter.swift in Sources */,
 				F173C5A123BF883500F9EF6E /* ChunkMemoryLayoutDescription.swift in Sources */,
+				F173C5B223BFBF9500F9EF6E /* ChunkError.swift in Sources */,
+				F173C5AE23BFB9D600F9EF6E /* PEntityAccessor.swift in Sources */,
+				F173C5A823BFB00200F9EF6E /* EntityAccessor.swift in Sources */,
 				BA0CFCAF33B030CDA18C637A /* PEntityQuery.swift in Sources */,
 				7EE5C5A754A9D7039944A335 /* PEntityQueryResult.swift in Sources */,
 				8C6BE047369849C2C79EE7B8 /* PSystem.swift in Sources */,
@@ -680,6 +707,7 @@
 				EEF66F543548A53F6EAC61A1 /* Requires.swift in Sources */,
 				44B1CC8E254C1FF9753D6E17 /* World.swift in Sources */,
 				F173C58223BECFC100F9EF6E /* Chunk.swift in Sources */,
+				F173C5AA23BFB18A00F9EF6E /* ComponentAccessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

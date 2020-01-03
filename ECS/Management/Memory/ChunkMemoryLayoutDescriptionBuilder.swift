@@ -9,6 +9,7 @@
 public final class ChunkMemoryLayoutDescriptionBuilder {
     var startingOffsets: [ComponentIdentifier: Int] = [:]
     var componentSizes: [ComponentIdentifier: Int] = [:]
+    let entitySize = MemoryLayout<Entity>.size
     var currentSize: Int = MemoryLayout<Entity>.size
     
     public init() {
@@ -28,6 +29,6 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
     }
     
     public func build() -> ChunkMemoryLayoutDescription {
-        return ChunkMemoryLayoutDescription(startingOffsets: startingOffsets, componentSizes: componentSizes, chunkEntrySize: currentSize)
+        return ChunkMemoryLayoutDescription(entitySize: entitySize, startingOffsets: startingOffsets, componentSizes: componentSizes, chunkEntrySize: currentSize)
     }
 }

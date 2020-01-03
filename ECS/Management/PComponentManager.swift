@@ -12,6 +12,6 @@ public protocol PComponentManager {
     func hasComponent(entity: Entity) -> Bool
     func addComponent<Component: PComponent>(_ component: Component, toEntity entity: Entity) throws
     func getComponent<Component: PComponent>(ofEntity entity: Entity) throws -> Component
-    func getEntitiesWithComponents<Component: PComponent>() throws -> Dictionary<Entity, Component>
+    func getEntitiesWithComponents<Component: PComponent>() throws -> [Entity: Component]
     func verify<Component: PComponent>(componentType: Component.Type) throws
 }

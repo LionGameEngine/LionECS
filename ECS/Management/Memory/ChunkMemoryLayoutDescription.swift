@@ -10,8 +10,10 @@ public struct ChunkMemoryLayoutDescription {
     let startingOffsets: [ComponentIdentifier: Int]
     let componentSizes: [ComponentIdentifier: Int]
     let chunkEntrySize: Int
+    let entitySize: Int
     
-    init(startingOffsets: [ComponentIdentifier: Int], componentSizes: [ComponentIdentifier: Int], chunkEntrySize: Int) {
+    init(entitySize: Int, startingOffsets: [ComponentIdentifier: Int], componentSizes: [ComponentIdentifier: Int], chunkEntrySize: Int) {
+        self.entitySize = entitySize
         self.startingOffsets = startingOffsets
         self.componentSizes = componentSizes
         self.chunkEntrySize = chunkEntrySize

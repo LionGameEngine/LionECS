@@ -7,7 +7,7 @@
 //
 
 public final class ComponentManager<Component: PComponent>: PComponentManager {    
-    private var entitiesWithComponents: Dictionary<Entity, Component> = [:]
+    private var entitiesWithComponents: [Entity: Component] = [:]
     
     public init() {
         
@@ -21,9 +21,9 @@ public final class ComponentManager<Component: PComponent>: PComponentManager {
         return entitiesWithComponents[entity] != nil
     }
     
-    public func getEntitiesWithComponents<C: PComponent>() throws -> Dictionary<Entity, C> {
+    public func getEntitiesWithComponents<C: PComponent>() throws -> [Entity: C] {
         try verify(componentType: C.self)
-        return entitiesWithComponents as! Dictionary<Entity, C>;
+        return entitiesWithComponents as! Dictionary<Entity, C>
     }
     
     public func getComponent<C: PComponent>(ofEntity entity: Entity) throws -> C {

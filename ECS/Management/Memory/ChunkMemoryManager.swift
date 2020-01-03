@@ -1,0 +1,30 @@
+//
+//  ChunkMemoryManager.swift
+//  ECS
+//
+//  Created by Tomasz Lewandowski on 03/01/2020.
+//  Copyright © 2020 LionSoftware. All rights reserved.
+//
+
+public final class ChunkMemoryManager: PMemoryManager {
+    let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    init(memoryLayoutDescription: ChunkMemoryLayoutDescription) {
+        self.memoryLayoutDescription = memoryLayoutDescription
+    }
+    
+    public func free(pointer: UnsafeMutableRawBufferPointer) {
+        pointer.deallocate()
+    }
+    
+    public func move(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer) {
+        to.copyMemory(from: UnsafeRawBufferPointer(from))
+    }
+    
+    public func alloc(count: Int) -> UnsafeMutableRawBufferPointer {
+        return UnsafeMutableRawBufferPointer.allocate(byteCount: count * self.memoryLayoutDescription.chunkEntrySize, alignment: 0)
+    }
+    
+    public func clear(pointer: UnsafeMutableRawBufferPointer) {
+        pointer.initializeMemory(as: UInt8.self, repeating: 0)
+    }
+}

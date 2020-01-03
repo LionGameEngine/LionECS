@@ -23,13 +23,21 @@ class Game {
         let layouBuilder = ChunkMemoryLayoutDescriptionBuilder()
         layouBuilder.add(HealthComponent.self)
         let chunk = Chunk(memoryLayoutDescription: layouBuilder.build())
-        chunk.createEntity(entity: Entity(id: 1))
-        chunk.createEntity(entity: Entity(id: 2))
+        try! chunk.createEntity(entity: Entity(id: 1))
+        try! chunk.createEntity(entity: Entity(id: 2))
         try! chunk.setComponent(entity: Entity(id: 1), r1: HealthComponent(health: 30))
         try! chunk.setComponent(entity: Entity(id: 2), r1: HealthComponent(health: 100))
         let entitiesWithComponents: [(Entity, HealthComponent)] = try! chunk.getEntitiesWithComponents()
         for var (entity, health) in entitiesWithComponents {
-            print("\(entity) \(health.health)")
+            print("\(entity) \(health)")
+        }
+        let unsafeEntitiesWithComponents: [(UnsafeMutablePointer<Entity>, UnsafeMutablePointer<HealthComponent>)] = try! chunk.getUnsafeEntityWithComponents()
+        for var (entity, health) in unsafeEntitiesWithComponents {
+            print("\(entity.pointee) \(health.pointee)")
+            health.pointee.health = 10
+        }
+        for var (entity, health) in unsafeEntitiesWithComponents {
+            print("\(entity.pointee) \(health.pointee)")
         }
     }
 }
