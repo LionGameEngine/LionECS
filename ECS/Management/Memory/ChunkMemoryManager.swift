@@ -7,8 +7,9 @@
 //
 
 public final class ChunkMemoryManager: PMemoryManager {
-    let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    init(memoryLayoutDescription: ChunkMemoryLayoutDescription) {
+    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    
+    public init(memoryLayoutDescription: ChunkMemoryLayoutDescription) {
         self.memoryLayoutDescription = memoryLayoutDescription
     }
     

@@ -7,14 +7,14 @@
 //
 
 public final class Chunk {
-    let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    var allocatedEntities: Int = 1
-    var freeIndicies: Set<Int> = Set(0..<1)
-    var managedEntities: [Entity: Int] = [:]
-    var entries: UnsafeMutableRawBufferPointer!
-    var entityAccessor: PEntityAccessor
-    var componentAccessor: PComponentAccessor
-    let memoryManager: PMemoryManager
+    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    private var allocatedEntities: Int = 1
+    private var freeIndicies: Set<Int> = Set(0..<1)
+    private var managedEntities: [Entity: Int] = [:]
+    private var entries: UnsafeMutableRawBufferPointer!
+    private var entityAccessor: PEntityAccessor
+    private var componentAccessor: PComponentAccessor
+    private let memoryManager: PMemoryManager
     
     public init(
         memoryLayoutDescription: ChunkMemoryLayoutDescription,

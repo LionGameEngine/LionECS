@@ -7,10 +7,10 @@
 //
 
 public final class ChunkMemoryLayoutDescriptionBuilder {
-    var startingOffsets: [ComponentIdentifier: Int] = [:]
-    var componentSizes: [ComponentIdentifier: Int] = [:]
-    let entitySize = MemoryLayout<Entity>.size
-    var currentSize: Int = MemoryLayout<Entity>.size
+    private var startingOffsets: [ComponentIdentifier: Int] = [:]
+    private var componentSizes: [ComponentIdentifier: Int] = [:]
+    private let entitySize = MemoryLayout<Entity>.size
+    private var currentSize: Int = MemoryLayout<Entity>.size
     
     public init() {
         

@@ -7,7 +7,7 @@
 //
 
 public final class EntityAccessor: PEntityAccessor {
-    let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
     public var entries: UnsafeMutableRawBufferPointer
     
     public init(memoryLayoutDescription: ChunkMemoryLayoutDescription, entries: UnsafeMutableRawBufferPointer) {
