@@ -50,4 +50,12 @@ class ComponentManagersTests: XCTestCase {
         // then
         let _: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
     }
+    
+    func testGetOrCreateManager_WhenCalledSecodTime_ShouldReturnTheSameManager() {
+        // when
+        let manager1: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
+        let manager2: ComponentManager<PComponentMock> = sut.getOrCreateManagerOfType(PComponentMock.self)
+        // then
+        XCTAssertTrue(manager1 === manager2)
+    }
 }
