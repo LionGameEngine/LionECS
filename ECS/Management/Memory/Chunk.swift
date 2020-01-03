@@ -30,13 +30,17 @@ public final class Chunk {
         self.entries = entries
     }
     
+    deinit {
+        memoryManager.clear(pointer: entries)
+    }
+    
     public func getEntities() -> [Entity] {
         let entities = (0..<allocatedEntities).map { entityAccessor.access(index: $0) }
         return entities
     }
     
     public func createEntity(entity: Entity, wasReallocated: Bool = false) throws {
-        guard !managedEntities.keys.contains(entity) else { return }
+        guard !managedEntities.keys.contains(entity) else { throw ChunkError.entityAlreadyExists }
         guard let index = freeIndicies.first else {
             if !wasReallocated {
                 growChunk()
@@ -66,27 +70,22 @@ public final class Chunk {
     }
     
     public func setEntity(_ entity: Entity, atIndex index: Int) {
-        let entityAccessor = self.entityAccessor.accessMutable(index: index)
-        entityAccessor.assign(repeating: entity, count: 1)
+        entityAccessor.set(entity: entity, index: index)
     }
     
-    public func removeEntity(_ entity: Entity) {
-        guard let index = managedEntities[entity] else { return }
+    public func removeEntity(_ entity: Entity) throws {
+        guard let index = managedEntities[entity] else { throw ChunkError.missingEntity }
         freeIndicies.insert(index)
         managedEntities.removeValue(forKey: entity)
         entityAccessor.clear(index: index)
     }
     
-    deinit {
-        memoryManager.clear(pointer: entries)
-    }
-    
     func verify<R1: PComponent>(_ type: R1.Type) throws {
-        guard memoryLayoutDescription.hasComponent(R1.self) else { throw ComponentManagerError.componentMissing }
+        guard memoryLayoutDescription.hasComponent(R1.self) else { throw ChunkError.missingComponent }
     }
 
     func verify(entity: Entity) throws {
-        guard managedEntities.keys.contains(entity) else { throw ComponentManagerError.entityMissing }
+        guard managedEntities.keys.contains(entity) else { throw ChunkError.missingEntity }
     }
 }
 
@@ -125,7 +124,6 @@ extension Chunk {
     
     public func setComponent<R1: PComponent>(_ r1: R1, atIndex index: Int) throws {
         try verify(R1.self)
-        let r1Accessor: UnsafeMutablePointer<R1> = componentAccessor.accessMutable(index: index)
-        r1Accessor.assign(repeating: r1, count: 1)
+        componentAccessor.set(component: r1, index: index)
     }
 }

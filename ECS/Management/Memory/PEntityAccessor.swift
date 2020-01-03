@@ -11,4 +11,5 @@ public protocol PEntityAccessor {
     func access(index: Int) -> Entity
     func accessMutable(index: Int) -> UnsafeMutablePointer<Entity>
     func clear(index: Int)
+    func set(entity: Entity, index: Int)
 }

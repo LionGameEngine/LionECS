@@ -26,4 +26,8 @@ public final class EntityAccessor: PEntityAccessor {
     public func clear(index: Int) {
         UnsafeMutableRawPointer(accessMutable(index: index)).initializeMemory(as: UInt8.self, repeating: 0, count: memoryLayoutDescription.entitySize)
     }
+    
+    public func set(entity: Entity, index: Int) {
+        accessMutable(index: index).assign(repeating: entity, count: 1)
+    }
 }

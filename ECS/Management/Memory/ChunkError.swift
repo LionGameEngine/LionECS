@@ -7,5 +7,8 @@
 //
 
 public enum ChunkError: Error {
+    case entityAlreadyExists
+    case missingEntity
     case cannotAllocateMemory
+    case missingComponent
 }

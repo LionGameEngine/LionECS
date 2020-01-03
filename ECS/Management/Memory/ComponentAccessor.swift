@@ -27,4 +27,9 @@ public final class ComponentAccessor: PComponentAccessor {
         let pointer: UnsafeMutablePointer<R1> = accessMutable(index: index)
         UnsafeMutableRawPointer(pointer).initializeMemory(as: UInt8.self, repeating: 0, count: memoryLayoutDescription.size(R1.self))
     }
+    
+    public func set<R1: PComponent>(component: R1, index: Int) {
+        let pointer: UnsafeMutablePointer<R1> = accessMutable(index: index)
+        pointer.assign(repeating: component, count: 1)
+    }
 }
