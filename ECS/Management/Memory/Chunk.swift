@@ -7,14 +7,14 @@
 //
 
 public final class Chunk {
-    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    private var allocatedEntities: Int = 1
-    private var freeIndicies: Set<Int> = Set(0..<1)
-    private var managedEntities: [Entity: Int] = [:]
-    private var entries: UnsafeMutableRawBufferPointer!
-    private var entityAccessor: PEntityAccessor
-    private var componentAccessor: PComponentAccessor
-    private let memoryManager: PMemoryManager
+    let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    var allocatedEntities: Int = 1
+    var freeIndicies: Set<Int> = Set(0..<1)
+    var managedEntities: [Entity: Int] = [:]
+    var entries: UnsafeMutableRawBufferPointer!
+    var entityAccessor: PEntityAccessor
+    var componentAccessor: PComponentAccessor
+    let memoryManager: PMemoryManager
     
     public init(
         memoryLayoutDescription: ChunkMemoryLayoutDescription,
@@ -86,44 +86,5 @@ public final class Chunk {
 
     func verify(entity: Entity) throws {
         guard managedEntities.keys.contains(entity) else { throw ChunkError.missingEntity }
-    }
-}
-
-extension Chunk {
-    public func getEntitiesWithComponents<R1: PComponent>() throws -> [(Entity, R1)] {
-        try verify(R1.self)
-        let entitiesWithComponents = (0..<allocatedEntities).map { index -> (Entity, R1) in
-            return ( entityAccessor.access(index: index),
-                     componentAccessor.access(index: index)
-            )
-        }
-        return entitiesWithComponents
-    }
-    
-    public func getComponents<R1: PComponent>() throws -> [(R1)] {
-        try verify(R1.self)
-        let components = (0..<allocatedEntities).map { index -> (R1) in
-            return (
-                componentAccessor.access(index: index)
-            )
-        }
-        return components
-    }
-    
-    public func getUnsafeEntityWithComponents<R1: PComponent>() throws -> [(UnsafeMutablePointer<Entity>, UnsafeMutablePointer<R1>)] {
-        try verify(R1.self)
-        return (0..<allocatedEntities).map { index -> (UnsafeMutablePointer<Entity>, UnsafeMutablePointer<R1>) in
-            return ( entityAccessor.accessMutable(index: index), componentAccessor.accessMutable(index: index) )
-        }
-    }
-    
-    public func setComponent<R1: PComponent>(entity: Entity, r1: R1) throws {
-        try verify(entity: entity)
-        try setComponent(r1, atIndex: managedEntities[entity]!)
-    }
-    
-    public func setComponent<R1: PComponent>(_ r1: R1, atIndex index: Int) throws {
-        try verify(R1.self)
-        componentAccessor.set(component: r1, index: index)
     }
 }

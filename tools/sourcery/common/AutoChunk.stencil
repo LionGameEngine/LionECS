@@ -1,0 +1,74 @@
+{% macro getComponentTemplateParameter y %}R{{y}}: PComponent{% endmacro %}
+
+{% macro getComponentTemplateParameters x %}<{% for y in 1...x %}{% call getComponentTemplateParameter y %}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endmacro %}
+
+{% macro verifyComponents %}{% for y in 1...x %}try verify(R{{y}}.self)
+        {% endfor %}{% endmacro %}
+
+{% macro componentAccessors %}{% for y in 1...x %}componentAccessor.access(index: index){% if not forloop.last %},{% endif %}
+        {% endfor %}{% endmacro %}
+
+{% macro componentMutableAccessors %}{% for y in 1...x %}componentAccessor.accessMutable(index: index){% if not forloop.last %},{% endif %}
+                {% endfor %}{% endmacro %}
+
+{% macro tupleParameters %}{% for y in 1...x %}R{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+{% macro unsafeMutablePointersParameters %}{% for y in 1...x %}UnsafeMutablePointer<R{{y}}>{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+{% macro functionParameters %}{% for y in 1...x %}r{{y}}: R{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+{% macro passFunctionParameters %}{% for y in 1...x %}r{{y}}: r{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+
+extension Chunk {
+    {% for x in 1...10 %}
+    public func getEntitiesWithComponents{% call getComponentTemplateParameters x %}() throws -> [(Entity, {% call tupleParameters %})] {
+        {% call verifyComponents %}
+        let entitiesWithComponents = (0..<allocatedEntities).map { index -> (Entity, {% call tupleParameters %}) in
+            return ( entityAccessor.access(index: index),
+                     {% call componentAccessors %}
+            )
+        }
+        return entitiesWithComponents
+    }
+    
+    public func getComponents{% call getComponentTemplateParameters x %}() throws -> [({% call tupleParameters %})] {
+        {% call verifyComponents %}
+        let components = (0..<allocatedEntities).map { index -> ({% call tupleParameters %}) in
+            return (
+                {% call componentAccessors %}
+            )
+        }
+        return components
+    }
+    
+    public func getUnsafeEntityWithComponents{% call getComponentTemplateParameters x %}() throws -> [(UnsafeMutablePointer<Entity>, {% call unsafeMutablePointersParameters %})] {
+        {% call verifyComponents %}
+        return (0..<allocatedEntities).map { index -> (UnsafeMutablePointer<Entity>, {% call unsafeMutablePointersParameters %}) in
+            return (
+                entityAccessor.accessMutable(index: index),
+                {% call componentMutableAccessors %}
+            )
+        }
+    }
+
+    public func getUnsafeComponents{% call getComponentTemplateParameters x %}() throws -> [({% call unsafeMutablePointersParameters %})] {
+        {% call verifyComponents %}
+        return (0..<allocatedEntities).map { index -> ({% call unsafeMutablePointersParameters %}) in
+            return ( {% call componentMutableAccessors %} )
+        }
+    }
+
+    public func setComponents{% call getComponentTemplateParameters x %}(entity: Entity, {% call functionParameters %}) throws {
+        try verify(entity: entity)
+        try setComponents({% call passFunctionParameters %}, atIndex: managedEntities[entity]!)
+    }
+    
+    public func setComponents{% call getComponentTemplateParameters x %}({% call functionParameters %}, atIndex index: Int) throws {
+        {% call verifyComponents %}
+        {% for y in 1...x %}
+        componentAccessor.set(component: r{{y}}, index: index)
+        {% endfor %}
+    }
+    {% endfor %}
+}

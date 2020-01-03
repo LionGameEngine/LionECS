@@ -15,7 +15,10 @@ generate:
 	@bundle exec pod install
 	@make sourcery
 
-sourcery: auto-queries auto-mocks
+sourcery: auto-chunk auto-queries auto-mocks
+
+auto-chunk:
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk.sourcery.yml --disableCache
 
 auto-queries:
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoQueries.sourcery.yml --disableCache

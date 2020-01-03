@@ -25,8 +25,8 @@ class Game {
         let chunk = Chunk(memoryLayoutDescription: layouBuilder.build())
         try! chunk.createEntity(entity: Entity(id: 1))
         try! chunk.createEntity(entity: Entity(id: 2))
-        try! chunk.setComponent(entity: Entity(id: 1), r1: HealthComponent(health: 30))
-        try! chunk.setComponent(entity: Entity(id: 2), r1: HealthComponent(health: 100))
+        try! chunk.setComponents(entity: Entity(id: 1), r1: HealthComponent(health: 30))
+        try! chunk.setComponents(entity: Entity(id: 2), r1: HealthComponent(health: 100))
         let entitiesWithComponents: [(Entity, HealthComponent)] = try! chunk.getEntitiesWithComponents()
         for var (entity, health) in entitiesWithComponents {
             print("\(entity) \(health)")
