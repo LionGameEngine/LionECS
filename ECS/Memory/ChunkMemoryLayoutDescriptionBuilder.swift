@@ -19,6 +19,7 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
     public init(baseDescription: ChunkMemoryLayoutDescription) {
         startingOffsets = baseDescription.startingOffsets
         componentSizes = baseDescription.componentSizes
+        currentSize = baseDescription.chunkEntrySize
     }
     
     public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {

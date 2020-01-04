@@ -15,7 +15,7 @@ public struct Excludes<Component: PComponent>: PEntityFilter {
         return try entities.subtracting(
             requester.getComponentManagers()
                 .getExistingManager(withIdentifier: Component.componentIdentifier)
-                .getEntities()
+                .getEntities(withComponent: Component.self)
         )
     }
 }

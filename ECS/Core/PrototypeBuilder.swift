@@ -18,6 +18,7 @@ public class PrototypeBuilder {
     }
     
     public func addComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
+        guard !filters.contains(where: {$0.componentIdentifier == Component.componentIdentifier}) else { return self }
         filters.append(Requires<Component>())
         return self
     }

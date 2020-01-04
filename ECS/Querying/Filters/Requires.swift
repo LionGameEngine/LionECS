@@ -15,7 +15,7 @@ public struct Requires<Component: PComponent>: PEntityFilter {
         return try entities.intersection(
             requester.getComponentManagers()
                 .getExistingManager(withIdentifier: Component.componentIdentifier)
-                .getEntities()
+                .getEntities(withComponent: Component.self)
         )
     }
 }

@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let contentView = ContentView()
         
         let _ = Game()
+        let _ = PrototypeGame()
 
         // Create the window and set the content view. 
         window = NSWindow(

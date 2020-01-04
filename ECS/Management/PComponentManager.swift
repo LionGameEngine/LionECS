@@ -8,8 +8,8 @@
 
 public protocol PComponentManager {
     init()
-    func getEntities() -> Set<Entity>
-    func hasComponent(entity: Entity) -> Bool
+    func getEntities<Component: PComponent>(withComponent: Component.Type) -> Set<Entity>
+    func hasComponent<Component: PComponent>(entity: Entity, component: Component.Type) -> Bool
     func addComponent<Component: PComponent>(_ component: Component, toEntity entity: Entity) throws
     func getComponent<Component: PComponent>(ofEntity entity: Entity) throws -> Component
     func getEntitiesWithComponents<Component: PComponent>() throws -> [Entity: Component]

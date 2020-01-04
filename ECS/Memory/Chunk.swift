@@ -14,12 +14,14 @@ public final class Chunk {
     var entries: UnsafeMutableRawBufferPointer!
     var entityAccessor: PEntityAccessor
     var componentAccessor: PComponentAccessor
+    let entityDataAccessor: PEntityDataAccessor
     let memoryManager: PMemoryManager
     
     public init(
         memoryLayoutDescription: ChunkMemoryLayoutDescription,
         memoryManager: PMemoryManager? = nil,
         entityAccessor: PEntityAccessor? = nil,
+        entityDataAccessor: PEntityDataAccessor? = nil,
         componentAccessor: PComponentAccessor? = nil) {
         self.memoryLayoutDescription = memoryLayoutDescription
         self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: memoryLayoutDescription)
@@ -27,6 +29,7 @@ public final class Chunk {
         self.memoryManager.clear(pointer: entries)
         self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
         self.componentAccessor = componentAccessor ?? ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
+        self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
         self.entries = entries
     }
     
@@ -39,8 +42,12 @@ public final class Chunk {
         return entities
     }
     
+    public func managesEntity(entity: Entity) -> Bool {
+        return managedEntities.keys.contains(entity)
+    }
+    
     public func createEntity(entity: Entity, wasReallocated: Bool = false) throws {
-        guard !managedEntities.keys.contains(entity) else { throw ChunkError.entityAlreadyExists }
+        guard !managesEntity(entity: entity) else { throw ChunkError.entityAlreadyExists }
         guard let index = freeIndicies.first else {
             if !wasReallocated {
                 growChunk()
@@ -78,6 +85,18 @@ public final class Chunk {
         freeIndicies.insert(index)
         managedEntities.removeValue(forKey: entity)
         entityAccessor.clear(index: index)
+    }
+    
+    public func getEntityData(_ entity: Entity) throws -> [UInt8] {
+        try verify(entity: entity)
+        let index = managedEntities[entity]!
+        return entityDataAccessor.access(index: index)
+    }
+    
+    public func setEntityData(_ entity: Entity, data: [UInt8]) throws {
+        try createEntity(entity: entity)
+        let index = managedEntities[entity]!
+        entityDataAccessor.set(entityData: data, index: index)
     }
     
     func verify<R1: PComponent>(_ type: R1.Type) throws {

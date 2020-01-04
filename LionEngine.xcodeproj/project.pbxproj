@@ -65,6 +65,17 @@
 		EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BC658C18B9D6C6BDDD0CA /* Excludes.swift */; };
 		EEF66F543548A53F6EAC61A1 /* Requires.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB5C5C435005FE4001E319B /* Requires.swift */; };
 		EF9B909E24340503A69F1CBF /* EntityQueryResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DD3B264FE69D9AEC7E5FC /* EntityQueryResultTests.swift */; };
+		F173C5B423BFDCA700F9EF6E /* PPrototypeComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5B323BFDCA700F9EF6E /* PPrototypeComponentManager.swift */; };
+		F173C5B623BFDD3800F9EF6E /* PrototypeComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5B523BFDD3800F9EF6E /* PrototypeComponentManager.swift */; };
+		F173C5BA23BFFC6F00F9EF6E /* PrototypeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5B923BFFC6F00F9EF6E /* PrototypeGame.swift */; };
+		F173C5BC23BFFCA700F9EF6E /* PrototypeGameComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5BB23BFFCA700F9EF6E /* PrototypeGameComponentManagers.swift */; };
+		F173C5BE23BFFCEA00F9EF6E /* PPrototypeComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5BD23BFFCEA00F9EF6E /* PPrototypeComponentManagers.swift */; };
+		F173C5C023BFFD6E00F9EF6E /* PrototypeComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5BF23BFFD6E00F9EF6E /* PrototypeComponentManagers.swift */; };
+		F173C5C323C001EC00F9EF6E /* PrototypeDamageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5C223C001EC00F9EF6E /* PrototypeDamageSystem.swift */; };
+		F173C5C523C009A700F9EF6E /* PEntityDataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5C423C009A700F9EF6E /* PEntityDataAccessor.swift */; };
+		F173C5C723C009FF00F9EF6E /* EntityDataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5C623C009FF00F9EF6E /* EntityDataAccessor.swift */; };
+		F173C5C923C00BBB00F9EF6E /* PChunkEntityMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5C823C00BBB00F9EF6E /* PChunkEntityMigrator.swift */; };
+		F173C5CB23C00BD300F9EF6E /* ChunkEntityMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5CA23C00BD300F9EF6E /* ChunkEntityMigrator.swift */; };
 		F4906E991F812AA4A090876A /* ChunkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E531AD2AD86D41A31E6FE97 /* ChunkError.swift */; };
 		F6F2EF226C87D4F2DE47CF53 /* Pods_ECSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F7D93334ED34D8AFBC1A8B /* Pods_ECSTests.framework */; };
 		F8AE6C1D2B220F976871B490 /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27EC0110EBBB5B78D2A865 /* DamageComponent.swift */; };
@@ -190,6 +201,17 @@
 		EDC16AEB0EF5638370D1B02B /* PMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMemoryManager.swift; sourceTree = "<group>"; };
 		EE069010605CC0C99B48671F /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
 		EE5DF3222C0F89A1F9551279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F173C5B323BFDCA700F9EF6E /* PPrototypeComponentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPrototypeComponentManager.swift; sourceTree = "<group>"; };
+		F173C5B523BFDD3800F9EF6E /* PrototypeComponentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeComponentManager.swift; sourceTree = "<group>"; };
+		F173C5B923BFFC6F00F9EF6E /* PrototypeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeGame.swift; sourceTree = "<group>"; };
+		F173C5BB23BFFCA700F9EF6E /* PrototypeGameComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeGameComponentManagers.swift; sourceTree = "<group>"; };
+		F173C5BD23BFFCEA00F9EF6E /* PPrototypeComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPrototypeComponentManagers.swift; sourceTree = "<group>"; };
+		F173C5BF23BFFD6E00F9EF6E /* PrototypeComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeComponentManagers.swift; sourceTree = "<group>"; };
+		F173C5C223C001EC00F9EF6E /* PrototypeDamageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeDamageSystem.swift; sourceTree = "<group>"; };
+		F173C5C423C009A700F9EF6E /* PEntityDataAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityDataAccessor.swift; sourceTree = "<group>"; };
+		F173C5C623C009FF00F9EF6E /* EntityDataAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataAccessor.swift; sourceTree = "<group>"; };
+		F173C5C823C00BBB00F9EF6E /* PChunkEntityMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PChunkEntityMigrator.swift; sourceTree = "<group>"; };
+		F173C5CA23C00BD300F9EF6E /* ChunkEntityMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigrator.swift; sourceTree = "<group>"; };
 		FB8837D8232F416F4828C339 /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		FE5B27DDF76C10D1E3FFB1AE /* EntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityQueryResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,6 +265,10 @@
 				C5DA220F2C565ED64A8C67AC /* EntityManager.swift */,
 				2BE7BA964F90DDDD62806137 /* PComponentManager.swift */,
 				4248AF6A8B8FF5E2DB239CD0 /* PComponentManagers.swift */,
+				F173C5B323BFDCA700F9EF6E /* PPrototypeComponentManager.swift */,
+				F173C5B523BFDD3800F9EF6E /* PrototypeComponentManager.swift */,
+				F173C5BD23BFFCEA00F9EF6E /* PPrototypeComponentManagers.swift */,
+				F173C5BF23BFFD6E00F9EF6E /* PrototypeComponentManagers.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -360,15 +386,14 @@
 		923C69D84CEF80684425DE0B /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				F173C5B823BFFC5700F9EF6E /* Prototype */,
+				F173C5B723BFFC3100F9EF6E /* Naive */,
 				55752097AFCEF85E661E709D /* Components */,
 				4F9F3F9AD8D60426BB227810 /* Preview Content */,
-				36C51C2C694D0EF7C9DC9096 /* Systems */,
 				75FB3A8D2F168F10DD90658E /* AppDelegate.swift */,
 				EE5DF3222C0F89A1F9551279 /* Assets.xcassets */,
 				5323734B989536ABE1DAE001 /* ContentView.swift */,
 				D0B46C79EE7A30C6B73532A0 /* Example.entitlements */,
-				1CE48F8C881F44834CBBC318 /* Game.swift */,
-				633538DE3A07C514B1CE56A4 /* GameComponentManagers.swift */,
 				EA3A3EF5C12870AA4D28FD2A /* Info.plist */,
 				C50ABF2501E7E33F22177C5E /* Main.storyboard */,
 			);
@@ -388,6 +413,10 @@
 				719F96A68613FCA3AF10F3E7 /* PComponentAccessor.swift */,
 				C1A0C8AF38A5B78DA58F2B84 /* PEntityAccessor.swift */,
 				EDC16AEB0EF5638370D1B02B /* PMemoryManager.swift */,
+				F173C5C423C009A700F9EF6E /* PEntityDataAccessor.swift */,
+				F173C5C623C009FF00F9EF6E /* EntityDataAccessor.swift */,
+				F173C5C823C00BBB00F9EF6E /* PChunkEntityMigrator.swift */,
+				F173C5CA23C00BD300F9EF6E /* ChunkEntityMigrator.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -424,6 +453,34 @@
 				537AB3F77361B5FCD7E767CA /* Example.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F173C5B723BFFC3100F9EF6E /* Naive */ = {
+			isa = PBXGroup;
+			children = (
+				36C51C2C694D0EF7C9DC9096 /* Systems */,
+				1CE48F8C881F44834CBBC318 /* Game.swift */,
+				633538DE3A07C514B1CE56A4 /* GameComponentManagers.swift */,
+			);
+			path = Naive;
+			sourceTree = "<group>";
+		};
+		F173C5B823BFFC5700F9EF6E /* Prototype */ = {
+			isa = PBXGroup;
+			children = (
+				F173C5C123C001DB00F9EF6E /* Systems */,
+				F173C5B923BFFC6F00F9EF6E /* PrototypeGame.swift */,
+				F173C5BB23BFFCA700F9EF6E /* PrototypeGameComponentManagers.swift */,
+			);
+			path = Prototype;
+			sourceTree = "<group>";
+		};
+		F173C5C123C001DB00F9EF6E /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				F173C5C223C001EC00F9EF6E /* PrototypeDamageSystem.swift */,
+			);
+			path = Systems;
 			sourceTree = "<group>";
 		};
 		FFCB92C78EA0614D0A831DC0 /* Core */ = {
@@ -680,21 +737,28 @@
 			files = (
 				31EA629D85C166A86B42F312 /* AutoChunk.generated.swift in Sources */,
 				919FD7899C96B52FF96BD27C /* AutoQueries.generated.swift in Sources */,
+				F173C5C523C009A700F9EF6E /* PEntityDataAccessor.swift in Sources */,
+				F173C5C923C00BBB00F9EF6E /* PChunkEntityMigrator.swift in Sources */,
 				C9EE30BF65D5A5FE7574D29A /* Chunk.swift in Sources */,
 				F4906E991F812AA4A090876A /* ChunkError.swift in Sources */,
 				E000D9A6490EBE011203B008 /* ChunkMemoryLayoutDescription.swift in Sources */,
+				F173C5CB23C00BD300F9EF6E /* ChunkEntityMigrator.swift in Sources */,
+				F173C5BE23BFFCEA00F9EF6E /* PPrototypeComponentManagers.swift in Sources */,
 				6A921A8098D48850060D5A9A /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */,
 				3F35125C32B5138EA052B3B5 /* ChunkMemoryManager.swift in Sources */,
 				4193C2E8DB9EF01BF0E137DE /* ComponentAccessor.swift in Sources */,
 				685ECB75DB78FF3CF671447D /* ComponentIdentifier.swift in Sources */,
 				FD77119A7C0B42953FDB73A4 /* ComponentManager.swift in Sources */,
+				F173C5B623BFDD3800F9EF6E /* PrototypeComponentManager.swift in Sources */,
 				C01577F2E3E0B1B1F921DFF8 /* ComponentManagerError.swift in Sources */,
 				00024EC6513E866E979B0DE7 /* ComponentManagers.swift in Sources */,
 				71F7A3E73767B5CF800AAB23 /* ComponentSystem.swift in Sources */,
 				EB9EDC9A04387659E2DC6C04 /* Entity.swift in Sources */,
+				F173C5C023BFFD6E00F9EF6E /* PrototypeComponentManagers.swift in Sources */,
 				9F555BF70322CA0E2786F0C6 /* EntityAccessor.swift in Sources */,
 				FB7FAC9968CCA28C6F77F0F2 /* EntityManager.swift in Sources */,
 				92A1F6DC869799F1FE46C940 /* EntityQueryResult.swift in Sources */,
+				F173C5C723C009FF00F9EF6E /* EntityDataAccessor.swift in Sources */,
 				B5725EF28ED317C08D1A7F67 /* EntityRequester.swift in Sources */,
 				EC3BC2D51D1EB7D63672D2F4 /* Excludes.swift in Sources */,
 				C2F4BFC24531EE7ED192134E /* PComponent.swift in Sources */,
@@ -710,6 +774,7 @@
 				8C6BE047369849C2C79EE7B8 /* PSystem.swift in Sources */,
 				B53E139AC57BC209CE87FFDA /* Prototype.swift in Sources */,
 				A2C0ADD679D22C40578039BE /* PrototypeBuilder.swift in Sources */,
+				F173C5B423BFDCA700F9EF6E /* PPrototypeComponentManager.swift in Sources */,
 				EEF66F543548A53F6EAC61A1 /* Requires.swift in Sources */,
 				44B1CC8E254C1FF9753D6E17 /* World.swift in Sources */,
 			);
@@ -721,10 +786,13 @@
 			files = (
 				6556E9C30F971E39CFB87936 /* AppDelegate.swift in Sources */,
 				2372A70BF7B86DC5A423ED08 /* ContentView.swift in Sources */,
+				F173C5C323C001EC00F9EF6E /* PrototypeDamageSystem.swift in Sources */,
 				F8AE6C1D2B220F976871B490 /* DamageComponent.swift in Sources */,
+				F173C5BC23BFFCA700F9EF6E /* PrototypeGameComponentManagers.swift in Sources */,
 				E2F06FFD06E45F831AE31AF7 /* DamageSystem.swift in Sources */,
 				379092FDA25510D9E46BF25E /* Game.swift in Sources */,
 				CFB072365028133C2846D57E /* GameComponentManagers.swift in Sources */,
+				F173C5BA23BFFC6F00F9EF6E /* PrototypeGame.swift in Sources */,
 				47B3E0F5F385D571CFA9082E /* HealthComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

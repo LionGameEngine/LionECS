@@ -13,17 +13,17 @@ public final class ComponentManager<Component: PComponent>: PComponentManager {
         
     }
     
-    public func getEntities() -> Set<Entity> {
+    public func getEntities<C: PComponent>(withComponent: C.Type) -> Set<Entity> {
         return Set(entitiesWithComponents.keys)
     }
     
-    public func hasComponent(entity: Entity) -> Bool {
+    public func hasComponent<C: PComponent>(entity: Entity, component: C.Type) -> Bool {
         return entitiesWithComponents[entity] != nil
     }
     
     public func getEntitiesWithComponents<C: PComponent>() throws -> [Entity: C] {
         try verify(componentType: C.self)
-        return entitiesWithComponents as! Dictionary<Entity, C>
+        return entitiesWithComponents as! [Entity: C]
     }
     
     public func getComponent<C: PComponent>(ofEntity entity: Entity) throws -> C {
