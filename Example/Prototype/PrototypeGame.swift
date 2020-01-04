@@ -9,16 +9,25 @@
 import LionECS
 
 class PrototypeGame {
-    var world: World<PrototypeGameComponentsManagers>
+    var world: World<PrototypeComponentManagers>
     var damageSystem: PrototypeDamageSystem
     
     init() {
-        world = World<PrototypeGameComponentsManagers>(componentManagers: PrototypeGameComponentsManagers())
+        let managers: PrototypeComponentManagers = PrototypeComponentManagers()
+        let _: PrototypeComponentManager = managers.getOrCreateManagerOfType(HealthComponent.self)
+        world = World<PrototypeComponentManagers>(componentManagers: managers)
         damageSystem = world.getOrCreateSystem()
         let entity = world.entityManager.createEntity()
         try! world.componentManagers.prototypeManager?.addComponent(HealthComponent(health: 123), toEntity: entity)
         try! world.componentManagers.prototypeManager?.addComponent(DamageComponent(damage: 23), toEntity: entity)
-        world.update()
-        world.update()
+        gameloop {
+            world.update()
+        }
+    }
+    
+    func gameloop(update: () -> Void) {
+        while true {
+            update()
+        }
     }
 }

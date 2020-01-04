@@ -21,7 +21,6 @@
 		209E7CD3DDECC3F641ABFE86 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B84A2DA6BB84E7CECABF0E7A /* Pods_Example.framework */; };
 		2219D72495D63BB7A410B42B /* PEntityQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD081B784032928B2C79A30D /* PEntityQueryResult.swift */; };
 		22F56129B4802C6CE12C59C4 /* ComponentManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273023426483FD37FC7CD3AD /* ComponentManagerError.swift */; };
-		2E3C35D440F795F55D44EBFF /* PrototypeGameComponentManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2AFF3DE072D5386FACE6A8 /* PrototypeGameComponentManagers.swift */; };
 		32C04BDA5CE3D5CAAC154BDB /* PPrototypeComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68067B8F8E949207566F7CCD /* PPrototypeComponentManager.swift */; };
 		3721C19549EA262274E58E70 /* EntityRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9858EAB55B04CF060040755F /* EntityRequester.swift */; };
 		3BADCFAE3CA88601E0CF40C5 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD0957372707432BFD9B21B /* World.swift */; };
@@ -81,6 +80,7 @@
 		E64D14351F860A9282C3518C /* PrototypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504228393D43DE3373D5517 /* PrototypeBuilder.swift */; };
 		EBDB487A5FEA142D04ECA700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDB8D1E8F6C0FA235848949 /* AppDelegate.swift */; };
 		F0C83026C3BC1455F3CB74B7 /* ECS.h in Headers */ = {isa = PBXBuildFile; fileRef = A49B975AEE38F2B692A60905 /* ECS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F173C5D523C0E6F000F9EF6E /* DeadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5D423C0E6F000F9EF6E /* DeadComponent.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -186,7 +186,6 @@
 		9B463AC6C3ACE32172CFBE2C /* EntityRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequesterTests.swift; sourceTree = "<group>"; };
 		9C1B6AFB6E72159A5AD2FA7F /* Requires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requires.swift; sourceTree = "<group>"; };
 		9E87031E1965736FDA3C6584 /* ComponentManagersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagersTests.swift; sourceTree = "<group>"; };
-		9F2AFF3DE072D5386FACE6A8 /* PrototypeGameComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeGameComponentManagers.swift; sourceTree = "<group>"; };
 		A0393630B2EB9E04B14B5A14 /* ComponentIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentIdentifier.swift; sourceTree = "<group>"; };
 		A05DD3F14A0C2E42B375A7C6 /* PrototypeComponentManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeComponentManagers.swift; sourceTree = "<group>"; };
 		A49B975AEE38F2B692A60905 /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		DD081B784032928B2C79A30D /* PEntityQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityQueryResult.swift; sourceTree = "<group>"; };
 		DF4FC825712E394126E1CC4D /* Pods-LionECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LionECSTests.release.xcconfig"; path = "Target Support Files/Pods-LionECSTests/Pods-LionECSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E22B469284C6DFDA558B0C35 /* ComponentAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentAccessor.swift; sourceTree = "<group>"; };
+		F173C5D423C0E6F000F9EF6E /* DeadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadComponent.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -287,7 +287,6 @@
 				18DB1D407AA7CC9AA04D56EB /* Pods-LionECSTests.debug.xcconfig */,
 				DF4FC825712E394126E1CC4D /* Pods-LionECSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -347,7 +346,6 @@
 			children = (
 				D8E36BB3E707899C80138C33 /* Systems */,
 				9A727FF98473BF7F9D5AA690 /* PrototypeGame.swift */,
-				9F2AFF3DE072D5386FACE6A8 /* PrototypeGameComponentManagers.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -455,6 +453,7 @@
 			children = (
 				7F634C97A679EF89DE65C196 /* DamageComponent.swift */,
 				A537C3E16316AAC9B6406606 /* HealthComponent.swift */,
+				F173C5D423C0E6F000F9EF6E /* DeadComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -629,6 +628,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 			);
 			mainGroup = 2F7E8153899402DF2BC6D791;
@@ -821,11 +821,11 @@
 				7C07A6017A121649B155707F /* DamageComponent.swift in Sources */,
 				8C9F6633FFE52135C0711FAD /* DamageSystem.swift in Sources */,
 				85095312198862F47BFD239E /* Game.swift in Sources */,
+				F173C5D523C0E6F000F9EF6E /* DeadComponent.swift in Sources */,
 				BD13CC2B5B2C6B7E86F0E98F /* GameComponentManagers.swift in Sources */,
 				1240CAB71C1F2A16627C78A9 /* HealthComponent.swift in Sources */,
 				776C4CA73844E04C5BB69818 /* PrototypeDamageSystem.swift in Sources */,
 				0C4BE8BFB070E5F7A2D70675 /* PrototypeGame.swift in Sources */,
-				2E3C35D440F795F55D44EBFF /* PrototypeGameComponentManagers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,8 +10,4 @@ import LionECS
 
 struct HealthComponent: PComponent {
     var health: Float
-    
-    init(health: Float) {
-        self.health = health
-    }
 }
