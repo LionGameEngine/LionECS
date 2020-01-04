@@ -8,8 +8,8 @@
 
 public final class Chunk {
     let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    var allocatedEntities: Int = 1
-    var freeIndicies: Set<Int> = Set(0..<1)
+    var allocatedEntities: Int = 1024
+    var freeIndicies: Set<Int> = Set(0..<1024)
     var managedEntities: [Entity: Int] = [:]
     var entries: UnsafeMutableRawBufferPointer!
     var entityAccessor: PEntityAccessor
