@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class ExcludesTests: XCTestCase {
     func testFilter_WhenCalledAndEntityHasComponent_ShouldFilterOutThatEntity() throws {

@@ -163,4 +163,4 @@ class PSystemMock: PSystem {
 
 //  Copyright © 2020 LionSoftware. All rights reserved.
 
-@testable import ECS
+@testable import LionECS

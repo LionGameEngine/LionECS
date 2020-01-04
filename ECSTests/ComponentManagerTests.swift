@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class ComponentManagerTests: XCTestCase {
     private struct InvalidComponent: PComponent {

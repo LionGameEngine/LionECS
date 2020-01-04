@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class EntityQueryResultTests: XCTestCase {
     struct FooComponent: PComponent, Equatable {

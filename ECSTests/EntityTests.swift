@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class EntityTests: XCTestCase {
     func testEntityEquality_WhenBothIdAndVersionMatch_EntitiesShouldBeEqual() {

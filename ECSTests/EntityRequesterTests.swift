@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class EntityRequesterTests: XCTestCase {
     var sut: EntityRequester<ComponentManagers>!

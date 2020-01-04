@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class EntityManagerTests: XCTestCase {
     var sut: EntityManager!

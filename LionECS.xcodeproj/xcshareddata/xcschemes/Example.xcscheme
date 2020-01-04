@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-               BuildableName = "ECS.framework"
-               BlueprintName = "ECS"
-               ReferencedContainer = "container:LionEngine.xcodeproj">
+               BlueprintIdentifier = "C8FC6B5A9A8BC954FC8251FF"
+               BuildableName = "Example.app"
+               BlueprintName = "Example"
+               ReferencedContainer = "container:LionECS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,20 +34,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C194E5A3046050605A56878"
-               BuildableName = "ECSTests.xctest"
-               BlueprintName = "ECSTests"
-               ReferencedContainer = "container:LionEngine.xcodeproj">
+               BlueprintIdentifier = "159E2294DBE34D99C0317C27"
+               BuildableName = "LionECSTests.xctest"
+               BlueprintName = "LionECSTests"
+               ReferencedContainer = "container:LionECS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
-            ReferencedContainer = "container:LionEngine.xcodeproj">
+            BlueprintIdentifier = "C8FC6B5A9A8BC954FC8251FF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
@@ -67,15 +67,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
-            ReferencedContainer = "container:LionEngine.xcodeproj">
+            BlueprintIdentifier = "C8FC6B5A9A8BC954FC8251FF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <CommandLineArguments>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -91,10 +92,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8CE3121E52749941B5C01C7"
-            BuildableName = "ECS.framework"
-            BlueprintName = "ECS"
-            ReferencedContainer = "container:LionEngine.xcodeproj">
+            BlueprintIdentifier = "C8FC6B5A9A8BC954FC8251FF"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>

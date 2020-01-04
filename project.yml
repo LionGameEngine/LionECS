@@ -1,4 +1,4 @@
-name: LionEngine
+name: LionECS
 attributes:
   ORGANIZATIONNAME: LionSoftware
 options:
@@ -17,15 +17,15 @@ configFiles:
   Debug: Configurations/Debug.xcconfig
   Release: Configurations/Release.xcconfig
 schemes:
-  ECS:
+  LionECS:
     build:
       targets:
-        ECS: all
+        LionECS: all
     run:
       config: Debug
     test:
       config: Debug
-      targets: [ECSTests]
+      targets: [LionECSTests]
       gatherCoverageData: true
     profile:
       config: Release
@@ -41,7 +41,7 @@ schemes:
       config: Debug
     test:
       config: Debug
-      targets: [ECSTests]
+      targets: [LionECSTests]
       gatherCoverageData: true
     profile:
       config: Release
@@ -51,7 +51,7 @@ schemes:
       config: Release
 
 targets:
-  ECS:
+  LionECS:
     type: framework
     platform: macOS
     settings:
@@ -60,7 +60,7 @@ targets:
         PROVISIONING_PROFILE_SPECIFIER: $(ECS_PROVISIONING_PROFILE_SPECIFIER)
     sources:
       - path: ECS
-  ECSTests:
+  LionECSTests:
     type: bundle.unit-test
     platform: macOS
     settings:
@@ -71,7 +71,7 @@ targets:
     sources:
       - path: ECSTests
     dependencies:
-      - target: ECS
+      - target: LionECS
   Example:
     type: application
     platform: macOS
@@ -81,7 +81,7 @@ targets:
     sources:
       - path: Example
     dependencies:
-      - target: ECS
+      - target: LionECS
     postBuildScripts:
       - script: |
                 "${PODS_ROOT}/SwiftLint/swiftlint"

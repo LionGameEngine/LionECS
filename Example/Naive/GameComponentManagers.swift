@@ -6,7 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-import ECS
+import LionECS
 
 class GameComponentsManagers: ComponentManagers {
     private(set) var healthComponentManager: ComponentManager<HealthComponent>!

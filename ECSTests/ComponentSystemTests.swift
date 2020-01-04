@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ECS
+@testable import LionECS
 
 class ComponentSystemTests: XCTestCase {
     var sut: ComponentSystem<ComponentManagers>!

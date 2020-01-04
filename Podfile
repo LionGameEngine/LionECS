@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
-project 'LionEngine.xcodeproj'
+project 'LionECS.xcodeproj'
  
 use_frameworks!
 
@@ -9,14 +9,14 @@ target 'Example' do
   pod 'SwiftLint'
 end
 
-target 'ECS' do
+target 'LionECS' do
   # Comment the next line if you don't want to use dynamic frameworks
   pod 'Sourcery'
   pod 'SwiftLint'
 
-  # Pods for ECS
+  # Pods for LionECS
 
-  target 'ECSTests' do
+  target 'LionECSTests' do
     # Pods for testing
   	inherit! :search_paths
   end

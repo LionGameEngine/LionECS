@@ -6,7 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-import ECS
+import LionECS
 
 struct DamageComponent: PComponent {
     var damage: Float
