@@ -17,16 +17,16 @@ open class PrototypeComponentManagers: PPrototypeComponentManagers {
         return [prototypeManager].compactMap { $0 }
     }
     
-    public func getOrCreateManagerOfType<ComponentManager, Component>(_ type: Component.Type) -> ComponentManager where ComponentManager : PComponentManager, Component : PComponent {
+    public func getOrCreateManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) -> ComponentManager {
         guard let prototypeManager = prototypeManager as? ComponentManager else {
             let prototypeManager = ComponentManager()
-            self.prototypeManager = prototypeManager as! PPrototypeComponentManager
+            self.prototypeManager = prototypeManager as? PPrototypeComponentManager
             return prototypeManager
         }
         return prototypeManager
     }
         
-    public func getExistingManagerOfType<ComponentManager, Component>(_ type: Component.Type) throws -> ComponentManager where ComponentManager : PComponentManager, Component : PComponent {
+    public func getExistingManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) throws -> ComponentManager {
         return prototypeManager as! ComponentManager
     }
         

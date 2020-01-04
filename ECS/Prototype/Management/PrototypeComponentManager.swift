@@ -38,8 +38,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     
     public func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component: PComponent {
         guard let prototype = chunks.first(where: { $0.value.managesEntity(entity: entity) })?.key else {
-            // create in prototype
-            guard let prototype = chunks.first(where: { $0.key.filters.map { $0.componentIdentifier } == [Component.componentIdentifier]})?.key else {
+            guard let prototype = chunks.first(where: { $0.key.filters.map { $0.componentIdentifier } == [Component.componentIdentifier] })?.key else {
                 let newPrototype = PrototypeBuilder()
                     .addComponentType(Component.self)
                     .build()
@@ -67,7 +66,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
             try chunks[newPrototype]?.setComponents(entity: entity, r1: component)
             return
         }
-        if (newPrototypeChunk !== chunks[prototype]) {
+        if newPrototypeChunk !== chunks[prototype] {
             try entityMigrator.migrate(fromChunk: chunks[prototype]!, toChunk: newPrototypeChunk, entity: entity)
         }
         try chunks[newPrototype]?.setComponents(entity: entity, r1: component)

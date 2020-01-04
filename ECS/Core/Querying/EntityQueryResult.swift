@@ -7,9 +7,9 @@
 //
 
 public struct EntityQueryResult<Components>: PEntityQueryResult {
-    private let comp: Dictionary<Entity, Components>
+    private let comp: [Entity: Components]
     
-    public init(_ components: Dictionary<Entity, Components>) {
+    public init(_ components: [Entity: Components]) {
         self.comp = components
     }
     
@@ -17,7 +17,7 @@ public struct EntityQueryResult<Components>: PEntityQueryResult {
         return Array(comp.values)
     }
     
-    public func entityWithComponents() -> Dictionary<Entity, Components> {
+    public func entityWithComponents() -> [Entity: Components] {
         return comp
     }
 }

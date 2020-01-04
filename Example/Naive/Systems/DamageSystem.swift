@@ -10,7 +10,7 @@ import ECS
 
 class DamageSystem: ComponentSystem<GameComponentsManagers> {
     override func update() {
-        let query = Requires2ComponentQuery<ComponentManagers, HealthComponent, DamageComponent>()
+        let query = Requires2ComponentNaiveQuery<ComponentManagers, HealthComponent, DamageComponent>()
         guard let result = try? entityRequester.queryEntities(query: query) else { return }
         for result in result.entityWithComponents() {
             var (entity, (health, damage)) = result

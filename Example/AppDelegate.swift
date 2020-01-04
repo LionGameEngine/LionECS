@@ -14,13 +14,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
         
-        let _ = Game()
-        let _ = PrototypeGame()
+        _ = Game()
+        _ = PrototypeGame()
 
         // Create the window and set the content view. 
         window = NSWindow(
@@ -37,6 +36,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
 }
-

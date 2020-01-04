@@ -3,7 +3,7 @@
 
 
 
-public struct Requires0ComponentQuery<ComponentManagers: PComponentManagers>: PEntityQuery {
+public struct Requires0ComponentNaiveQuery<ComponentManagers: PComponentManagers>: PEntityQuery {
     public typealias Result = EntityQueryResult<()>
 
     private var exclusionFilters: [PEntityFilter]
@@ -12,7 +12,7 @@ public struct Requires0ComponentQuery<ComponentManagers: PComponentManagers>: PE
     }
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
-        var result: Dictionary<Entity, Result.Components> = [:]
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = ()
         }
@@ -22,7 +22,7 @@ public struct Requires0ComponentQuery<ComponentManagers: PComponentManagers>: PE
         return exclusionFilters
     }
 }
-public struct Requires1ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent>: PEntityQuery {
+public struct Requires1ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -32,8 +32,8 @@ public struct Requires1ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!)
         }
@@ -43,7 +43,7 @@ public struct Requires1ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>()] + exclusionFilters
     }
 }
-public struct Requires2ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent>: PEntityQuery {
+public struct Requires2ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -53,10 +53,10 @@ public struct Requires2ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!)
         }
@@ -66,7 +66,7 @@ public struct Requires2ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>()] + exclusionFilters
     }
 }
-public struct Requires3ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent>: PEntityQuery {
+public struct Requires3ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -76,12 +76,12 @@ public struct Requires3ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!)
         }
@@ -91,7 +91,7 @@ public struct Requires3ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>()] + exclusionFilters
     }
 }
-public struct Requires4ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent>: PEntityQuery {
+public struct Requires4ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -101,14 +101,14 @@ public struct Requires4ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!)
         }
@@ -118,7 +118,7 @@ public struct Requires4ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>()] + exclusionFilters
     }
 }
-public struct Requires5ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent>: PEntityQuery {
+public struct Requires5ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -128,16 +128,16 @@ public struct Requires5ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!)
         }
@@ -147,7 +147,7 @@ public struct Requires5ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>()] + exclusionFilters
     }
 }
-public struct Requires6ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent>: PEntityQuery {
+public struct Requires6ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -157,18 +157,18 @@ public struct Requires6ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
     	let r6Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R6.componentIdentifier)
-        let r6Components: Dictionary<Entity, R6> = try r6Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r6Components: [Entity: R6] = try r6Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!)
         }
@@ -178,7 +178,7 @@ public struct Requires6ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>()] + exclusionFilters
     }
 }
-public struct Requires7ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent>: PEntityQuery {
+public struct Requires7ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -188,20 +188,20 @@ public struct Requires7ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
     	let r6Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R6.componentIdentifier)
-        let r6Components: Dictionary<Entity, R6> = try r6Manager.getEntitiesWithComponents()
+        let r6Components: [Entity: R6] = try r6Manager.getEntitiesWithComponents()
     	let r7Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R7.componentIdentifier)
-        let r7Components: Dictionary<Entity, R7> = try r7Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r7Components: [Entity: R7] = try r7Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!)
         }
@@ -211,7 +211,7 @@ public struct Requires7ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>()] + exclusionFilters
     }
 }
-public struct Requires8ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent>: PEntityQuery {
+public struct Requires8ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -221,22 +221,22 @@ public struct Requires8ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
     	let r6Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R6.componentIdentifier)
-        let r6Components: Dictionary<Entity, R6> = try r6Manager.getEntitiesWithComponents()
+        let r6Components: [Entity: R6] = try r6Manager.getEntitiesWithComponents()
     	let r7Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R7.componentIdentifier)
-        let r7Components: Dictionary<Entity, R7> = try r7Manager.getEntitiesWithComponents()
+        let r7Components: [Entity: R7] = try r7Manager.getEntitiesWithComponents()
     	let r8Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R8.componentIdentifier)
-        let r8Components: Dictionary<Entity, R8> = try r8Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r8Components: [Entity: R8] = try r8Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!)
         }
@@ -246,7 +246,7 @@ public struct Requires8ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>()] + exclusionFilters
     }
 }
-public struct Requires9ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent>: PEntityQuery {
+public struct Requires9ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -256,24 +256,24 @@ public struct Requires9ComponentQuery<ComponentManagers: PComponentManagers, R1:
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
     	let r6Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R6.componentIdentifier)
-        let r6Components: Dictionary<Entity, R6> = try r6Manager.getEntitiesWithComponents()
+        let r6Components: [Entity: R6] = try r6Manager.getEntitiesWithComponents()
     	let r7Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R7.componentIdentifier)
-        let r7Components: Dictionary<Entity, R7> = try r7Manager.getEntitiesWithComponents()
+        let r7Components: [Entity: R7] = try r7Manager.getEntitiesWithComponents()
     	let r8Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R8.componentIdentifier)
-        let r8Components: Dictionary<Entity, R8> = try r8Manager.getEntitiesWithComponents()
+        let r8Components: [Entity: R8] = try r8Manager.getEntitiesWithComponents()
     	let r9Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R9.componentIdentifier)
-        let r9Components: Dictionary<Entity, R9> = try r9Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r9Components: [Entity: R9] = try r9Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!, r9Components[entity]!)
         }
@@ -283,7 +283,7 @@ public struct Requires9ComponentQuery<ComponentManagers: PComponentManagers, R1:
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>(), Requires<R9>()] + exclusionFilters
     }
 }
-public struct Requires10ComponentQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent, R10: PComponent>: PEntityQuery {
+public struct Requires10ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent, R10: PComponent>: PEntityQuery {
     public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9, R10)>
 
     private var exclusionFilters: [PEntityFilter]
@@ -293,26 +293,26 @@ public struct Requires10ComponentQuery<ComponentManagers: PComponentManagers, R1
 
     public func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
     	let r1Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R1.componentIdentifier)
-        let r1Components: Dictionary<Entity, R1> = try r1Manager.getEntitiesWithComponents()
+        let r1Components: [Entity: R1] = try r1Manager.getEntitiesWithComponents()
     	let r2Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R2.componentIdentifier)
-        let r2Components: Dictionary<Entity, R2> = try r2Manager.getEntitiesWithComponents()
+        let r2Components: [Entity: R2] = try r2Manager.getEntitiesWithComponents()
     	let r3Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R3.componentIdentifier)
-        let r3Components: Dictionary<Entity, R3> = try r3Manager.getEntitiesWithComponents()
+        let r3Components: [Entity: R3] = try r3Manager.getEntitiesWithComponents()
     	let r4Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R4.componentIdentifier)
-        let r4Components: Dictionary<Entity, R4> = try r4Manager.getEntitiesWithComponents()
+        let r4Components: [Entity: R4] = try r4Manager.getEntitiesWithComponents()
     	let r5Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R5.componentIdentifier)
-        let r5Components: Dictionary<Entity, R5> = try r5Manager.getEntitiesWithComponents()
+        let r5Components: [Entity: R5] = try r5Manager.getEntitiesWithComponents()
     	let r6Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R6.componentIdentifier)
-        let r6Components: Dictionary<Entity, R6> = try r6Manager.getEntitiesWithComponents()
+        let r6Components: [Entity: R6] = try r6Manager.getEntitiesWithComponents()
     	let r7Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R7.componentIdentifier)
-        let r7Components: Dictionary<Entity, R7> = try r7Manager.getEntitiesWithComponents()
+        let r7Components: [Entity: R7] = try r7Manager.getEntitiesWithComponents()
     	let r8Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R8.componentIdentifier)
-        let r8Components: Dictionary<Entity, R8> = try r8Manager.getEntitiesWithComponents()
+        let r8Components: [Entity: R8] = try r8Manager.getEntitiesWithComponents()
     	let r9Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R9.componentIdentifier)
-        let r9Components: Dictionary<Entity, R9> = try r9Manager.getEntitiesWithComponents()
+        let r9Components: [Entity: R9] = try r9Manager.getEntitiesWithComponents()
     	let r10Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R10.componentIdentifier)
-        let r10Components: Dictionary<Entity, R10> = try r10Manager.getEntitiesWithComponents()
-        var result: Dictionary<Entity, Result.Components> = [:]
+        let r10Components: [Entity: R10] = try r10Manager.getEntitiesWithComponents()
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = (r1Components[entity]!, r2Components[entity]!, r3Components[entity]!, r4Components[entity]!, r5Components[entity]!, r6Components[entity]!, r7Components[entity]!, r8Components[entity]!, r9Components[entity]!, r10Components[entity]!)
         }

@@ -18,10 +18,10 @@ public final class EntityManager {
             reuseableEntities.remove(reusableEntity)
         } else {
             entity = Entity(id: lastEntityId, version: 1)
-            lastEntityId += 1;
+            lastEntityId += 1
         }
         entities.insert(entity)
-        return entity;
+        return entity
     }
     
     public func destroyEntity(_ entity: Entity) {

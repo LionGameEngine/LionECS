@@ -77,7 +77,7 @@ class ComponentManagerTests: XCTestCase {
         // then
         do {
             let _: PComponentMock = try sut.getComponent(ofEntity: entity)
-            XCTFail()
+            XCTFail(description: "Should throw error")
         } catch {
             
         }
@@ -90,7 +90,7 @@ class ComponentManagerTests: XCTestCase {
         // then
         do {
             let _: InvalidComponent = try sut.getComponent(ofEntity: entity)
-            XCTFail()
+            XCTFail(description: "Should throw error)
         } catch {
         }
     }
@@ -112,7 +112,7 @@ class ComponentManagerTests: XCTestCase {
         let component = PComponentMock()
         try sut.addComponent(component, toEntity: entity)
         // when
-        let components: Dictionary<Entity, PComponentMock> = try sut.getEntitiesWithComponents()
+        let components: [Entity: PComponentMock] = try sut.getEntitiesWithComponents()
         // then
         XCTAssertEqual(components.count, 1)
         XCTAssertTrue(component === components[entity])
@@ -125,8 +125,8 @@ class ComponentManagerTests: XCTestCase {
         try sut.addComponent(component, toEntity: entity)
         // when
         do {
-            let _: Dictionary<Entity, InvalidComponent> = try sut.getEntitiesWithComponents()
-            XCTFail()
+            let _: [Entity: InvalidComponent] = try sut.getEntitiesWithComponents()
+            XCTFail(description: "Should throw error)
         } catch {
         }
     }

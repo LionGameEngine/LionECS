@@ -136,10 +136,10 @@ class PEntityQueryResultMock<Components>: PEntityQueryResult {
     var entityWithComponentsCalled: Bool {
         return entityWithComponentsCallsCount > 0
     }
-    var entityWithComponentsReturnValue: Dictionary<Entity, Components>!
-    var entityWithComponentsClosure: (() -> Dictionary<Entity, Components>)?
+    var entityWithComponentsReturnValue: [Entity: Components]!
+    var entityWithComponentsClosure: (() -> [Entity: Components])?
 
-    func entityWithComponents() -> Dictionary<Entity, Components> {
+    func entityWithComponents() -> [Entity: Components] {
         entityWithComponentsCallsCount += 1
         return entityWithComponentsClosure.map({ $0() }) ?? entityWithComponentsReturnValue
     }

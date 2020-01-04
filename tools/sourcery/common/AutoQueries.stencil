@@ -1,5 +1,5 @@
 {% for x in 0...10 %}
-public struct Requires{{x}}ComponentQuery<ComponentManagers: PComponentManagers{% if x > 0 %}{% for y in 1...x %}, R{{y}}: PComponent{% endfor %}{% endif %}>: PEntityQuery {
+public struct Requires{{x}}ComponentNaiveQuery<ComponentManagers: PComponentManagers{% if x > 0 %}{% for y in 1...x %}, R{{y}}: PComponent{% endfor %}{% endif %}>: PEntityQuery {
     public typealias Result = EntityQueryResult<({% if x > 0 %}{% for y in 1...x %}R{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %})>
 
     private var exclusionFilters: [PEntityFilter]
@@ -12,10 +12,10 @@ public struct Requires{{x}}ComponentQuery<ComponentManagers: PComponentManagers{
     	{% if x > 0 %}
     	{% for y in 1...x %}
     	let r{{y}}Manager = try requester.getComponentManagers().getExistingManager(withIdentifier: R{{y}}.componentIdentifier)
-        let r{{y}}Components: Dictionary<Entity, R{{y}}> = try r{{y}}Manager.getEntitiesWithComponents()
+        let r{{y}}Components: [Entity: R{{y}}] = try r{{y}}Manager.getEntitiesWithComponents()
     	{% endfor %}
     	{% endif %}
-        var result: Dictionary<Entity, Result.Components> = [:]
+        var result: [Entity: Result.Components] = [:]
         for entity in try getFilteredEntities(requester: requester) {
         	result[entity] = ({% if x > 0 %}{% for y in 1...x %}r{{y}}Components[entity]!{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %})
         }
