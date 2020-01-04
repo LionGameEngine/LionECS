@@ -32,7 +32,7 @@ class ComponentManagersTests: XCTestCase {
         // then
         do {
             let _: ComponentManager<PComponentMock> = try sut.getExistingManagerOfType(PComponentMock.self)
-            XCTFail(description: "Should throw error")
+            XCTFail("Should throw error")
         } catch {
         }
     }

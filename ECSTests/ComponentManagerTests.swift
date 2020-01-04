@@ -21,7 +21,7 @@ class ComponentManagerTests: XCTestCase {
     
     func testHasComponent_WhenCalledForEntityThatDoesntHaveComponent_ShouldReturnFalse() {
         // when
-        let hasComponent = sut.hasComponent(entity: Entity(id: 0))
+        let hasComponent = sut.hasComponent(entity: Entity(id: 0), component: PComponentMock.self)
         // then
         XCTAssertFalse(hasComponent)
     }
@@ -30,7 +30,7 @@ class ComponentManagerTests: XCTestCase {
         // given
         try sut.addComponent(PComponentMock(), toEntity: Entity(id: 0))
         // when
-        let hasComponent = sut.hasComponent(entity: Entity(id: 0))
+        let hasComponent = sut.hasComponent(entity: Entity(id: 0), component: PComponentMock.self)
         // then
         XCTAssertTrue(hasComponent)
     }
@@ -68,7 +68,7 @@ class ComponentManagerTests: XCTestCase {
         // when
         try sut.addComponent(component, toEntity: entity)
         // then
-        XCTAssertEqual(Set([entity]), sut.getEntities())
+        XCTAssertEqual(Set([entity]), sut.getEntities(withComponent: PComponentMock.self))
     }
     
     func testGetComponent_WhenCalledForEntityThatDoesntHaveComponent_ShouldThrowError() throws {
@@ -77,7 +77,7 @@ class ComponentManagerTests: XCTestCase {
         // then
         do {
             let _: PComponentMock = try sut.getComponent(ofEntity: entity)
-            XCTFail(description: "Should throw error")
+            XCTFail("Should throw error")
         } catch {
             
         }
@@ -90,7 +90,7 @@ class ComponentManagerTests: XCTestCase {
         // then
         do {
             let _: InvalidComponent = try sut.getComponent(ofEntity: entity)
-            XCTFail(description: "Should throw error)
+            XCTFail("Should throw error")
         } catch {
         }
     }
@@ -126,7 +126,7 @@ class ComponentManagerTests: XCTestCase {
         // when
         do {
             let _: [Entity: InvalidComponent] = try sut.getEntitiesWithComponents()
-            XCTFail(description: "Should throw error)
+            XCTFail("Should throw error")
         } catch {
         }
     }
