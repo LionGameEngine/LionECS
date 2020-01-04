@@ -84,7 +84,7 @@ public final class Chunk {
         guard let index = managedEntities[entity] else { throw ChunkError.missingEntity }
         freeIndicies.insert(index)
         managedEntities.removeValue(forKey: entity)
-        entityAccessor.clear(index: index)
+        entityDataAccessor.clear(index: index)
     }
     
     public func getEntityData(_ entity: Entity) throws -> [UInt8] {

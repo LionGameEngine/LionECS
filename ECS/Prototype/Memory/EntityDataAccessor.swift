@@ -27,7 +27,12 @@ public class EntityDataAccessor: PEntityDataAccessor {
     
     public func set(entityData: [UInt8], index: Int) {
         entityData.withUnsafeBufferPointer({ (data) -> Void in
-            (entries.bindMemory(to: UInt8.self)).baseAddress?.assign(from: data.baseAddress!, count: entityData.count)
+            ((entries.bindMemory(to: UInt8.self)).baseAddress! + index * memoryLayoutDescription.chunkEntrySize).assign(from: data.baseAddress!, count: entityData.count)
         })
     }
+    
+    public func clear(index: Int) {
+        ((entries.bindMemory(to: UInt8.self)).baseAddress! + index * memoryLayoutDescription.chunkEntrySize).assign(repeating: 0, count: memoryLayoutDescription.chunkEntrySize)
+    }
+
 }

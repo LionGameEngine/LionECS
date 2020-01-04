@@ -10,4 +10,5 @@ public protocol PEntityDataAccessor {
     var entries: UnsafeMutableRawBufferPointer { get set }
     func access(index: Int) -> [UInt8]
     func set(entityData: [UInt8], index: Int)
+    func clear(index: Int)
 }
