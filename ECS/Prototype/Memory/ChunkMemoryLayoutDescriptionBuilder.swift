@@ -29,6 +29,16 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
         return self
     }
     
+    public func remove<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
+        guard let offset = startingOffsets[Component.componentIdentifier],
+            let size = componentSizes[Component.componentIdentifier] else { return self }
+        startingOffsets = startingOffsets.mapValues { (otherOffset) -> Int in
+            if(otherOffset > offset) { return offset - size }
+            else { return offset }
+        }
+        return self
+    }
+    
     public func build() -> ChunkMemoryLayoutDescription {
         return ChunkMemoryLayoutDescription(entitySize: entitySize, startingOffsets: startingOffsets, componentSizes: componentSizes, chunkEntrySize: currentSize)
     }

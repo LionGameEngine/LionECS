@@ -7,30 +7,30 @@
 //
 
 open class PrototypeComponentManagers: PPrototypeComponentManagers {
-    private(set) public var prototypeManager: PPrototypeComponentManager!
+    private(set) public var prototypeComponentManager: PPrototypeComponentManager!
     
     public init() {
         
     }
     
     public func getAllManagers() -> [PComponentManager] {
-        return [prototypeManager].compactMap { $0 }
+        return [prototypeComponentManager].compactMap { $0 }
     }
     
     public func getOrCreateManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) -> ComponentManager {
-        guard let prototypeManager = prototypeManager as? ComponentManager else {
-            let prototypeManager = ComponentManager()
-            self.prototypeManager = prototypeManager as? PPrototypeComponentManager
-            return prototypeManager
+        guard let prototypeComponentManager = prototypeComponentManager as? ComponentManager else {
+            let prototypeComponentManager = ComponentManager()
+            self.prototypeComponentManager = prototypeComponentManager as? PPrototypeComponentManager
+            return prototypeComponentManager
         }
-        return prototypeManager
+        return prototypeComponentManager
     }
         
     public func getExistingManagerOfType<ComponentManager: PComponentManager, Component: PComponent>(_ type: Component.Type) throws -> ComponentManager {
-        return prototypeManager as! ComponentManager
+        return prototypeComponentManager as! ComponentManager
     }
         
     public func getExistingManager(withIdentifier identifier: ComponentIdentifier) throws -> PComponentManager {
-        return prototypeManager!
+        return prototypeComponentManager!
     }
 }

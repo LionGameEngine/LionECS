@@ -7,7 +7,7 @@
 //
 
 public protocol PPrototypeComponentManagers: PComponentManagers {
-    var prototypeManager: PPrototypeComponentManager! { get }
+    var prototypeComponentManager: PPrototypeComponentManager! { get }
     func getOrCreateManagerOfType<ComponentManager: PPrototypeComponentManager, Component: PComponent>(_ type: Component.Type) -> ComponentManager
     func getExistingManagerOfType<ComponentManager: PPrototypeComponentManager, Component: PComponent>(_ type: Component.Type) throws -> ComponentManager
 }

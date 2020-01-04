@@ -11,4 +11,5 @@ public enum ComponentManagerError: Error {
     case entityMissing
     case componentMissing
     case managerMissing
+    case alreadyHasComponent
 }

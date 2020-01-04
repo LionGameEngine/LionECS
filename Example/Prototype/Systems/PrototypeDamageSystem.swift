@@ -15,9 +15,10 @@ class PrototypeDamageSystem: ComponentSystem<PrototypeComponentManagers> {
         for result in result.entityWithComponents() {
             var (entity, (health, damage)) = result
             health.health -= damage.damage
-            try! componentManagers.prototypeManager!.addComponent(health, toEntity: entity)
+            try! componentManagers.prototypeComponentManager!.updateComponent(health, ofEntity: entity)
+            try! componentManagers.prototypeComponentManager!.removeComponent(DamageComponent.self, fromEntity: entity)
             if health.health <= 0 {
-                try! componentManagers.prototypeManager!.addComponent(DeadComponent(), toEntity: entity)
+                try! componentManagers.prototypeComponentManager!.addComponent(DeadComponent(), toEntity: entity)
             }
             print("Entity \(entity) damaged \(damage.damage) remaining health: \(health.health)")
         }

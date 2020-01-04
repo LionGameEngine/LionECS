@@ -15,7 +15,7 @@ class DamageSystem: ComponentSystem<GameComponentsManagers> {
         for result in result.entityWithComponents() {
             var (entity, (health, damage)) = result
             health.health -= damage.damage
-            try! componentManagers.healthComponentManager.addComponent(health, toEntity: entity)
+            try! componentManagers.healthComponentManager.updateComponent(health, ofEntity: entity)
             print("Entity \(entity) damaged \(damage.damage) remaining health: \(health.health)")
         }
     }

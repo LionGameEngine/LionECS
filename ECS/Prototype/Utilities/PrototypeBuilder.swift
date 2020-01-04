@@ -7,30 +7,28 @@
 //
 
 public class PrototypeBuilder {
-    private var filters: [PEntityFilter]
+    private var componentIdentifiers: Set<ComponentIdentifier>
     
     public init() {
-        self.filters = []
+        self.componentIdentifiers = []
     }
     
     public init(prototype: Prototype) {
-        self.filters = prototype.filters
+        self.componentIdentifiers = prototype.componentIdentifiers
     }
     
     public func addComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
-        guard !filters.contains(where: { $0.componentIdentifier == Component.componentIdentifier }) else { return self }
-        filters.append(Requires<Component>())
+        guard !componentIdentifiers.contains(Component.componentIdentifier) else { return self }
+        componentIdentifiers.insert(Component.componentIdentifier)
         return self
     }
     
     public func removeComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
-        filters.removeAll(where: { (filter) -> Bool in
-            filter.componentIdentifier == Component.componentIdentifier
-        })
+        componentIdentifiers.remove(Component.componentIdentifier)
         return self
     }
     
     public func build() -> Prototype {
-        Prototype(filters: filters)
+        Prototype(componentIdentifiers: componentIdentifiers)
     }
 }

@@ -6,7 +6,8 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class ComponentManager<Component: PComponent>: PComponentManager {    
+public final class ComponentManager<Component: PComponent>: PComponentManager {
+    
     private var entitiesWithComponents: [Entity: Component] = [:]
     
     public init() {
@@ -18,7 +19,7 @@ public final class ComponentManager<Component: PComponent>: PComponentManager {
     }
     
     public func hasComponent<C: PComponent>(entity: Entity, component: C.Type) -> Bool {
-        return entitiesWithComponents[entity] != nil
+        return entitiesWithComponents.keys.contains(entity)
     }
     
     public func getEntitiesWithComponents<C: PComponent>() throws -> [Entity: C] {
@@ -34,7 +35,20 @@ public final class ComponentManager<Component: PComponent>: PComponentManager {
     
     public func addComponent<C: PComponent>(_ component: C, toEntity entity: Entity) throws {
         try verify(componentType: C.self)
+        guard !entitiesWithComponents.keys.contains(entity) else { throw ComponentManagerError.alreadyHasComponent }
         entitiesWithComponents[entity] = component as? Component
+    }
+    
+    public func updateComponent<C: PComponent>(_ component: C, ofEntity entity: Entity) throws {
+        try verify(componentType: C.self)
+        guard entitiesWithComponents.keys.contains(entity) else { throw ComponentManagerError.componentMissing }
+        entitiesWithComponents[entity] = component as? Component
+    }
+    
+    public func removeComponent<C: PComponent>(_ componentType: C.Type, fromEntity entity: Entity) throws {
+        try verify(componentType: C.self)
+        guard entitiesWithComponents.keys.contains(entity) else { throw ComponentManagerError.componentMissing }
+        entitiesWithComponents.removeValue(forKey: entity)
     }
     
     public func verify<C: PComponent>(componentType: C.Type) throws {

@@ -11,15 +11,15 @@ public class Prototype: Hashable, Equatable, Identifiable {
     
     public lazy var id: Identifier = {
         var identifier: Identifier = ""
-        return filters.reduce(into: identifier) { (result, filter) in
-            result += "\(filter.componentIdentifier)"
+        return componentIdentifiers.reduce(into: identifier) { (result, componentIdentifier) in
+            result += "\(componentIdentifier)"
         }
     }()
     
-    let filters: [PEntityFilter]
+    let componentIdentifiers: Set<ComponentIdentifier>
     
-    public init(filters: [PEntityFilter]) {
-        self.filters = filters
+    public init(componentIdentifiers: Set<ComponentIdentifier>) {
+        self.componentIdentifiers = componentIdentifiers
     }
     
     public static func == (lhs: Prototype, rhs: Prototype) -> Bool {
