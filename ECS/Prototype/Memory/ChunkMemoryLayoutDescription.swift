@@ -6,7 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public struct ChunkMemoryLayoutDescription {
+public struct ChunkMemoryLayoutDescription: Equatable {
     public let startingOffsets: [ComponentIdentifier: Int]
     public let componentSizes: [ComponentIdentifier: Int]
     public let chunkEntrySize: Int

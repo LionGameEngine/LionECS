@@ -23,6 +23,7 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
     }
     
     public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
+        guard !componentSizes.keys.contains(Component.componentIdentifier) else { return self }
         startingOffsets[Component.componentIdentifier] = currentSize
         componentSizes[Component.componentIdentifier] = MemoryLayout<Component>.size
         currentSize += MemoryLayout<Component>.size
@@ -33,9 +34,11 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
         guard let offset = startingOffsets[Component.componentIdentifier],
             let size = componentSizes[Component.componentIdentifier] else { return self }
         startingOffsets = startingOffsets.mapValues { (otherOffset) -> Int in
-            if(otherOffset > offset) { return offset - size }
-            else { return offset }
+            return otherOffset >= offset + size ? otherOffset - size : otherOffset
         }
+        startingOffsets.removeValue(forKey: Component.componentIdentifier)
+        componentSizes.removeValue(forKey: Component.componentIdentifier)
+        currentSize -= MemoryLayout<Component>.size
         return self
     }
     
