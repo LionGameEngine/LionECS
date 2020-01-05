@@ -46,12 +46,12 @@ public final class Chunk {
         return managedEntities.keys.contains(entity)
     }
     
-    public func createEntity(entity: Entity, wasReallocated: Bool = false) throws {
+    public func manageEntity(entity: Entity, wasReallocated: Bool = false) throws {
         guard !managesEntity(entity: entity) else { throw ChunkError.entityAlreadyExists }
         guard let index = freeIndicies.first else {
             if !wasReallocated {
                 growChunk()
-                try createEntity(entity: entity, wasReallocated: true)
+                try manageEntity(entity: entity, wasReallocated: true)
             } else {
                 throw ChunkError.cannotAllocateMemory
             }
@@ -80,7 +80,7 @@ public final class Chunk {
         entityAccessor.set(entity: entity, index: index)
     }
     
-    public func removeEntity(_ entity: Entity) throws {
+    public func unmanageEntity(_ entity: Entity) throws {
         guard let index = managedEntities[entity] else { throw ChunkError.missingEntity }
         freeIndicies.insert(index)
         managedEntities.removeValue(forKey: entity)
@@ -94,7 +94,7 @@ public final class Chunk {
     }
     
     public func setEntityData(_ entity: Entity, data: [UInt8]) throws {
-        try createEntity(entity: entity)
+        try verify(entity: entity)
         let index = managedEntities[entity]!
         entityDataAccessor.set(entityData: data, index: index)
     }

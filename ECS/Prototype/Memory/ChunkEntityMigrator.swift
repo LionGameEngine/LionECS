@@ -13,8 +13,9 @@ public final class ChunkEntityMigrator: PChunkEntityMigrator {
         entity: Entity) throws {
         let data = try fromChunk.getEntityData(entity)
         let translatedData = translateData(fromChunkDescription: fromChunk.memoryLayoutDescription, toChunkDescription: toChunk.memoryLayoutDescription, data: data)
+        try fromChunk.unmanageEntity(entity)
+        try toChunk.manageEntity(entity: entity)
         try toChunk.setEntityData(entity, data: translatedData)
-        try fromChunk.removeEntity(entity)
     }
     
     private func translateData(

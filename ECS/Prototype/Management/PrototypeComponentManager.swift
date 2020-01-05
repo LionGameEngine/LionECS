@@ -43,11 +43,11 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
                     .add(Component.self)
                     .build()
                 chunks[newPrototype] = Chunk(memoryLayoutDescription: newMemoryLayout)
-                try chunks[newPrototype]?.createEntity(entity: entity)
+                try chunks[newPrototype]?.manageEntity(entity: entity)
                 try chunks[newPrototype]?.setComponents(entity: entity, r1: component)
                 return
             }
-            try chunks[prototype]?.createEntity(entity: entity)
+            try chunks[prototype]?.manageEntity(entity: entity)
             try chunks[prototype]?.setComponents(entity: entity, r1: component)
             return
         }
@@ -89,13 +89,13 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
         )
     }
     
-    public func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component : PComponent {
+    public func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component: PComponent {
         guard let prototypeChunkPair = chunks.first(where: { $0.value.managesEntity(entity: entity) }) else { throw ComponentManagerError.entityMissing }
         guard prototypeChunkPair.key.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
         try prototypeChunkPair.value.setComponents(entity: entity, r1: component)
     }
     
-    public func removeComponent<Component>(_ componentType: Component.Type, fromEntity entity: Entity) throws where Component : PComponent {
+    public func removeComponent<Component>(_ componentType: Component.Type, fromEntity entity: Entity) throws where Component: PComponent {
         guard let prototypeChunkPair = chunks.first(where: { $0.value.managesEntity(entity: entity) }) else { throw ComponentManagerError.entityMissing }
         guard prototypeChunkPair.key.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
         let newPrototype = PrototypeBuilder(prototype: prototypeChunkPair.key)
