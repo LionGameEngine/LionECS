@@ -83,6 +83,8 @@
 		F173C5D523C0E6F000F9EF6E /* DeadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5D423C0E6F000F9EF6E /* DeadComponent.swift */; };
 		F173C5D823C220A700F9EF6E /* PrototypeBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5D623C2209D00F9EF6E /* PrototypeBuilderTests.swift */; };
 		F173C5DA23C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */; };
+		F173C5DC23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */; };
+		F173C5DE23C2BCC600F9EF6E /* ComponentLayoutDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +217,8 @@
 		F173C5D423C0E6F000F9EF6E /* DeadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadComponent.swift; sourceTree = "<group>"; };
 		F173C5D623C2209D00F9EF6E /* PrototypeBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeBuilderTests.swift; sourceTree = "<group>"; };
 		F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilderTests.swift; sourceTree = "<group>"; };
+		F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemotyLayoutDescriptionTests.swift; sourceTree = "<group>"; };
+		F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentLayoutDescription.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				8E14A7557D6926EF6AEEAE27 /* WorldTests.swift */,
 				F173C5D623C2209D00F9EF6E /* PrototypeBuilderTests.swift */,
 				F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */,
+				F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				769546E264F1714D7FDE1BAF /* PEntityAccessor.swift */,
 				6DD5571F0924D7729B79B747 /* PEntityDataAccessor.swift */,
 				850521BFF40EC16E513A4A8D /* PMemoryManager.swift */,
+				F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 				AB6C8F4554E814453B3DFE6D /* PComponentManager.swift in Sources */,
 				A99312A1928ACCFC9B212127 /* PComponentManagers.swift in Sources */,
 				E01F60E5FCACB09D464FB7F9 /* PCreatableSystem.swift in Sources */,
+				F173C5DE23C2BCC600F9EF6E /* ComponentLayoutDescription.swift in Sources */,
 				BE2D5EBA1484219EC75BD627 /* PEntityAccessor.swift in Sources */,
 				C03DBF7A7A8581E9C26A335C /* PEntityDataAccessor.swift in Sources */,
 				C35E686B9DC97BF42B82D2E5 /* PEntityFIlter.swift in Sources */,
@@ -805,6 +812,7 @@
 			files = (
 				A34D2891C61BA020F7D0D69B /* AutoMockable.generated.swift in Sources */,
 				F173C5DA23C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift in Sources */,
+				F173C5DC23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift in Sources */,
 				4E9F19DA32CEFCAAF2FDE4CB /* ComponentManagerTests.swift in Sources */,
 				C10CDA08603E7CA613115A46 /* ComponentManagersTests.swift in Sources */,
 				0D7FF62084D0C060DD48F3A2 /* ComponentSystemTests.swift in Sources */,

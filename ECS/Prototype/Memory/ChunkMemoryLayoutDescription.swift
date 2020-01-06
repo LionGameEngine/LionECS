@@ -7,27 +7,37 @@
 //
 
 public struct ChunkMemoryLayoutDescription: Equatable {
-    public let startingOffsets: [ComponentIdentifier: Int]
-    public let componentSizes: [ComponentIdentifier: Int]
+    public let componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription]
     public let chunkEntrySize: Int
     public let entitySize: Int
     
-    init(entitySize: Int, startingOffsets: [ComponentIdentifier: Int], componentSizes: [ComponentIdentifier: Int], chunkEntrySize: Int) {
+    init(entitySize: Int, componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription], chunkEntrySize: Int) {
         self.entitySize = entitySize
-        self.startingOffsets = startingOffsets
-        self.componentSizes = componentSizes
+        self.componentDescriptions = componentDescriptions
         self.chunkEntrySize = chunkEntrySize
     }
     
     public func offset<Component: PComponent>(_ type: Component.Type) -> Int {
-        return startingOffsets[Component.componentIdentifier]!
+        return offset(componentIdentifier: Component.componentIdentifier)!
+    }
+    
+    public func offset(componentIdentifier: ComponentIdentifier) -> Int? {
+        return componentDescriptions[componentIdentifier]?.offset
     }
     
     public func size<Component: PComponent>(_ type: Component.Type) -> Int {
-        return componentSizes[Component.componentIdentifier]!
+        return size(componentIdentifier: Component.componentIdentifier)!
+    }
+    
+    public func size(componentIdentifier: ComponentIdentifier) -> Int? {
+        return componentDescriptions[componentIdentifier]?.size
     }
     
     public func hasComponent<Component: PComponent>(_ type: Component.Type) -> Bool {
-        componentSizes.keys.contains(Component.componentIdentifier)
+        componentDescriptions.keys.contains(Component.componentIdentifier)
+    }
+    
+    public func getComponentTypes() -> Set<ComponentIdentifier> {
+        return Set(componentDescriptions.keys)
     }
 }

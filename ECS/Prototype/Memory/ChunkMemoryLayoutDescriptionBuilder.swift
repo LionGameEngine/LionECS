@@ -7,8 +7,7 @@
 //
 
 public final class ChunkMemoryLayoutDescriptionBuilder {
-    private var startingOffsets: [ComponentIdentifier: Int] = [:]
-    private var componentSizes: [ComponentIdentifier: Int] = [:]
+    private var componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription] = [:]
     private let entitySize = MemoryLayout<Entity>.size
     private var currentSize: Int = MemoryLayout<Entity>.size
     
@@ -17,32 +16,30 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
     }
     
     public init(baseDescription: ChunkMemoryLayoutDescription) {
-        startingOffsets = baseDescription.startingOffsets
-        componentSizes = baseDescription.componentSizes
+        componentDescriptions = baseDescription.componentDescriptions
         currentSize = baseDescription.chunkEntrySize
     }
     
     public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
-        guard !componentSizes.keys.contains(Component.componentIdentifier) else { return self }
-        startingOffsets[Component.componentIdentifier] = currentSize
-        componentSizes[Component.componentIdentifier] = MemoryLayout<Component>.size
+        guard !componentDescriptions.keys.contains(Component.componentIdentifier) else { return self }
+        componentDescriptions[Component.componentIdentifier] = ComponentLayoutDescription(offset: currentSize, size: MemoryLayout<Component>.size)
         currentSize += MemoryLayout<Component>.size
         return self
     }
     
     public func remove<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
-        guard let offset = startingOffsets[Component.componentIdentifier],
-            let size = componentSizes[Component.componentIdentifier] else { return self }
-        startingOffsets = startingOffsets.mapValues { (otherOffset) -> Int in
-            return otherOffset >= offset + size ? otherOffset - size : otherOffset
+        guard let description = componentDescriptions[Component.componentIdentifier] else { return self }
+        let size = description.size
+        let offset = description.offset
+        componentDescriptions = componentDescriptions.mapValues { (otherDescription) -> ComponentLayoutDescription in
+            return otherDescription.offset >= offset + size ? otherDescription.with(offset: otherDescription.offset - size) : otherDescription
         }
-        startingOffsets.removeValue(forKey: Component.componentIdentifier)
-        componentSizes.removeValue(forKey: Component.componentIdentifier)
+        componentDescriptions.removeValue(forKey: Component.componentIdentifier)
         currentSize -= MemoryLayout<Component>.size
         return self
     }
     
     public func build() -> ChunkMemoryLayoutDescription {
-        return ChunkMemoryLayoutDescription(entitySize: entitySize, startingOffsets: startingOffsets, componentSizes: componentSizes, chunkEntrySize: currentSize)
+        return ChunkMemoryLayoutDescription(entitySize: entitySize, componentDescriptions: componentDescriptions, chunkEntrySize: currentSize)
     }
 }

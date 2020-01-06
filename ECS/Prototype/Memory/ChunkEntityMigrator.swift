@@ -57,10 +57,10 @@ public final class ChunkEntityMigrator: PChunkEntityMigrator {
         toChunkDescription: ChunkMemoryLayoutDescription,
         fromData: [UInt8],
         toData: inout [UInt8]) {
-        for componentType in Set(toChunkDescription.componentSizes.keys).union(fromChunkDescription.componentSizes.keys) {
-            guard let fromOffset = fromChunkDescription.startingOffsets[componentType],
-                let toOffset = toChunkDescription.startingOffsets[componentType],
-                let size = toChunkDescription.componentSizes[componentType] else { continue }
+        for componentType in Set(toChunkDescription.getComponentTypes()).union(fromChunkDescription.getComponentTypes()) {
+            guard let fromOffset = fromChunkDescription.offset(componentIdentifier: componentType),
+                let toOffset = toChunkDescription.offset(componentIdentifier: componentType),
+                let size = toChunkDescription.size(componentIdentifier: componentType) else { continue }
             rewriteData(
                 fromOffset: fromOffset,
                 toOffset: toOffset,

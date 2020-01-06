@@ -19,15 +19,14 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
         // given
         let sut = ChunkMemoryLayoutDescriptionBuilder()
         // then
-        XCTAssertEqual(ChunkMemoryLayoutDescription(entitySize: 16, startingOffsets: [:], componentSizes: [:], chunkEntrySize: 16), sut.build())
+        XCTAssertEqual(ChunkMemoryLayoutDescription(entitySize: 16, componentDescriptions: [:], chunkEntrySize: 16), sut.build())
     }
     
     func testBuild_WhenInitializedWithIntitialChunkDescription_ShouldReturnCopyOfThatDescription() {
         // given
         let description = ChunkMemoryLayoutDescription(
             entitySize: 16,
-            startingOffsets: [PComponentMock.componentIdentifier: 16],
-            componentSizes: [PComponentMock.componentIdentifier: 10],
+            componentDescriptions: [PComponentMock.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 10)],
             chunkEntrySize: 26)
         let sut = ChunkMemoryLayoutDescriptionBuilder(baseDescription: description)
         // when
@@ -40,17 +39,11 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
         // given
         let expectedDescription = ChunkMemoryLayoutDescription(
             entitySize: 16,
-            startingOffsets: [
-                FooComponent.componentIdentifier: 16,
-                BarComponent.componentIdentifier: 20,
-                TagComponent.componentIdentifier: 28,
-                Tag2Component.componentIdentifier: 28
-            ],
-            componentSizes: [
-                FooComponent.componentIdentifier: 4,
-                BarComponent.componentIdentifier: 8,
-                TagComponent.componentIdentifier: 0,
-                Tag2Component.componentIdentifier: 0
+            componentDescriptions: [
+                FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
+                BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 8),
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 0),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 0)
             ],
             chunkEntrySize: 28)
         // when
@@ -69,15 +62,10 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
         // given
         let expectedDescription = ChunkMemoryLayoutDescription(
             entitySize: 16,
-            startingOffsets: [
-                FooComponent.componentIdentifier: 16,
-                TagComponent.componentIdentifier: 20,
-                Tag2Component.componentIdentifier: 20
-            ],
-            componentSizes: [
-                FooComponent.componentIdentifier: 4,
-                TagComponent.componentIdentifier: 0,
-                Tag2Component.componentIdentifier: 0
+            componentDescriptions: [
+                FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0)
             ],
             chunkEntrySize: 20)
         let sut = ChunkMemoryLayoutDescriptionBuilder()
@@ -97,15 +85,10 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
         // given
         let expectedDescription = ChunkMemoryLayoutDescription(
             entitySize: 16,
-            startingOffsets: [
-                FooComponent.componentIdentifier: 16,
-                TagComponent.componentIdentifier: 20,
-                Tag2Component.componentIdentifier: 20
-            ],
-            componentSizes: [
-                FooComponent.componentIdentifier: 4,
-                TagComponent.componentIdentifier: 0,
-                Tag2Component.componentIdentifier: 0
+            componentDescriptions: [
+                FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0)
             ],
             chunkEntrySize: 20)
         let sut = ChunkMemoryLayoutDescriptionBuilder()
