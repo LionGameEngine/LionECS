@@ -7,5 +7,5 @@
 //
 
 public protocol PChunkEntityMigrator {
-    func migrate(fromChunk: Chunk, toChunk: Chunk, entity: Entity) throws
+    func migrate(fromChunk: PChunk, toChunk: PChunk, entity: Entity) throws
 }

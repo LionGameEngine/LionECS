@@ -6,8 +6,8 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class Chunk {
-    let memoryLayoutDescription: ChunkMemoryLayoutDescription
+public final class Chunk: PChunk {
+    public let memoryLayoutDescription: ChunkMemoryLayoutDescription
     var allocatedEntities: Int = 1024
     var freeIndicies: Set<Int> = Set(0..<1024)
     var managedEntities: [Entity: Int] = [:]
@@ -45,24 +45,7 @@ public final class Chunk {
     public func managesEntity(entity: Entity) -> Bool {
         return managedEntities.keys.contains(entity)
     }
-    
-    public func manageEntity(entity: Entity, wasReallocated: Bool = false) throws {
-        guard !managesEntity(entity: entity) else { throw ChunkError.entityAlreadyExists }
-        guard let index = freeIndicies.first else {
-            if !wasReallocated {
-                growChunk()
-                try manageEntity(entity: entity, wasReallocated: true)
-            } else {
-                throw ChunkError.cannotAllocateMemory
-            }
-            return
-        }
-        freeIndicies.remove(index)
-        managedEntities[entity] = index
-        entityAccessor.clear(index: index)
-        setEntity(entity, atIndex: index)
-    }
-    
+
     public func growChunk() {
         let newEntries = memoryManager.alloc(count: allocatedEntities * 2)
         memoryManager.clear(pointer: newEntries)
@@ -78,6 +61,10 @@ public final class Chunk {
     
     public func setEntity(_ entity: Entity, atIndex index: Int) {
         entityAccessor.set(entity: entity, index: index)
+    }
+    
+    public func manageEntity(entity: Entity) throws {
+        try manageEntityAndAllocateChunkIfNeeded(entity: entity, wasReallocated: false)
     }
     
     public func unmanageEntity(_ entity: Entity) throws {
@@ -105,5 +92,22 @@ public final class Chunk {
 
     func verify(entity: Entity) throws {
         guard managedEntities.keys.contains(entity) else { throw ChunkError.missingEntity }
+    }
+    
+    private func manageEntityAndAllocateChunkIfNeeded(entity: Entity, wasReallocated: Bool = false) throws {
+        guard !managesEntity(entity: entity) else { throw ChunkError.entityAlreadyExists }
+        guard let index = freeIndicies.first else {
+            if !wasReallocated {
+                growChunk()
+                try manageEntityAndAllocateChunkIfNeeded(entity: entity, wasReallocated: true)
+            } else {
+                throw ChunkError.cannotAllocateMemory
+            }
+            return
+        }
+        freeIndicies.remove(index)
+        managedEntities[entity] = index
+        entityAccessor.clear(index: index)
+        setEntity(entity, atIndex: index)
     }
 }

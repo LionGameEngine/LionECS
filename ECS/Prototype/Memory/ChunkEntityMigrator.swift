@@ -8,8 +8,8 @@
 
 public final class ChunkEntityMigrator: PChunkEntityMigrator {
     public func migrate(
-        fromChunk: Chunk,
-        toChunk: Chunk,
+        fromChunk: PChunk,
+        toChunk: PChunk,
         entity: Entity) throws {
         let data = try fromChunk.getEntityData(entity)
         let translatedData = translateData(fromChunkDescription: fromChunk.memoryLayoutDescription, toChunkDescription: toChunk.memoryLayoutDescription, data: data)

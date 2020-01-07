@@ -85,6 +85,8 @@
 		F173C5DA23C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */; };
 		F173C5DC23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */; };
 		F173C5DE23C2BCC600F9EF6E /* ComponentLayoutDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */; };
+		F19A027623C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A027523C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift */; };
+		F19A027923C3C95D00BE92A6 /* PChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A027723C3C8DE00BE92A6 /* PChunk.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -219,6 +221,8 @@
 		F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilderTests.swift; sourceTree = "<group>"; };
 		F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemotyLayoutDescriptionTests.swift; sourceTree = "<group>"; };
 		F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentLayoutDescription.swift; sourceTree = "<group>"; };
+		F19A027523C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorTests.swift; sourceTree = "<group>"; };
+		F19A027723C3C8DE00BE92A6 /* PChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PChunk.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				F173C5D623C2209D00F9EF6E /* PrototypeBuilderTests.swift */,
 				F173C5D923C2261300F9EF6E /* ChunkMemoryLayoutDescriptionBuilderTests.swift */,
 				F173C5DB23C2BAE300F9EF6E /* ChunkMemotyLayoutDescriptionTests.swift */,
+				F19A027523C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift */,
 			);
 			path = ECSTests;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				6DD5571F0924D7729B79B747 /* PEntityDataAccessor.swift */,
 				850521BFF40EC16E513A4A8D /* PMemoryManager.swift */,
 				F173C5DD23C2BCC600F9EF6E /* ComponentLayoutDescription.swift */,
+				F19A027723C3C8DE00BE92A6 /* PChunk.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				59006AEE8E70C7AA29453C35 /* EntityManager.swift in Sources */,
 				C2458771ECA92BCC82261AE9 /* EntityQueryResult.swift in Sources */,
 				3721C19549EA262274E58E70 /* EntityRequester.swift in Sources */,
+				F19A027923C3C95D00BE92A6 /* PChunk.swift in Sources */,
 				5BCF07529AF62F0B7DC1266E /* Excludes.swift in Sources */,
 				AE217B6304C224B0C14F71AA /* PChunkEntityMigrator.swift in Sources */,
 				79E465AEDD43347B38F54699 /* PComponent.swift in Sources */,
@@ -817,6 +824,7 @@
 				C10CDA08603E7CA613115A46 /* ComponentManagersTests.swift in Sources */,
 				0D7FF62084D0C060DD48F3A2 /* ComponentSystemTests.swift in Sources */,
 				AF1814EF409F2418A71D2907 /* EntityManagerTests.swift in Sources */,
+				F19A027623C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift in Sources */,
 				7375047E2A1F479C02B8FB2C /* EntityQueryResultTests.swift in Sources */,
 				A39AC1C98297FC64CBAE7D76 /* EntityQueryTests.swift in Sources */,
 				6B4B7E1E9E914F762790329E /* EntityRequesterTests.swift in Sources */,

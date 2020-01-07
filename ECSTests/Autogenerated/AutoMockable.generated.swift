@@ -25,6 +25,95 @@ import AppKit
 
 
 
+class PChunkMock: PChunk {
+    var memoryLayoutDescription: ChunkMemoryLayoutDescription {
+        get { return underlyingMemoryLayoutDescription }
+        set(value) { underlyingMemoryLayoutDescription = value }
+    }
+    var underlyingMemoryLayoutDescription: ChunkMemoryLayoutDescription!
+
+    //MARK: - setEntityData
+    var setEntityDataDataThrowableError: Error?
+    var setEntityDataDataCallsCount = 0
+    var setEntityDataDataCalled: Bool {
+        return setEntityDataDataCallsCount > 0
+    }
+    var setEntityDataDataReceivedArguments: (entity: Entity, data: [UInt8])?
+    var setEntityDataDataReceivedInvocations: [(entity: Entity, data: [UInt8])] = []
+    var setEntityDataDataClosure: ((Entity, [UInt8]) throws -> Void)?
+
+    func setEntityData(_ entity: Entity, data: [UInt8]) throws {
+        if let error = setEntityDataDataThrowableError {
+            throw error
+        }
+        setEntityDataDataCallsCount += 1
+        setEntityDataDataReceivedArguments = (entity: entity, data: data)
+        setEntityDataDataReceivedInvocations.append((entity: entity, data: data))
+        try setEntityDataDataClosure?(entity, data)
+    }
+
+    //MARK: - getEntityData
+    var getEntityDataThrowableError: Error?
+    var getEntityDataCallsCount = 0
+    var getEntityDataCalled: Bool {
+        return getEntityDataCallsCount > 0
+    }
+    var getEntityDataReceivedEntity: Entity?
+    var getEntityDataReceivedInvocations: [Entity] = []
+    var getEntityDataReturnValue: [UInt8]!
+    var getEntityDataClosure: ((Entity) throws -> [UInt8])?
+
+    func getEntityData(_ entity: Entity) throws -> [UInt8] {
+        if let error = getEntityDataThrowableError {
+            throw error
+        }
+        getEntityDataCallsCount += 1
+        getEntityDataReceivedEntity = entity
+        getEntityDataReceivedInvocations.append(entity)
+        return try getEntityDataClosure.map({ try $0(entity) }) ?? getEntityDataReturnValue
+    }
+
+    //MARK: - manageEntity
+    var manageEntityEntityThrowableError: Error?
+    var manageEntityEntityCallsCount = 0
+    var manageEntityEntityCalled: Bool {
+        return manageEntityEntityCallsCount > 0
+    }
+    var manageEntityEntityReceivedEntity: Entity?
+    var manageEntityEntityReceivedInvocations: [Entity] = []
+    var manageEntityEntityClosure: ((Entity) throws -> Void)?
+
+    func manageEntity(entity: Entity) throws {
+        if let error = manageEntityEntityThrowableError {
+            throw error
+        }
+        manageEntityEntityCallsCount += 1
+        manageEntityEntityReceivedEntity = entity
+        manageEntityEntityReceivedInvocations.append(entity)
+        try manageEntityEntityClosure?(entity)
+    }
+
+    //MARK: - unmanageEntity
+    var unmanageEntityThrowableError: Error?
+    var unmanageEntityCallsCount = 0
+    var unmanageEntityCalled: Bool {
+        return unmanageEntityCallsCount > 0
+    }
+    var unmanageEntityReceivedEntity: Entity?
+    var unmanageEntityReceivedInvocations: [Entity] = []
+    var unmanageEntityClosure: ((Entity) throws -> Void)?
+
+    func unmanageEntity(_ entity: Entity) throws {
+        if let error = unmanageEntityThrowableError {
+            throw error
+        }
+        unmanageEntityCallsCount += 1
+        unmanageEntityReceivedEntity = entity
+        unmanageEntityReceivedInvocations.append(entity)
+        try unmanageEntityClosure?(entity)
+    }
+
+}
 class PComponentMock: PComponent {
     var componentIdentifier: ComponentIdentifier {
         get { return underlyingComponentIdentifier }
