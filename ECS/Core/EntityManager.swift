@@ -11,7 +11,7 @@ public final class EntityManager {
     private var entities = Set<Entity>()
     private var reuseableEntities = Set<Entity>()
     
-    public func createEntity() -> Entity {
+    @discardableResult public func createEntity() -> Entity {
         let entity: Entity
         if let reusableEntity = reuseableEntities.first {
             entity = Entity(id: reusableEntity.id, version: reusableEntity.version + 1)

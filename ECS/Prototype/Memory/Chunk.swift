@@ -43,13 +43,14 @@ public final class Chunk: PChunk {
     }
     
     public func managesEntity(entity: Entity) -> Bool {
-        return managedEntities.keys.contains(entity)
+        return managedEntities[entity] != nil
     }
 
     public func growChunk() {
         let newEntries = memoryManager.alloc(count: allocatedEntities * 2)
         memoryManager.clear(pointer: newEntries)
         memoryManager.move(from: entries, to: newEntries)
+        memoryManager.clear(pointer: entries)
         memoryManager.free(pointer: entries)
         
         entityAccessor.entries = newEntries
@@ -91,7 +92,7 @@ public final class Chunk: PChunk {
     }
 
     func verify(entity: Entity) throws {
-        guard managedEntities.keys.contains(entity) else { throw ChunkError.missingEntity }
+        guard managedEntities[entity] != nil else { throw ChunkError.missingEntity }
     }
     
     private func manageEntityAndAllocateChunkIfNeeded(entity: Entity, wasReallocated: Bool = false) throws {
