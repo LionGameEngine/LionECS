@@ -9,4 +9,5 @@
 public protocol PEntityFilter {
     var componentIdentifier: ComponentIdentifier { get }
     func filter<ComponentManagers: PComponentManagers>(requester: EntityRequester<ComponentManagers>, entities: Set<Entity>) throws -> Set<Entity>
+    func filter(chunk: Chunk) -> Chunk?
 }

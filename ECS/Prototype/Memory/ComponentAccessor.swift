@@ -6,7 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class ComponentAccessor: PComponentAccessor {
+public final class ComponentAccessorFactory {
     private let memoryLayoutDescription: ChunkMemoryLayoutDescription
     public var entries: UnsafeMutableRawBufferPointer
     
@@ -15,17 +15,35 @@ public final class ComponentAccessor: PComponentAccessor {
         self.entries = entries
     }
 
+    func create<C: PComponent>(_ type: C.Type) -> PComponentAccessor {
+        return ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: memoryLayoutDescription.offset(C.self), size: memoryLayoutDescription.size(C.self))
+    }
+}
+
+public final class ComponentAccessor: PComponentAccessor {
+    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    public var entries: UnsafeMutableRawBufferPointer
+    public let offset: Int
+    public let size: Int
+    
+    public init(memoryLayoutDescription: ChunkMemoryLayoutDescription, entries: UnsafeMutableRawBufferPointer, offset: Int, size: Int) {
+        self.memoryLayoutDescription = memoryLayoutDescription
+        self.entries = entries
+        self.offset = offset
+        self.size = size
+    }
+
     public func access<R1: PComponent>(index: Int) -> R1 {
         return accessMutable(index: index).pointee
     }
     
     public func accessMutable<R1: PComponent>(index: Int) -> UnsafeMutablePointer<R1> {
-        return (entries.baseAddress! + index * memoryLayoutDescription.chunkEntrySize + memoryLayoutDescription.offset(R1.self)).assumingMemoryBound(to: R1.self)
+        return (entries.baseAddress! + index * memoryLayoutDescription.chunkEntrySize + offset).assumingMemoryBound(to: R1.self)
     }
     
     public func clear<R1: PComponent>(_ type: R1.Type, index: Int) {
         let pointer: UnsafeMutablePointer<R1> = accessMutable(index: index)
-        UnsafeMutableRawPointer(pointer).initializeMemory(as: UInt8.self, repeating: 0, count: memoryLayoutDescription.size(R1.self))
+        UnsafeMutableRawPointer(pointer).initializeMemory(as: UInt8.self, repeating: 0, count: size)
     }
     
     public func set<R1: PComponent>(component: R1, index: Int) {

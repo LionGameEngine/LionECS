@@ -18,4 +18,8 @@ public struct Requires<Component: PComponent>: PEntityFilter {
                 .getEntities(withComponent: Component.self)
         )
     }
+    
+    public func filter(chunk: Chunk) -> Chunk? {
+        return chunk.prototype.componentIdentifiers.contains(componentIdentifier) ? chunk : nil
+    }
 }
