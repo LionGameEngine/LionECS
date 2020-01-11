@@ -18,13 +18,19 @@ struct PrototypedQuery<ComponentManagers: PPrototypeComponentManagers, R1: PComp
     }
     
     func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
-        let r1Manager = try requester.getComponentManagers().prototypeComponentManager
+        let r1Manager = requester.getComponentManagers().prototypeComponentManager
         guard let chunks = r1Manager?.chunksContainingComponent(type: R1.self, type2: R2.self, type3: R3.self) else { return Result([:])}
         var result: [Entity: Result.Components] = [:]
         for chunk in chunks {
             let entityWithComponents: [(Entity, R1, R2, R3)] = try chunk.getEntitiesWithComponents()
-            for t in entityWithComponents {
-                result[t.0] = (t.1, t.2, t.3)
+            let count = entityWithComponents.count
+            entityWithComponents.withUnsafeBufferPointer { (pointer) -> Void in
+                var i = 0
+                while i < count {
+                    let t = pointer[i]
+                    result[t.0] = (t.1, t.2, t.3)
+                    i += 1
+                }
             }
         }
         return Result(result)
@@ -39,27 +45,14 @@ class TestPrototypeQuery: XCTestCase {
     struct Component1: PComponent {
         let x: Int64
         let y: Int64
-        
-        public static var componentIdentifier: ComponentIdentifier = {
-            return String(reflecting: self)
-        }()
-
     }
     struct Component2: PComponent {
         let x: Int64
         let y: Int64
-        
-        public static var componentIdentifier: ComponentIdentifier = {
-            return String(reflecting: self)
-        }()
     }
     struct Component3: PComponent {
         let x: Int64
         let y: Int64
-        
-        public static var componentIdentifier: ComponentIdentifier = {
-            return String(reflecting: self)
-        }()
     }
     
     var sut: EntityRequester<PrototypeComponentManagers>!

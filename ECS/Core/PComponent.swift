@@ -13,6 +13,6 @@ public protocol PComponent {
 
 extension PComponent {
     public static var componentIdentifier: ComponentIdentifier {
-        return String(reflecting: self)
+        return ObjectIdentifier(Self.self)
     }
 }

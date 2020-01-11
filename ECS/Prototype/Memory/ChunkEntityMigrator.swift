@@ -76,10 +76,14 @@ public final class ChunkEntityMigrator: PChunkEntityMigrator {
         size: Int,
         fromData: [UInt8],
         toData: inout [UInt8]) {
-        var i = 0
-        while (i < size) {
-            toData[i + toOffset] = fromData[i + fromOffset]
-            i += 1
-        }
+        toData.withUnsafeMutableBufferPointer({ (toPointer) -> Void in
+            fromData.withUnsafeBufferPointer { (fromPointer) -> Void in
+                var i = 0
+                while (i < size) {
+                    toPointer[i + toOffset] = fromPointer[i + fromOffset]
+                    i += 1
+                }
+            }
+        })
     }
 }
