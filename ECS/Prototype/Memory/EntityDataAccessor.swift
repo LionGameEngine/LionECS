@@ -18,8 +18,10 @@ public class EntityDataAccessor: PEntityDataAccessor {
     public func access(index: Int) -> [UInt8] {
         var entityData = [UInt8](repeating: 0, count: memoryLayoutDescription.chunkEntrySize)
         entityData.withUnsafeMutableBufferPointer({ (pointer) -> Void in
-            for x in 0..<memoryLayoutDescription.chunkEntrySize {
+            var x = 0
+            while(x < memoryLayoutDescription.chunkEntrySize) {
                 (pointer.baseAddress! + x).pointee = (entries.bindMemory(to: UInt8.self).baseAddress! + index * memoryLayoutDescription.chunkEntrySize + x).pointee
+                x += 1
             }
         })
         return entityData

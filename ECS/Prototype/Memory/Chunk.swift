@@ -7,6 +7,7 @@
 //
 
 public final class Chunk: PChunk {
+    public let prototype: Prototype
     public let memoryLayoutDescription: ChunkMemoryLayoutDescription
     var allocatedEntities: Int = 1024
     var freeIndicies: Set<Int> = Set(0..<1024)
@@ -18,11 +19,13 @@ public final class Chunk: PChunk {
     let memoryManager: PMemoryManager
     
     public init(
+        prototype: Prototype,
         memoryLayoutDescription: ChunkMemoryLayoutDescription,
         memoryManager: PMemoryManager? = nil,
         entityAccessor: PEntityAccessor? = nil,
         entityDataAccessor: PEntityDataAccessor? = nil,
         componentAccessor: PComponentAccessor? = nil) {
+        self.prototype = prototype
         self.memoryLayoutDescription = memoryLayoutDescription
         self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: memoryLayoutDescription)
         let entries = self.memoryManager.alloc(count: allocatedEntities)
@@ -44,20 +47,6 @@ public final class Chunk: PChunk {
     
     public func managesEntity(entity: Entity) -> Bool {
         return managedEntities[entity] != nil
-    }
-
-    public func growChunk() {
-        let newEntries = memoryManager.alloc(count: allocatedEntities * 2)
-        memoryManager.clear(pointer: newEntries)
-        memoryManager.move(from: entries, to: newEntries)
-        memoryManager.clear(pointer: entries)
-        memoryManager.free(pointer: entries)
-        
-        entityAccessor.entries = newEntries
-        componentAccessor.entries = newEntries
-        entries = newEntries
-        freeIndicies = Set<Int>(allocatedEntities..<allocatedEntities*2)
-        allocatedEntities *= 2
     }
     
     public func setEntity(_ entity: Entity, atIndex index: Int) {
@@ -99,7 +88,6 @@ public final class Chunk: PChunk {
         guard !managesEntity(entity: entity) else { throw ChunkError.entityAlreadyExists }
         guard let index = freeIndicies.first else {
             if !wasReallocated {
-                growChunk()
                 try manageEntityAndAllocateChunkIfNeeded(entity: entity, wasReallocated: true)
             } else {
                 throw ChunkError.cannotAllocateMemory

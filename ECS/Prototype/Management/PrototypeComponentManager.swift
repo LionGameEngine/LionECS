@@ -7,7 +7,7 @@
 //
 
 public final class PrototypeComponentManager: PPrototypeComponentManager {
-    private var chunks: [Prototype: Chunk] = [:]
+    public var chunks: [Chunk] = []
     private var entityMigrator: PChunkEntityMigrator
     
     public init() {
@@ -21,97 +21,139 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     public func getEntities<Component>(withComponent: Component.Type) -> Set<Entity> where Component: PComponent {
         return Set<Entity>(
             chunks.filter {
-                $0.key.componentIdentifiers.contains(Component.componentIdentifier)
-            }.flatMap { chunk -> [Entity] in return chunk.value.getEntities().filter { !$0.isNull } }
+                $0.prototype.componentIdentifiers.contains(Component.componentIdentifier)
+            }.flatMap { chunk -> [Entity] in return chunk.getEntities().filter { !$0.isNull } }
         )
     }
     
     public func hasComponent<Component>(entity: Entity, component: Component.Type) -> Bool where Component: PComponent {
         return chunks.contains {
-            $0.key.componentIdentifiers.contains(Component.componentIdentifier)
-             && $0.value.managesEntity(entity: entity)
+            $0.prototype.componentIdentifiers.contains(Component.componentIdentifier)
+             && $0.managesEntity(entity: entity)
         }
     }
     
     public func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component: PComponent {
-        guard let prototype = chunks.first(where: { $0.value.managesEntity(entity: entity) })?.key else {
-            guard let prototype = chunks.first(where: { $0.key.componentIdentifiers == Set([Component.componentIdentifier])})?.key else {
-                let newPrototype = PrototypeBuilder()
-                    .addComponentType(Component.self)
-                    .build()
-                let newMemoryLayout = ChunkMemoryLayoutDescriptionBuilder()
-                    .add(Component.self)
-                    .build()
-                chunks[newPrototype] = Chunk(memoryLayoutDescription: newMemoryLayout)
-                try chunks[newPrototype]?.manageEntity(entity: entity)
-                try chunks[newPrototype]?.setComponents(entity: entity, r1: component)
+        guard let chunk = chunkManagingEntity(entity: entity) else {
+            let prototype = PrototypeBuilder().addComponentType(Component.self).build()
+            let layoutDescription = ChunkMemoryLayoutDescriptionBuilder().add(Component.self).build()
+            guard let chunk = existingChunkWithFreeSlot(forPrototype: prototype) else {
+                let chunk = Chunk(prototype: prototype, memoryLayoutDescription: layoutDescription)
+                try chunk.manageEntity(entity: entity)
+                try chunk.setComponents(entity: entity, r1: component)
+                chunks.append(chunk)
                 return
             }
-            try chunks[prototype]?.manageEntity(entity: entity)
-            try chunks[prototype]?.setComponents(entity: entity, r1: component)
+            try chunk.manageEntity(entity: entity)
+            try chunk.setComponents(entity: entity, r1: component)
             return
         }
-        let newPrototype = PrototypeBuilder(prototype: prototype)
+        guard !chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.alreadyHasComponent }
+        let newPrototype = PrototypeBuilder(prototype: chunk.prototype)
             .addComponentType(Component.self)
             .build()
-        guard let newPrototypeChunk = chunks[newPrototype] else {
-            let newMemoryLayout = ChunkMemoryLayoutDescriptionBuilder(baseDescription: chunks[prototype]!.memoryLayoutDescription)
-                .add(Component.self)
-                .build()
-            chunks[newPrototype] = Chunk(memoryLayoutDescription: newMemoryLayout)
-            try entityMigrator.migrate(fromChunk: chunks[prototype]!, toChunk: chunks[newPrototype]!, entity: entity)
-            try chunks[newPrototype]?.setComponents(entity: entity, r1: component)
+        guard let newChunk = existingChunkWithFreeSlot(forPrototype: newPrototype) else {
+            let newChunk = createNewChunkByAdding(type: Component.self, toChunk: chunk)
+            try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
+            chunks.append(newChunk)
             return
         }
-        if newPrototypeChunk !== chunks[prototype] {
-            try entityMigrator.migrate(fromChunk: chunks[prototype]!, toChunk: newPrototypeChunk, entity: entity)
-        }
-        try chunks[newPrototype]?.setComponents(entity: entity, r1: component)
-        return
+        try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
     }
     
     public func getComponent<Component>(ofEntity entity: Entity) throws -> Component where Component: PComponent {
-        let (component) = try chunks.filter {
-                $0.key.componentIdentifiers.contains(Component.componentIdentifier)
-                    && $0.value.managesEntity(entity: entity)
-            }.flatMap { chunk -> [(Component)] in return try chunk.value.getComponents() }
-                .first!
+        guard let chunk = chunkManagingEntity(entity: entity) else { throw ComponentManagerError.entityMissing }
+        let entitiesWithComponents: [(entity: Entity, component: Component)] = try chunk.getEntitiesWithComponents()
+        guard let component = entitiesWithComponents.first(where: { $0.entity == entity } )?.component else { throw ComponentManagerError.componentMissing }
         return component
     }
     
     public func getEntitiesWithComponents<Component>() throws -> [Entity: Component] where Component: PComponent {
         return [Entity: Component](
             uniqueKeysWithValues:
-                try chunks.filter {
-                    $0.key.componentIdentifiers.contains(Component.componentIdentifier)
-                    }.flatMap { chunk -> [(Entity, Component)] in return try chunk.value.getEntitiesWithComponents() }
-                    .filter({ !$0.0.isNull })
+            try chunksContainingComponent(type: Component.self).flatMap { chunk -> [(entity: Entity, component: Component)] in return try chunk.getEntitiesWithComponents() }
+                    .filter({ !$0.entity.isNull })
         )
     }
     
     public func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component: PComponent {
-        guard let prototypeChunkPair = chunks.first(where: { $0.value.managesEntity(entity: entity) }) else { throw ComponentManagerError.entityMissing }
-        guard prototypeChunkPair.key.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
-        try prototypeChunkPair.value.setComponents(entity: entity, r1: component)
+        guard let chunk = chunkManagingEntity(entity: entity) else { throw ComponentManagerError.entityMissing }
+        guard chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
+        try chunk.setComponents(entity: entity, r1: component)
     }
     
     public func removeComponent<Component>(_ componentType: Component.Type, fromEntity entity: Entity) throws where Component: PComponent {
-        guard let prototypeChunkPair = chunks.first(where: { $0.value.managesEntity(entity: entity) }) else { throw ComponentManagerError.entityMissing }
-        guard prototypeChunkPair.key.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
-        let newPrototype = PrototypeBuilder(prototype: prototypeChunkPair.key)
+        guard let chunk = chunkManagingEntity(entity: entity) else { throw ComponentManagerError.entityMissing }
+        guard chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
+        let newPrototype = PrototypeBuilder(prototype: chunk.prototype)
             .removeComponentType(Component.self)
             .build()
-        let newMemoryDescription = ChunkMemoryLayoutDescriptionBuilder(baseDescription: prototypeChunkPair.value.memoryLayoutDescription)
-            .remove(Component.self).build()
-        guard let newChunk = chunks[newPrototype] else {
-            let newChunk = Chunk(memoryLayoutDescription: newMemoryDescription)
-            try entityMigrator.migrate(fromChunk: prototypeChunkPair.value, toChunk: newChunk, entity: entity)
+        guard let newChunk = existingChunkWithFreeSlot(forPrototype: newPrototype) else {
+            let newChunk = createChunkByRemoving(type: Component.self, fromChunk: chunk)
+            try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
             return
         }
-        try entityMigrator.migrate(fromChunk: prototypeChunkPair.value, toChunk: newChunk, entity: entity)
+        try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
     }
 
     public func verify<Component>(componentType: Component.Type) throws where Component: PComponent {
         // nothing to do, supports all entities
+    }
+    
+    private func chunksContainingComponent<Component: PComponent>(type: Component.Type) -> [Chunk] {
+        return chunks.filter { (chunk) -> Bool in
+            return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier)
+        }
+    }
+    
+    public func chunksContainingComponent<Component: PComponent, Component2: PComponent, Component3: PComponent>(type: Component.Type, type2: Component2.Type, type3: Component3.Type) -> [Chunk] {
+        return chunks.filter { (chunk) -> Bool in
+            return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component2.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component3.componentIdentifier)
+
+        }
+    }
+    
+    private func existingChunkWithFreeSlot(forPrototype prototype: Prototype) -> Chunk? {
+        return chunks.withUnsafeBufferPointer { (pointer) -> Chunk? in
+            var i = 0
+            let count = pointer.count
+            while(i < count) {
+                if pointer[i].prototype == prototype && !pointer[i].freeIndicies.isEmpty {
+                    return pointer[i]
+                }
+                i += 1
+            }
+            return nil
+        }
+    }
+    
+    private func createNewChunkByAdding<Component: PComponent>(type: Component.Type, toChunk existingChunk: Chunk) -> Chunk {
+        let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
+            .addComponentType(type)
+        let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
+            .add(type)
+        return Chunk(prototype: prototypeBuilder.build(), memoryLayoutDescription: layoutBuilder.build())
+    }
+    
+    private func createChunkByRemoving<Component: PComponent>(type: Component.Type, fromChunk existingChunk: Chunk) -> Chunk {
+        let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
+            .removeComponentType(type)
+        let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
+            .remove(type)
+        return Chunk(prototype: prototypeBuilder.build(), memoryLayoutDescription: layoutBuilder.build())
+    }
+    
+    private func chunkManagingEntity(entity: Entity) -> Chunk? {
+        return chunks.withUnsafeBufferPointer { (pointer) -> Chunk? in
+            var i = 0
+            let count = pointer.count
+            while(i < count) {
+                if pointer[i].managesEntity(entity: entity) {
+                    return pointer[i]
+                }
+                i += 1
+            }
+            return nil
+        }
     }
 }
