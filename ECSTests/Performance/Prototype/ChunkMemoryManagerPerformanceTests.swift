@@ -1,0 +1,56 @@
+//
+//  ChunkMemoryManagerPerformanceTests.swift
+//  LionECSTests
+//
+//  Created by Tomasz Lewandowski on 14/01/2020.
+//  Copyright © 2020 LionSoftware. All rights reserved.
+//
+
+import XCTest
+@testable import LionECS
+
+class ChunkMemoryManagerPerformanceTests: XCTestCase {
+    private struct Component1: PComponent {
+        var x: UInt8
+    }
+    var sut: ChunkMemoryManager!
+    let numberOfEntities = 1000000
+    
+    override func setUp() {
+        let description = ChunkMemoryLayoutDescriptionBuilder().add(Component1.self).build()
+        sut = ChunkMemoryManager(memoryLayoutDescription: description)
+    }
+    
+    func testAlloc() {
+        var entries: UnsafeMutableRawBufferPointer!
+        measure {
+            entries = sut.alloc(count: numberOfEntities)
+        }
+        sut.free(pointer: entries)
+    }
+    
+    func testFree() {
+        measure {
+            let entries: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
+            sut.free(pointer: entries)
+        }
+    }
+    
+    func testClear() {
+        let entries: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
+        measure {
+            sut.clear(pointer: entries)
+        }
+        sut.free(pointer: entries)
+    }
+    
+    func testMove() {
+        let entries: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
+        let entries2: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
+        measure {
+            sut.move(from: entries, to: entries2)
+        }
+        sut.free(pointer: entries)
+        sut.free(pointer: entries2)
+    }
+}
