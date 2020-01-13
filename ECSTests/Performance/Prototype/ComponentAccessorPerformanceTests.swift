@@ -1,15 +1,15 @@
 //
-//  EntityAccessorPerformanceTests.swift
+//  ComponentAccessorPerformanceTests.swift
 //  LionECSTests
 //
-//  Created by Tomasz Lewandowski on 13/01/2020.
+//  Created by Tomasz Lewandowski on 14/01/2020.
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
 import XCTest
 @testable import LionECS
 
-class EntityAccessorPerformanceTests: XCTestCase {
+class ComponentAccessorPerformanceTests: XCTestCase {
     private struct Component1: PComponent {
         let x: Int64
     }
@@ -17,13 +17,13 @@ class EntityAccessorPerformanceTests: XCTestCase {
     let numberOfEntities = 100000
     var entries: UnsafeMutableRawBufferPointer!
     var memoryManager: PMemoryManager!
-    var sut: EntityAccessor!
+    var sut: ComponentAccessor!
     
     override func setUp() {
         let description = ChunkMemoryLayoutDescriptionBuilder().add(Component1.self).build()
         memoryManager = ChunkMemoryManager(memoryLayoutDescription: description)
         entries = memoryManager.alloc(count: numberOfEntities)
-        sut = EntityAccessor(memoryLayoutDescription: description, entries: entries)
+        sut = ComponentAccessor(memoryLayoutDescription: description, entries: entries, offset: 16, size: 8)
     }
     
     override func tearDown() {
@@ -33,7 +33,7 @@ class EntityAccessorPerformanceTests: XCTestCase {
     func testAccess() {
         measure {
             for i in 0..<numberOfEntities {
-                _ = sut.access(index: i)
+                let _ : Component1 = sut.access(index: i)
             }
         }
     }
@@ -41,7 +41,7 @@ class EntityAccessorPerformanceTests: XCTestCase {
     func testAccessMutable() {
         measure {
             for i in 0..<numberOfEntities {
-                _ = sut.accessMutable(index: i)
+                let _ : UnsafeMutablePointer<Component1> = sut.accessMutable(index: i)
             }
         }
     }
@@ -49,7 +49,7 @@ class EntityAccessorPerformanceTests: XCTestCase {
     func testClear() {
         measure {
             for i in 0..<numberOfEntities {
-                sut.clear(index: i)
+                sut.clear(Component1.self, index: i)
             }
         }
     }
@@ -57,7 +57,7 @@ class EntityAccessorPerformanceTests: XCTestCase {
     func testSet() {
         measure {
             for i in 0..<numberOfEntities {
-                sut.set(entity: Entity(id: 10, version: 10), index: i)
+                sut.set(component: Component1(x: 10), index: i)
             }
         }
     }

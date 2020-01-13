@@ -6,20 +6,6 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class ComponentAccessorFactory {
-    private let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    public var entries: UnsafeMutableRawBufferPointer
-    
-    public init(memoryLayoutDescription: ChunkMemoryLayoutDescription, entries: UnsafeMutableRawBufferPointer) {
-        self.memoryLayoutDescription = memoryLayoutDescription
-        self.entries = entries
-    }
-
-    func create<C: PComponent>(_ type: C.Type) -> PComponentAccessor {
-        return ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: memoryLayoutDescription.offset(C.self), size: memoryLayoutDescription.size(C.self))
-    }
-}
-
 public final class ComponentAccessor: PComponentAccessor {
     private let memoryLayoutDescription: ChunkMemoryLayoutDescription
     public var entries: UnsafeMutableRawBufferPointer

@@ -14,8 +14,8 @@ public final class Chunk: PChunk {
     var managedEntities: [Entity: Int] = [:]
     var entries: UnsafeMutableRawBufferPointer!
     var entityAccessor: PEntityAccessor
-    var componentAccessorFactory: ComponentAccessorFactory
     var componentAccessor: PComponentAccessor
+    var componentAccessorFactory: PComponentAccessorFactory
     let entityDataAccessor: PEntityDataAccessor
     let memoryManager: PMemoryManager
     
@@ -25,15 +25,15 @@ public final class Chunk: PChunk {
         memoryManager: PMemoryManager? = nil,
         entityAccessor: PEntityAccessor? = nil,
         entityDataAccessor: PEntityDataAccessor? = nil,
-        componentAccessor: PComponentAccessor? = nil) {
+        componentAccessorFactory: PComponentAccessorFactory? = nil) {
         self.prototype = prototype
         self.memoryLayoutDescription = memoryLayoutDescription
         self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: memoryLayoutDescription)
         let entries = self.memoryManager.alloc(count: allocatedEntities)
         self.memoryManager.clear(pointer: entries)
         self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
-        self.componentAccessor = componentAccessor ?? ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: 10, size: 10)
-        self.componentAccessorFactory = ComponentAccessorFactory(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
+        self.componentAccessor = ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: 10, size: 10)
+        self.componentAccessorFactory = componentAccessorFactory ?? ComponentAccessorFactory(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
         self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
         self.entries = entries
     }
