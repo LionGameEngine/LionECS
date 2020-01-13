@@ -1,0 +1,64 @@
+//
+//  EntityAccessorPerformanceTests.swift
+//  LionECSTests
+//
+//  Created by Tomasz Lewandowski on 13/01/2020.
+//  Copyright © 2020 LionSoftware. All rights reserved.
+//
+
+import XCTest
+@testable import LionECS
+
+class EntityAccessorPerformanceTests: XCTestCase {
+    private struct Component1: PComponent {
+        let x: Int64
+    }
+    
+    let numberOfEntities = 100000
+    var entries: UnsafeMutableRawBufferPointer!
+    var memoryManager: PMemoryManager!
+    var sut: EntityAccessor!
+    
+    override func setUp() {
+        let description = ChunkMemoryLayoutDescriptionBuilder().add(Component1.self).build()
+        memoryManager = ChunkMemoryManager(memoryLayoutDescription: description)
+        entries = memoryManager.alloc(count: numberOfEntities)
+        sut = EntityAccessor(memoryLayoutDescription: description, entries: entries)
+    }
+    
+    override func tearDown() {
+        memoryManager.free(pointer: entries)
+    }
+    
+    func testAccessEntity() {
+        measure {
+            for i in 0..<numberOfEntities {
+                _ = sut.access(index: i)
+            }
+        }
+    }
+    
+    func testAccessMutableEntity() {
+        measure {
+            for i in 0..<numberOfEntities {
+                _ = sut.accessMutable(index: i)
+            }
+        }
+    }
+    
+    func testClearEntity() {
+        measure {
+            for i in 0..<numberOfEntities {
+                sut.clear(index: i)
+            }
+        }
+    }
+    
+    func testSetEntity() {
+        measure {
+            for i in 0..<numberOfEntities {
+                sut.set(entity: Entity(id: 10, version: 10), index: i)
+            }
+        }
+    }
+}

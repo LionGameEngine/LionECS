@@ -90,6 +90,7 @@
 		F19A028C23C55AB400BE92A6 /* PrototypeQueryPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A028A23C55AB100BE92A6 /* PrototypeQueryPerformanceTests.swift */; };
 		F19A028D23C55AB900BE92A6 /* NaiveQueryPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A028623C55A4900BE92A6 /* NaiveQueryPerformanceTests.swift */; };
 		F19A028E23C55AC700BE92A6 /* EntityManagerPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A028823C55A8D00BE92A6 /* EntityManagerPerformanceTests.swift */; };
+		F19A030A23CD26F000BE92A6 /* EntityAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A030923CD26F000BE92A6 /* EntityAccessorPerformanceTests.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -229,6 +230,7 @@
 		F19A028623C55A4900BE92A6 /* NaiveQueryPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveQueryPerformanceTests.swift; sourceTree = "<group>"; };
 		F19A028823C55A8D00BE92A6 /* EntityManagerPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManagerPerformanceTests.swift; sourceTree = "<group>"; };
 		F19A028A23C55AB100BE92A6 /* PrototypeQueryPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeQueryPerformanceTests.swift; sourceTree = "<group>"; };
+		F19A030923CD26F000BE92A6 /* EntityAccessorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityAccessorPerformanceTests.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				F19A028A23C55AB100BE92A6 /* PrototypeQueryPerformanceTests.swift */,
+				F19A030923CD26F000BE92A6 /* EntityAccessorPerformanceTests.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				C10CDA08603E7CA613115A46 /* ComponentManagersTests.swift in Sources */,
 				0D7FF62084D0C060DD48F3A2 /* ComponentSystemTests.swift in Sources */,
 				AF1814EF409F2418A71D2907 /* EntityManagerTests.swift in Sources */,
+				F19A030A23CD26F000BE92A6 /* EntityAccessorPerformanceTests.swift in Sources */,
 				F19A027623C3C83F00BE92A6 /* ChunkEntityMigratorTests.swift in Sources */,
 				7375047E2A1F479C02B8FB2C /* EntityQueryResultTests.swift in Sources */,
 				A39AC1C98297FC64CBAE7D76 /* EntityQueryTests.swift in Sources */,
