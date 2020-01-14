@@ -96,6 +96,7 @@
 		F19A031023CD335200BE92A6 /* ComponentAccessorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A030F23CD335200BE92A6 /* ComponentAccessorFactory.swift */; };
 		F19A031223CD337900BE92A6 /* PComponentAccesorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031123CD337900BE92A6 /* PComponentAccesorFactory.swift */; };
 		F19A031423CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */; };
+		F19A031623CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -241,6 +242,7 @@
 		F19A030F23CD335200BE92A6 /* ComponentAccessorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentAccessorFactory.swift; sourceTree = "<group>"; };
 		F19A031123CD337900BE92A6 /* PComponentAccesorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PComponentAccesorFactory.swift; sourceTree = "<group>"; };
 		F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataAccessorPerformanceTests.swift; sourceTree = "<group>"; };
+		F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorPerformanceTests.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				F19A030B23CD2ECC00BE92A6 /* ChunkMemoryManagerPerformanceTests.swift */,
 				F19A030D23CD32AA00BE92A6 /* ComponentAccessorPerformanceTests.swift */,
 				F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */,
+				F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -906,6 +909,7 @@
 				C4AFAEEFD1DCA82D713BB1B5 /* ExcludesTests.swift in Sources */,
 				3C255E00EA33A22FB3DE61C5 /* RequiresTests.swift in Sources */,
 				F19A031423CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift in Sources */,
+				F19A031623CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift in Sources */,
 				F19A028C23C55AB400BE92A6 /* PrototypeQueryPerformanceTests.swift in Sources */,
 				016D26A9DC12AC77307496DA /* WorldTests.swift in Sources */,
 				F173C5D823C220A700F9EF6E /* PrototypeBuilderTests.swift in Sources */,
