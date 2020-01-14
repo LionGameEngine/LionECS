@@ -38,22 +38,29 @@ class ChunkEntityMigratorTests: XCTestCase {
             entitySize: 16,
             componentDescriptions: [
                 FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
-                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0),
-                BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 8),
-                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 0)
-            ], chunkEntrySize: 28)
-        fromMock.getEntityDataReturnValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 1),
+                BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 21, size: 8),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 29, size: 1)
+            ], chunkEntrySize: 30)
+        fromMock.getEntityDataReturnValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+        fromMock.copyEntityDataIntoClosure = { [unowned self] (Entity, pointer: UnsafeMutableRawBufferPointer) in
+            self.fromMock.getEntityDataReturnValue.withUnsafeBytes { (data) -> Void in
+                pointer.baseAddress!.copyMemory(from: data.baseAddress!, byteCount: 30)
+            }
+        }
+        fromMock.memoryManager = ChunkMemoryManager(memoryLayoutDescription: fromMock.memoryLayoutDescription)
         toMock.memoryLayoutDescription = ChunkMemoryLayoutDescription(
         entitySize: 16,
         componentDescriptions: [
             BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 8),
             FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 24, size: 4),
-            TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 24, size: 0),
-        ], chunkEntrySize: 28)
+            TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 1),
+        ], chunkEntrySize: 29)
+        toMock.memoryManager = ChunkMemoryManager(memoryLayoutDescription: toMock.memoryLayoutDescription)
     }
     
     func testMigrate_WhenCalledWithEntityThatIsNotManagedBySource_ShouldThrowError() {
-        fromMock.getEntityDataClosure = { (Entity) throws -> [UInt8] in throw ChunkError.missingEntity }
+        fromMock.copyEntityDataIntoClosure = { (Entity, UnsafeMutableRawBufferPointer) throws in throw ChunkError.missingEntity }
         // then
         XCTAssertThrowsError(try sut.migrate(fromChunk: fromMock, toChunk: toMock, entity: Entity(id: 1, version: 1)))
     }
@@ -82,12 +89,14 @@ class ChunkEntityMigratorTests: XCTestCase {
         // given
         let entity = Entity(id: 1, version: 1)
         // when
-        try sut.migrate(fromChunk: fromMock, toChunk: toMock, entity: entity)
+        try sut.migrate(fromChunk: fromMock, toChunk: toMock, entity: entity, shouldFreeMemory: false)
         // then
-        XCTAssertTrue(toMock.setEntityDataDataCalled)
-        XCTAssertEqual(entity, toMock.setEntityDataDataReceivedArguments?.entity)
-        XCTAssertEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 16, 17, 18, 19], toMock.setEntityDataDataReceivedArguments?.data)
-
+        XCTAssertTrue(toMock.setEntityDataDataPointerCalled)
+        XCTAssertEqual(entity, toMock.setEntityDataDataPointerReceivedArguments?.entity)
+        let receivedArray = Array(toMock.setEntityDataDataPointerReceivedArguments!.dataPointer)
+        XCTAssertEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 22, 23, 24, 25, 26, 27, 28, 16, 17, 18, 19, 20], receivedArray)
+        fromMock.memoryManager.free(pointer: UnsafeRawBufferPointer(fromMock.copyEntityDataIntoReceivedArguments!.into))
+        toMock.memoryManager.free(pointer: toMock.setEntityDataDataPointerReceivedArguments!.dataPointer)
     }
 }
 

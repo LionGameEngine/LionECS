@@ -9,6 +9,7 @@
 public final class Chunk: PChunk {
     public let prototype: Prototype
     public let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    public let memoryManager: PMemoryManager
     var allocatedEntities: Int = 1024
     var freeIndicies: Set<Int> = Set(0..<1024)
     var managedEntities: [Entity: Int] = [:]
@@ -17,7 +18,6 @@ public final class Chunk: PChunk {
     var componentAccessor: PComponentAccessor
     var componentAccessorFactory: PComponentAccessorFactory
     let entityDataAccessor: PEntityDataAccessor
-    let memoryManager: PMemoryManager
     
     public init(
         prototype: Prototype,
@@ -41,7 +41,7 @@ public final class Chunk: PChunk {
     deinit {
         memoryManager.clear(pointer: entries)
     }
-    
+        
     public func getEntities() -> [Entity] {
         let entities = (0..<allocatedEntities).map { entityAccessor.access(index: $0) }
         return entities
@@ -66,10 +66,22 @@ public final class Chunk: PChunk {
         entityDataAccessor.clear(index: index)
     }
     
+    public func copyEntityData(_ entity: Entity, into: UnsafeMutableRawBufferPointer) throws {
+        try verify(entity: entity)
+        let index = managedEntities[entity]!
+        entityDataAccessor.copyEntityData(index: index, into: into)
+    }
+    
     public func getEntityData(_ entity: Entity) throws -> [UInt8] {
         try verify(entity: entity)
         let index = managedEntities[entity]!
         return entityDataAccessor.access(index: index)
+    }
+    
+    public func setEntityData(_ entity: Entity, dataPointer: UnsafeRawBufferPointer) throws {
+        try verify(entity: entity)
+        let index = managedEntities[entity]!
+        entityDataAccessor.set(entityDataPointer: dataPointer, index: index)
     }
     
     public func setEntityData(_ entity: Entity, data: [UInt8]) throws {

@@ -42,10 +42,10 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
             componentDescriptions: [
                 FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
                 BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 8),
-                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 0),
-                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 0)
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 28, size: 1),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 29, size: 1)
             ],
-            chunkEntrySize: 28)
+            chunkEntrySize: 30)
         // when
         let description = ChunkMemoryLayoutDescriptionBuilder()
             .add(FooComponent.self)
@@ -64,10 +64,10 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
             entitySize: 16,
             componentDescriptions: [
                 FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
-                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0),
-                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0)
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 1),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 21, size: 1)
             ],
-            chunkEntrySize: 20)
+            chunkEntrySize: 22)
         let sut = ChunkMemoryLayoutDescriptionBuilder()
             .add(FooComponent.self)
             .add(BarComponent.self)
@@ -87,10 +87,10 @@ class ChunkMemoryLayoutDescriptionBuilderTests: XCTestCase {
             entitySize: 16,
             componentDescriptions: [
                 FooComponent.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4),
-                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0),
-                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 0)
+                TagComponent.componentIdentifier: ComponentLayoutDescription(offset: 20, size: 1),
+                Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 21, size: 1)
             ],
-            chunkEntrySize: 20)
+            chunkEntrySize: 22)
         let sut = ChunkMemoryLayoutDescriptionBuilder()
             .add(FooComponent.self)
             .add(BarComponent.self)

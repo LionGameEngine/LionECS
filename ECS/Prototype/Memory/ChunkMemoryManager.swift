@@ -13,11 +13,11 @@ public final class ChunkMemoryManager: PMemoryManager {
         self.memoryLayoutDescription = memoryLayoutDescription
     }
     
-    public func free(pointer: UnsafeMutableRawBufferPointer) {
+    public func free(pointer: UnsafeRawBufferPointer) {
         pointer.deallocate()
     }
     
-    public func move(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer) {
+    public func copy(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer) {
         to.copyMemory(from: UnsafeRawBufferPointer(from))
     }
     

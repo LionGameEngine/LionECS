@@ -26,13 +26,13 @@ class ChunkMemoryManagerPerformanceTests: XCTestCase {
         measure {
             entries = sut.alloc(count: numberOfEntities)
         }
-        sut.free(pointer: entries)
+        sut.free(pointer: UnsafeRawBufferPointer(entries))
     }
     
     func testFree() {
         measure {
             let entries: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
-            sut.free(pointer: entries)
+            sut.free(pointer: UnsafeRawBufferPointer(entries))
         }
     }
     
@@ -41,16 +41,16 @@ class ChunkMemoryManagerPerformanceTests: XCTestCase {
         measure {
             sut.clear(pointer: entries)
         }
-        sut.free(pointer: entries)
+        sut.free(pointer: UnsafeRawBufferPointer(entries))
     }
     
-    func testMove() {
+    func testCopy() {
         let entries: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
         let entries2: UnsafeMutableRawBufferPointer = sut.alloc(count: numberOfEntities)
         measure {
-            sut.move(from: entries, to: entries2)
+            sut.copy(from: entries, to: entries2)
         }
-        sut.free(pointer: entries)
-        sut.free(pointer: entries2)
+        sut.free(pointer: UnsafeRawBufferPointer(entries))
+        sut.free(pointer: UnsafeRawBufferPointer(entries2))
     }
 }

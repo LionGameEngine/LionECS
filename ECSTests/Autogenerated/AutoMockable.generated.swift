@@ -31,6 +31,11 @@ class PChunkMock: PChunk {
         set(value) { underlyingMemoryLayoutDescription = value }
     }
     var underlyingMemoryLayoutDescription: ChunkMemoryLayoutDescription!
+    var memoryManager: PMemoryManager {
+        get { return underlyingMemoryManager }
+        set(value) { underlyingMemoryManager = value }
+    }
+    var underlyingMemoryManager: PMemoryManager!
 
     //MARK: - setEntityData
     var setEntityDataDataThrowableError: Error?
@@ -52,6 +57,26 @@ class PChunkMock: PChunk {
         try setEntityDataDataClosure?(entity, data)
     }
 
+    //MARK: - setEntityData
+    var setEntityDataDataPointerThrowableError: Error?
+    var setEntityDataDataPointerCallsCount = 0
+    var setEntityDataDataPointerCalled: Bool {
+        return setEntityDataDataPointerCallsCount > 0
+    }
+    var setEntityDataDataPointerReceivedArguments: (entity: Entity, dataPointer: UnsafeRawBufferPointer)?
+    var setEntityDataDataPointerReceivedInvocations: [(entity: Entity, dataPointer: UnsafeRawBufferPointer)] = []
+    var setEntityDataDataPointerClosure: ((Entity, UnsafeRawBufferPointer) throws -> Void)?
+
+    func setEntityData(_ entity: Entity, dataPointer: UnsafeRawBufferPointer) throws {
+        if let error = setEntityDataDataPointerThrowableError {
+            throw error
+        }
+        setEntityDataDataPointerCallsCount += 1
+        setEntityDataDataPointerReceivedArguments = (entity: entity, dataPointer: dataPointer)
+        setEntityDataDataPointerReceivedInvocations.append((entity: entity, dataPointer: dataPointer))
+        try setEntityDataDataPointerClosure?(entity, dataPointer)
+    }
+
     //MARK: - getEntityData
     var getEntityDataThrowableError: Error?
     var getEntityDataCallsCount = 0
@@ -71,6 +96,26 @@ class PChunkMock: PChunk {
         getEntityDataReceivedEntity = entity
         getEntityDataReceivedInvocations.append(entity)
         return try getEntityDataClosure.map({ try $0(entity) }) ?? getEntityDataReturnValue
+    }
+
+    //MARK: - copyEntityData
+    var copyEntityDataIntoThrowableError: Error?
+    var copyEntityDataIntoCallsCount = 0
+    var copyEntityDataIntoCalled: Bool {
+        return copyEntityDataIntoCallsCount > 0
+    }
+    var copyEntityDataIntoReceivedArguments: (entity: Entity, into: UnsafeMutableRawBufferPointer)?
+    var copyEntityDataIntoReceivedInvocations: [(entity: Entity, into: UnsafeMutableRawBufferPointer)] = []
+    var copyEntityDataIntoClosure: ((Entity, UnsafeMutableRawBufferPointer) throws -> Void)?
+
+    func copyEntityData(_ entity: Entity, into: UnsafeMutableRawBufferPointer) throws {
+        if let error = copyEntityDataIntoThrowableError {
+            throw error
+        }
+        copyEntityDataIntoCallsCount += 1
+        copyEntityDataIntoReceivedArguments = (entity: entity, into: into)
+        copyEntityDataIntoReceivedInvocations.append((entity: entity, into: into))
+        try copyEntityDataIntoClosure?(entity, into)
     }
 
     //MARK: - manageEntity

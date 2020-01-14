@@ -6,6 +6,8 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
+import Foundation
+
 public class EntityDataAccessor: PEntityDataAccessor {
     private let memoryLayoutDescription: ChunkMemoryLayoutDescription
     public var entries: UnsafeMutableRawBufferPointer
@@ -13,6 +15,10 @@ public class EntityDataAccessor: PEntityDataAccessor {
     public init(memoryLayoutDescription: ChunkMemoryLayoutDescription, entries: UnsafeMutableRawBufferPointer) {
         self.memoryLayoutDescription = memoryLayoutDescription
         self.entries = entries
+    }
+    
+    public func copyEntityData(index: Int, into: UnsafeMutableRawBufferPointer) {
+        memcpy(into.baseAddress!, entries.baseAddress! + index * memoryLayoutDescription.chunkEntrySize, memoryLayoutDescription.chunkEntrySize)
     }
     
     public func access(index: Int) -> [UInt8] {
@@ -25,6 +31,10 @@ public class EntityDataAccessor: PEntityDataAccessor {
             }
         })
         return entityData
+    }
+    
+    public func set(entityDataPointer: UnsafeRawBufferPointer, index: Int) {
+        memcpy(entries.baseAddress! + index * memoryLayoutDescription.chunkEntrySize, entityDataPointer.baseAddress!, memoryLayoutDescription.chunkEntrySize)
     }
     
     public func set(entityData: [UInt8], index: Int) {

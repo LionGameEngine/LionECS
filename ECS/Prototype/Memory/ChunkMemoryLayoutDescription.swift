@@ -7,6 +7,7 @@
 //
 
 public struct ChunkMemoryLayoutDescription: Equatable {
+    public let componentTypes: Set<ComponentIdentifier>
     public let componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription]
     public let chunkEntrySize: Int
     public let entitySize: Int
@@ -14,6 +15,7 @@ public struct ChunkMemoryLayoutDescription: Equatable {
     init(entitySize: Int, componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription], chunkEntrySize: Int) {
         self.entitySize = entitySize
         self.componentDescriptions = componentDescriptions
+        self.componentTypes = Set(componentDescriptions.keys)
         self.chunkEntrySize = chunkEntrySize
     }
     
@@ -34,10 +36,10 @@ public struct ChunkMemoryLayoutDescription: Equatable {
     }
     
     public func hasComponent<Component: PComponent>(_ type: Component.Type) -> Bool {
-        componentDescriptions.keys.contains(Component.componentIdentifier)
+        componentDescriptions[Component.componentIdentifier] != nil
     }
     
     public func getComponentTypes() -> Set<ComponentIdentifier> {
-        return Set(componentDescriptions.keys)
+        return componentTypes
     }
 }

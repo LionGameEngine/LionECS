@@ -27,7 +27,7 @@ class ComponentAccessorPerformanceTests: XCTestCase {
     }
     
     override func tearDown() {
-        memoryManager.free(pointer: entries)
+        memoryManager.free(pointer: UnsafeRawBufferPointer(entries))
     }
     
     func testAccess() {

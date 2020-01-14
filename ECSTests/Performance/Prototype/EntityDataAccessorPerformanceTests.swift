@@ -27,7 +27,17 @@ class EntityDataAccessorPerformanceTests: XCTestCase {
     }
     
     override func tearDown() {
-        memoryManager.free(pointer: entries)
+        memoryManager.free(pointer: UnsafeRawBufferPointer(entries))
+    }
+    
+    func testCopyData() {
+        let pointer = memoryManager.alloc(count: 1)
+        measure {
+            for i in 0..<numberOfEntities {
+                _ = sut.copyEntityData(index: i, into: pointer)
+            }
+        }
+        memoryManager.free(pointer: UnsafeRawBufferPointer(pointer))
     }
     
     func testAccess() {

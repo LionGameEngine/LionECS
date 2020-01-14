@@ -9,7 +9,7 @@
 public final class ChunkMemoryLayoutDescriptionBuilder {
     private var componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription] = [:]
     private let entitySize = MemoryLayout<Entity>.size
-    private var currentSize: Int = MemoryLayout<Entity>.size
+    private var currentSize: Int = MemoryLayout<Entity>.stride
     
     public init() {
         
@@ -22,8 +22,8 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
     
     public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
         guard !componentDescriptions.keys.contains(Component.componentIdentifier) else { return self }
-        componentDescriptions[Component.componentIdentifier] = ComponentLayoutDescription(offset: currentSize, size: MemoryLayout<Component>.size)
-        currentSize += MemoryLayout<Component>.size
+        componentDescriptions[Component.componentIdentifier] = ComponentLayoutDescription(offset: currentSize, size: MemoryLayout<Component>.stride)
+        currentSize += MemoryLayout<Component>.stride
         return self
     }
     
@@ -35,7 +35,7 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
             return otherDescription.offset >= offset + size ? otherDescription.with(offset: otherDescription.offset - size) : otherDescription
         }
         componentDescriptions.removeValue(forKey: Component.componentIdentifier)
-        currentSize -= MemoryLayout<Component>.size
+        currentSize -= MemoryLayout<Component>.stride
         return self
     }
     

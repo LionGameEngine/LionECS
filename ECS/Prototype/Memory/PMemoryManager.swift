@@ -7,8 +7,8 @@
 //
 
 public protocol PMemoryManager {
-    func free(pointer: UnsafeMutableRawBufferPointer)
-    func move(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer)
+    func free(pointer: UnsafeRawBufferPointer)
+    func copy(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer)
     func alloc(count: Int) -> UnsafeMutableRawBufferPointer
     func clear(pointer: UnsafeMutableRawBufferPointer)
 }
