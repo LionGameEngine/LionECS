@@ -97,6 +97,8 @@
 		F19A031223CD337900BE92A6 /* PComponentAccesorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031123CD337900BE92A6 /* PComponentAccesorFactory.swift */; };
 		F19A031423CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */; };
 		F19A031623CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */; };
+		F19A031923CFE86700BE92A6 /* ComponentManagersPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031723CFE7BE00BE92A6 /* ComponentManagersPerformanceTests.swift */; };
+		F19A031B23CFE8A800BE92A6 /* PrototypeComponentManagersPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A031A23CFE8A800BE92A6 /* PrototypeComponentManagersPerformanceTests.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +245,8 @@
 		F19A031123CD337900BE92A6 /* PComponentAccesorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PComponentAccesorFactory.swift; sourceTree = "<group>"; };
 		F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDataAccessorPerformanceTests.swift; sourceTree = "<group>"; };
 		F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorPerformanceTests.swift; sourceTree = "<group>"; };
+		F19A031723CFE7BE00BE92A6 /* ComponentManagersPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagersPerformanceTests.swift; sourceTree = "<group>"; };
+		F19A031A23CFE8A800BE92A6 /* PrototypeComponentManagersPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeComponentManagersPerformanceTests.swift; sourceTree = "<group>"; };
 		F519A756481856FE02021BA1 /* AutoQueries.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoQueries.generated.swift; sourceTree = "<group>"; };
 		F85132BB6C9987097C094F3B /* ChunkMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManager.swift; sourceTree = "<group>"; };
 		FD3E45CEC4B299773CE61742 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -577,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				F19A028623C55A4900BE92A6 /* NaiveQueryPerformanceTests.swift */,
+				F19A031723CFE7BE00BE92A6 /* ComponentManagersPerformanceTests.swift */,
 			);
 			path = Naive;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				F19A030D23CD32AA00BE92A6 /* ComponentAccessorPerformanceTests.swift */,
 				F19A031323CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift */,
 				F19A031523CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift */,
+				F19A031A23CFE8A800BE92A6 /* PrototypeComponentManagersPerformanceTests.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -906,7 +912,9 @@
 				6B4B7E1E9E914F762790329E /* EntityRequesterTests.swift in Sources */,
 				F19A030E23CD32AA00BE92A6 /* ComponentAccessorPerformanceTests.swift in Sources */,
 				9E8464E33AB1E424385EB3E8 /* EntityTests.swift in Sources */,
+				F19A031B23CFE8A800BE92A6 /* PrototypeComponentManagersPerformanceTests.swift in Sources */,
 				C4AFAEEFD1DCA82D713BB1B5 /* ExcludesTests.swift in Sources */,
+				F19A031923CFE86700BE92A6 /* ComponentManagersPerformanceTests.swift in Sources */,
 				3C255E00EA33A22FB3DE61C5 /* RequiresTests.swift in Sources */,
 				F19A031423CD399300BE92A6 /* EntityDataAccessorPerformanceTests.swift in Sources */,
 				F19A031623CD3C4D00BE92A6 /* ChunkEntityMigratorPerformanceTests.swift in Sources */,

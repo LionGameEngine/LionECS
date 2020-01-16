@@ -45,7 +45,7 @@ public final class EntityManager<ComponentManagers: PComponentManagers> {
 }
 
 
-extension EntityManager where ComponentManagers: PPrototypeComponentManagers {
+public extension EntityManager where ComponentManagers: PPrototypeComponentManagers {
     func createEntity(withPrototype prototype: Prototype) throws -> Entity {
         let entity = createEntity()
         let chunk = componentManagers.prototypeComponentManager.existingOrNewChunk(forPrototype: prototype)
