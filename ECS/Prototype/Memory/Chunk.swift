@@ -110,7 +110,7 @@ public final class Chunk: PChunk {
         }
         freeIndicies.remove(index)
         managedEntities[entity] = index
-        entityAccessor.clear(index: index)
+        entityDataAccessor.clear(index: index)
         setEntity(entity, atIndex: index)
     }
     
