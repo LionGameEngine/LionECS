@@ -13,8 +13,8 @@ class RequiresTests: XCTestCase {
     func testFilter_WhenCalledAndEntityHasComponent_ShouldNotFilterThatEntity() throws {
         // given
         let sut = Requires<PComponentMock>()
-        let entityManager = EntityManager()
         let componentManagers = ComponentManagers()
+        let entityManager = EntityManager(componentManagers: componentManagers)
         let entity = entityManager.createEntity()
         let componentManager: ComponentManager<PComponentMock> = componentManagers.getOrCreateManagerOfType(PComponentMock.self)
         try componentManager.addComponent(PComponentMock(), toEntity: entity)
@@ -28,8 +28,8 @@ class RequiresTests: XCTestCase {
     func testFilter_WhenCalledAndEntityHasComponent_ShouldFilterOutTheEntity() throws {
         // given
         let sut = Requires<PComponentMock>()
-        let entityManager = EntityManager()
         let componentManagers = ComponentManagers()
+        let entityManager = EntityManager(componentManagers: componentManagers)
         let entity = entityManager.createEntity()
         let _: ComponentManager<PComponentMock> = componentManagers.getOrCreateManagerOfType(PComponentMock.self)
         let requester = EntityRequester<ComponentManagers>(entityManager: entityManager, componentManagers: componentManagers)

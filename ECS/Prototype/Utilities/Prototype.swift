@@ -16,10 +16,13 @@ public class Prototype: Hashable, Equatable, Identifiable {
         }
     }()
     
-    let componentIdentifiers: Set<ComponentIdentifier>
+    var componentIdentifiers: Set<ComponentIdentifier> {
+        return layoutDescription.componentTypes
+    }
+    let layoutDescription: ChunkMemoryLayoutDescription
     
-    public init(componentIdentifiers: Set<ComponentIdentifier>) {
-        self.componentIdentifiers = componentIdentifiers
+    public init(layoutDescription: ChunkMemoryLayoutDescription) {
+        self.layoutDescription = layoutDescription
     }
     
     public static func == (lhs: Prototype, rhs: Prototype) -> Bool {

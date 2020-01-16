@@ -13,12 +13,13 @@ class EntityRequesterTests: XCTestCase {
     var sut: EntityRequester<ComponentManagers>!
 
     override func setUp() {
-        sut = EntityRequester(entityManager: EntityManager(), componentManagers: ComponentManagers())
+        let managers = ComponentManagers()
+        sut = EntityRequester(entityManager: EntityManager<ComponentManagers>(componentManagers: managers), componentManagers: managers)
     }
     
     func testGetEntityManager_WhenCreatedWithEntityManager_ShouldReturnThatEntityManager() {
         // given
-        let entityManager = EntityManager()
+        let entityManager = EntityManager<ComponentManagers>(componentManagers: sut.getComponentManagers())
         sut = EntityRequester(entityManager: entityManager, componentManagers: ComponentManagers())
         // then
         XCTAssertTrue(entityManager === sut.getEntityManager())
@@ -27,7 +28,7 @@ class EntityRequesterTests: XCTestCase {
     func testGetComponentManagers_WhenCreatedWithEntityManager_ShouldReturnThatEntityManager() {
         // given
         let componentManagers = ComponentManagers()
-        sut = EntityRequester(entityManager: EntityManager(), componentManagers: componentManagers)
+        sut = EntityRequester(entityManager: EntityManager<ComponentManagers>(componentManagers: componentManagers), componentManagers: componentManagers)
         // then
         XCTAssertTrue(componentManagers === sut.getComponentManagers())
     }

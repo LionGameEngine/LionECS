@@ -28,7 +28,8 @@ class TestNaiveQuery: XCTestCase {
     let entitiesCount: Int = 100000
 
     override func setUp() {
-        sut = EntityRequester<ComponentManagers>(entityManager: EntityManager(), componentManagers: ComponentManagers())
+        let managers = ComponentManagers()
+        sut = EntityRequester<ComponentManagers>(entityManager: EntityManager<ComponentManagers>(componentManagers: managers), componentManagers: managers)
         let component1Manager: ComponentManager<Component1> = sut.getComponentManagers().getOrCreateManagerOfType(Component1.self)
         let component2Manager: ComponentManager<Component2> = sut.getComponentManagers().getOrCreateManagerOfType(Component2.self)
         let component3Manager: ComponentManager<Component3> = sut.getComponentManagers().getOrCreateManagerOfType(Component3.self)

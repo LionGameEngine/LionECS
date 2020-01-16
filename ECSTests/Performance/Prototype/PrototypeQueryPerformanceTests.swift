@@ -124,7 +124,8 @@ class TestPrototypeQuery: XCTestCase {
     let entitiesCount: Int = 100000
 
     override func setUp() {
-        sut = EntityRequester<PrototypeComponentManagers>(entityManager: EntityManager(), componentManagers: PrototypeComponentManagers())
+        let managers = PrototypeComponentManagers()
+        sut = EntityRequester<PrototypeComponentManagers>(entityManager: EntityManager<PrototypeComponentManagers>(componentManagers: managers), componentManagers: managers)
         let manager: PrototypeComponentManager = sut.getComponentManagers().getOrCreateManagerOfType(Component1.self)
         for _ in 0..<entitiesCount {
             let entity = sut.getEntityManager().createEntity()

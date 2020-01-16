@@ -8,7 +8,9 @@
 
 public final class Chunk: PChunk {
     public let prototype: Prototype
-    public let memoryLayoutDescription: ChunkMemoryLayoutDescription
+    public var memoryLayoutDescription: ChunkMemoryLayoutDescription {
+        prototype.layoutDescription
+    }
     public let memoryManager: PMemoryManager
     var allocatedEntities: Int = 1024
     var freeIndicies: Set<Int> = Set(0..<1024)
@@ -21,20 +23,18 @@ public final class Chunk: PChunk {
     
     public init(
         prototype: Prototype,
-        memoryLayoutDescription: ChunkMemoryLayoutDescription,
         memoryManager: PMemoryManager? = nil,
         entityAccessor: PEntityAccessor? = nil,
         entityDataAccessor: PEntityDataAccessor? = nil,
         componentAccessorFactory: PComponentAccessorFactory? = nil) {
         self.prototype = prototype
-        self.memoryLayoutDescription = memoryLayoutDescription
-        self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: memoryLayoutDescription)
+        self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: prototype.layoutDescription)
         let entries = self.memoryManager.alloc(count: allocatedEntities)
         self.memoryManager.clear(pointer: entries)
-        self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
-        self.componentAccessor = ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: 10, size: 10)
-        self.componentAccessorFactory = componentAccessorFactory ?? ComponentAccessorFactory(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
-        self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries)
+        self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
+        self.componentAccessor = ComponentAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries, offset: 10, size: 10)
+        self.componentAccessorFactory = componentAccessorFactory ?? ComponentAccessorFactory(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
+        self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
         self.entries = entries
     }
     

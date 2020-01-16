@@ -7,15 +7,15 @@
 //
 
 public final class EntityRequester<ComponentManagers: PComponentManagers> {
-    private let entityManager: EntityManager
+    private let entityManager: EntityManager<ComponentManagers>
     private let componentManagers: ComponentManagers
     
-    public init(entityManager: EntityManager, componentManagers: ComponentManagers) {
+    public init(entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers) {
         self.entityManager = entityManager
         self.componentManagers = componentManagers
     }
     
-    public func getEntityManager() -> EntityManager {
+    public func getEntityManager() -> EntityManager<ComponentManagers> {
         return entityManager
     }
     

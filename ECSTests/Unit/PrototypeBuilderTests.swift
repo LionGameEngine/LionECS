@@ -19,7 +19,7 @@ class PrototypeBuilderTests: XCTestCase {
     
     func testBuild_WhenJustInitializedWithPrototype_ShouldReturnPrototypeWithSameIdentifiers() {
         // given
-        let prototype = Prototype(componentIdentifiers: [PComponentMock.componentIdentifier])
+        let prototype = Prototype(layoutDescription: ChunkMemoryLayoutDescription(entitySize: 16, componentDescriptions: [PComponentMock.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 0)], chunkEntrySize: 17))
         let sut = PrototypeBuilder(prototype: prototype)
         // then
         XCTAssertEqual(prototype.componentIdentifiers, sut.build().componentIdentifiers)
@@ -27,7 +27,7 @@ class PrototypeBuilderTests: XCTestCase {
     
     func testBuild_WhenJustInitializedWithPrototype_ShouldReturnNewInstanceOfPrototype() {
         // given
-        let prototype = Prototype(componentIdentifiers: [PComponentMock.componentIdentifier])
+        let prototype = Prototype(layoutDescription: ChunkMemoryLayoutDescription(entitySize: 16, componentDescriptions: [PComponentMock.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 0)], chunkEntrySize: 17))
         let sut = PrototypeBuilder(prototype: prototype)
         // then
         XCTAssertFalse(prototype === sut.build())

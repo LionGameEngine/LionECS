@@ -8,12 +8,13 @@
 
 public final class World<ComponentManagers: PComponentManagers> {
     var systems: [PSystem] = []
-    public let entityManager: EntityManager = EntityManager()
+    public let entityManager: EntityManager<ComponentManagers>
     public let componentManagers: ComponentManagers
     public let entityRequester: EntityRequester<ComponentManagers>
     
     public init(componentManagers: ComponentManagers) {
         self.componentManagers = componentManagers
+        self.entityManager = EntityManager<ComponentManagers>(componentManagers: componentManagers)
         self.entityRequester = EntityRequester(entityManager: entityManager, componentManagers: componentManagers)
     }
     

@@ -10,11 +10,22 @@ import XCTest
 @testable import LionECS
 
 class EntityManagerPerformanceTests: XCTestCase {
-    var sut: EntityManager!
+    public struct Component1: PComponent {
+        let x: UInt64
+    }
+    public struct Component2: PComponent {
+        let x: UInt64
+    }
+    public struct Component3: PComponent {
+        let x: UInt64
+    }
+    
+    var sut: EntityManager<ComponentManagers>!
     let runs: Int = 100000
     
     override func setUp() {
-        sut = EntityManager()
+        let managers = ComponentManagers()
+        sut = EntityManager<ComponentManagers>(componentManagers: managers)
     }
     
     func testCreateEntity() {
@@ -54,6 +65,21 @@ class EntityManagerPerformanceTests: XCTestCase {
         measure {
             for entity in sut.getExistingEntities() {
                 sut.destroyEntity(entity)
+            }
+        }
+    }
+    
+    func testCreateEntityFromPrototype() {
+        let prototype: Prototype = PrototypeBuilder()
+            .addComponentType(Component1.self)
+            .addComponentType(Component2.self)
+            .addComponentType(Component3.self).build()
+        measure {
+            let managers = PrototypeComponentManagers()
+            let _: PrototypeComponentManager = managers.getOrCreateManagerOfType(Component1.self)
+            let sut: EntityManager<PrototypeComponentManagers> = EntityManager<PrototypeComponentManagers>(componentManagers: managers)
+            for _ in 1...runs {
+                try? sut.createEntity(withPrototype: prototype)
             }
         }
     }

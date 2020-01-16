@@ -16,7 +16,8 @@ class EntityQueryTests: XCTestCase {
     func testGetFilteredEntities_WhenCalled_ShouldReturnFilteredItems() throws {
         // given
         let sut: Requires2ComponentNaiveQuery<ComponentManagers, FooComponent, BarComponent> = Requires2ComponentNaiveQuery(exclusionFilters: [Excludes<PComponentMock>()])
-        let requester = EntityRequester(entityManager: EntityManager(), componentManagers: ComponentManagers())
+        let managers = ComponentManagers()
+        let requester = EntityRequester(entityManager: EntityManager<ComponentManagers>(componentManagers: managers), componentManagers: managers)
         let fooManager: ComponentManager<FooComponent> = requester.getComponentManagers().getOrCreateManagerOfType(FooComponent.self)
         let barManager: ComponentManager<BarComponent> = requester.getComponentManagers().getOrCreateManagerOfType(BarComponent.self)
         let mockManager: ComponentManager<PComponentMock> = requester.getComponentManagers().getOrCreateManagerOfType(PComponentMock.self)

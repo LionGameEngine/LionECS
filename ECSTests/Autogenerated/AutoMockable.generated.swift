@@ -170,11 +170,11 @@ class PComponentMock: PComponent {
 class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSystem {
 
     //MARK: - init
-    var initWorldEntityManagerComponentManagersEntityRequesterReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)?
-    var initWorldEntityManagerComponentManagersEntityRequesterReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)] = []
-    var initWorldEntityManagerComponentManagersEntityRequesterClosure: ((World<ComponentManagers>, EntityManager, ComponentManagers, EntityRequester<ComponentManagers>) -> Void)?
+    var initWorldEntityManagerComponentManagersEntityRequesterReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)?
+    var initWorldEntityManagerComponentManagersEntityRequesterReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)] = []
+    var initWorldEntityManagerComponentManagersEntityRequesterClosure: ((World<ComponentManagers>, EntityManager<ComponentManagers>, ComponentManagers, EntityRequester<ComponentManagers>) -> Void)?
 
-    required init(world: World<ComponentManagers>, entityManager: EntityManager, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>) {
+    required init(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>) {
         initWorldEntityManagerComponentManagersEntityRequesterReceivedArguments = (world: world, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester)
         initWorldEntityManagerComponentManagersEntityRequesterReceivedInvocations.append((world: world, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester))
         initWorldEntityManagerComponentManagersEntityRequesterClosure?(world, entityManager, componentManagers, entityRequester)

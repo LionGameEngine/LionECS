@@ -7,28 +7,27 @@
 //
 
 public class PrototypeBuilder {
-    private var componentIdentifiers: Set<ComponentIdentifier>
+    private var layoutBuilder: ChunkMemoryLayoutDescriptionBuilder
     
     public init() {
-        self.componentIdentifiers = []
+        self.layoutBuilder = ChunkMemoryLayoutDescriptionBuilder()
     }
     
     public init(prototype: Prototype) {
-        self.componentIdentifiers = prototype.componentIdentifiers
+        self.layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: prototype.layoutDescription)
     }
     
     public func addComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
-        guard !componentIdentifiers.contains(Component.componentIdentifier) else { return self }
-        componentIdentifiers.insert(Component.componentIdentifier)
+        layoutBuilder.add(Component.self)
         return self
     }
     
     public func removeComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
-        componentIdentifiers.remove(Component.componentIdentifier)
+        layoutBuilder.remove(Component.self)
         return self
     }
     
     public func build() -> Prototype {
-        Prototype(componentIdentifiers: componentIdentifiers)
+        Prototype(layoutDescription: layoutBuilder.build())
     }
 }

@@ -36,14 +36,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     public func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component: PComponent {
         guard let chunk = chunkManagingEntity(entity: entity) else {
             let prototype = PrototypeBuilder().addComponentType(Component.self).build()
-            let layoutDescription = ChunkMemoryLayoutDescriptionBuilder().add(Component.self).build()
-            guard let chunk = existingChunkWithFreeSlot(forPrototype: prototype) else {
-                let chunk = Chunk(prototype: prototype, memoryLayoutDescription: layoutDescription)
-                try chunk.manageEntity(entity: entity)
-                try chunk.setComponents(entity: entity, r1: component)
-                chunks.append(chunk)
-                return
-            }
+            let chunk = existingOrNewChunk(forPrototype: prototype)
             try chunk.manageEntity(entity: entity)
             try chunk.setComponents(entity: entity, r1: component)
             return
@@ -100,12 +93,6 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
         // nothing to do, supports all entities
     }
     
-    private func chunksContainingComponent<Component: PComponent>(type: Component.Type) -> [Chunk] {
-        return chunks.filter { (chunk) -> Bool in
-            return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier)
-        }
-    }
-    
     public func chunksContainingComponent<Component: PComponent, Component2: PComponent, Component3: PComponent>(type: Component.Type, type2: Component2.Type, type3: Component3.Type) -> [Chunk] {
         return chunks.filter { (chunk) -> Bool in
             return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component2.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component3.componentIdentifier)
@@ -113,6 +100,21 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
         }
     }
     
+    public func existingOrNewChunk(forPrototype prototype: Prototype) -> Chunk {
+        guard let chunk = existingChunkWithFreeSlot(forPrototype: prototype) else {
+            let chunk = Chunk(prototype: prototype)
+            chunks.append(chunk)
+            return chunk
+        }
+        return chunk
+    }
+    
+    private func chunksContainingComponent<Component: PComponent>(type: Component.Type) -> [Chunk] {
+        return chunks.filter { (chunk) -> Bool in
+            return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier)
+        }
+    }
+        
     private func existingChunkWithFreeSlot(forPrototype prototype: Prototype) -> Chunk? {
         return chunks.withUnsafeBufferPointer { (pointer) -> Chunk? in
             var i = 0
@@ -132,7 +134,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
             .addComponentType(type)
         let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
             .add(type)
-        return Chunk(prototype: prototypeBuilder.build(), memoryLayoutDescription: layoutBuilder.build())
+        return Chunk(prototype: prototypeBuilder.build())
     }
     
     private func createChunkByRemoving<Component: PComponent>(type: Component.Type, fromChunk existingChunk: Chunk) -> Chunk {
@@ -140,7 +142,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
             .removeComponentType(type)
         let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
             .remove(type)
-        return Chunk(prototype: prototypeBuilder.build(), memoryLayoutDescription: layoutBuilder.build())
+        return Chunk(prototype: prototypeBuilder.build())
     }
     
     private func chunkManagingEntity(entity: Entity) -> Chunk? {

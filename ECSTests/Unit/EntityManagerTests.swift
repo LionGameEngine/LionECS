@@ -10,10 +10,10 @@ import XCTest
 @testable import LionECS
 
 class EntityManagerTests: XCTestCase {
-    var sut: EntityManager!
+    var sut: EntityManager<ComponentManagers>!
     
     override func setUp() {
-        sut = EntityManager()
+        sut = EntityManager<ComponentManagers>(componentManagers: ComponentManagers())
     }
     
     func testCreateEntity_WhenCalledOnFreshManager_ShouldCreateEntityWithVersion1AndId0() {

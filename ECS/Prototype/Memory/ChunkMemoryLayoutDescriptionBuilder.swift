@@ -20,14 +20,14 @@ public final class ChunkMemoryLayoutDescriptionBuilder {
         currentSize = baseDescription.chunkEntrySize
     }
     
-    public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
+    @discardableResult public func add<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
         guard !componentDescriptions.keys.contains(Component.componentIdentifier) else { return self }
         componentDescriptions[Component.componentIdentifier] = ComponentLayoutDescription(offset: currentSize, size: MemoryLayout<Component>.stride)
         currentSize += MemoryLayout<Component>.stride
         return self
     }
     
-    public func remove<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
+    @discardableResult public func remove<Component: PComponent>(_ type: Component.Type) -> ChunkMemoryLayoutDescriptionBuilder {
         guard let description = componentDescriptions[Component.componentIdentifier] else { return self }
         let size = description.size
         let offset = description.offset
