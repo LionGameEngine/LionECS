@@ -22,6 +22,7 @@ auto-chunk:
 
 auto-queries:
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoQueries.sourcery.yml --disableCache
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoQueryResult.sourcery.yml --disableCache
 
 auto-mocks:
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoMockable.sourcery.yml --disableCache

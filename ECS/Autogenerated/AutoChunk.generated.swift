@@ -116,20 +116,12 @@ extension Chunk {
         try verify(R1.self)
         try verify(R2.self)
         try verify(R3.self)
-        let c1Accessor = componentAccessorFactory.create(R1.self)
-        let c2Accessor = componentAccessorFactory.create(R2.self)
-        let c3Accessor = componentAccessorFactory.create(R3.self)
-        var index = 0
-        var entitiesWithComponents: [(Entity, R1, R2, R3)] = []
-        entitiesWithComponents.reserveCapacity(1024)
-        while index < allocatedEntities {
-            entitiesWithComponents.append((
-                entityAccessor.access(index: index),
-                        c1Accessor.access(index: index),
-                c2Accessor.access(index: index),
-                c3Accessor.access(index: index)
-            ))
-            index += 1
+        let entitiesWithComponents = (0..<allocatedEntities).map { index -> (Entity, R1, R2, R3) in
+            return ( entityAccessor.access(index: index),
+                     componentAccessor.access(index: index),
+        componentAccessor.access(index: index),
+        componentAccessor.access(index: index)
+            )
         }
         return entitiesWithComponents
     }
