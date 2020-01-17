@@ -113,4 +113,9 @@ public final class Chunk: PChunk {
         entityDataAccessor.clear(index: index)
         setEntity(entity, atIndex: index)
     }
+    
+    public func getEntitiesWithComponents<Component>() throws -> [(entity: Entity, component: Component)] where Component: PComponent {
+        try verify(Component.self)
+        return []
+    }
 }

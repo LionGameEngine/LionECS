@@ -38,26 +38,6 @@ class PChunkMock: PChunk {
     var underlyingMemoryManager: PMemoryManager!
 
     //MARK: - setEntityData
-    var setEntityDataDataThrowableError: Error?
-    var setEntityDataDataCallsCount = 0
-    var setEntityDataDataCalled: Bool {
-        return setEntityDataDataCallsCount > 0
-    }
-    var setEntityDataDataReceivedArguments: (entity: Entity, data: [UInt8])?
-    var setEntityDataDataReceivedInvocations: [(entity: Entity, data: [UInt8])] = []
-    var setEntityDataDataClosure: ((Entity, [UInt8]) throws -> Void)?
-
-    func setEntityData(_ entity: Entity, data: [UInt8]) throws {
-        if let error = setEntityDataDataThrowableError {
-            throw error
-        }
-        setEntityDataDataCallsCount += 1
-        setEntityDataDataReceivedArguments = (entity: entity, data: data)
-        setEntityDataDataReceivedInvocations.append((entity: entity, data: data))
-        try setEntityDataDataClosure?(entity, data)
-    }
-
-    //MARK: - setEntityData
     var setEntityDataDataPointerThrowableError: Error?
     var setEntityDataDataPointerCallsCount = 0
     var setEntityDataDataPointerCalled: Bool {
@@ -75,27 +55,6 @@ class PChunkMock: PChunk {
         setEntityDataDataPointerReceivedArguments = (entity: entity, dataPointer: dataPointer)
         setEntityDataDataPointerReceivedInvocations.append((entity: entity, dataPointer: dataPointer))
         try setEntityDataDataPointerClosure?(entity, dataPointer)
-    }
-
-    //MARK: - getEntityData
-    var getEntityDataThrowableError: Error?
-    var getEntityDataCallsCount = 0
-    var getEntityDataCalled: Bool {
-        return getEntityDataCallsCount > 0
-    }
-    var getEntityDataReceivedEntity: Entity?
-    var getEntityDataReceivedInvocations: [Entity] = []
-    var getEntityDataReturnValue: [UInt8]!
-    var getEntityDataClosure: ((Entity) throws -> [UInt8])?
-
-    func getEntityData(_ entity: Entity) throws -> [UInt8] {
-        if let error = getEntityDataThrowableError {
-            throw error
-        }
-        getEntityDataCallsCount += 1
-        getEntityDataReceivedEntity = entity
-        getEntityDataReceivedInvocations.append(entity)
-        return try getEntityDataClosure.map({ try $0(entity) }) ?? getEntityDataReturnValue
     }
 
     //MARK: - copyEntityData

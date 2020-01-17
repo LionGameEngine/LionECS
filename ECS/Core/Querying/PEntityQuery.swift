@@ -10,7 +10,7 @@
 // sourcery: AutoMockableGenerics="<ComponentManagers: PComponentManagers, Result: PEntityQueryResult>"
 public protocol PEntityQuery {
     associatedtype ComponentManagers: PComponentManagers
-    associatedtype Result: PEntityQueryResult
+    associatedtype Result
     func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result
     func getFilteredEntities(requester: EntityRequester<ComponentManagers>) throws -> Set<Entity>
     func getFilters() -> [PEntityFilter]

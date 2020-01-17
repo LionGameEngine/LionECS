@@ -29,6 +29,7 @@ class ChunkEntityMigratorTests: XCTestCase {
     var sut: ChunkEntityMigrator!
     var fromMock: PChunkMock!
     var toMock: PChunkMock!
+    let data: [UInt8] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
     
     override func setUp() {
         sut = ChunkEntityMigrator()
@@ -42,9 +43,8 @@ class ChunkEntityMigratorTests: XCTestCase {
                 BarComponent.componentIdentifier: ComponentLayoutDescription(offset: 21, size: 8),
                 Tag2Component.componentIdentifier: ComponentLayoutDescription(offset: 29, size: 1)
             ], chunkEntrySize: 30)
-        fromMock.getEntityDataReturnValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
         fromMock.copyEntityDataIntoClosure = { [unowned self] (Entity, pointer: UnsafeMutableRawBufferPointer) in
-            self.fromMock.getEntityDataReturnValue.withUnsafeBytes { (data) -> Void in
+            self.data.withUnsafeBytes { (data) -> Void in
                 pointer.baseAddress!.copyMemory(from: data.baseAddress!, byteCount: 30)
             }
         }
