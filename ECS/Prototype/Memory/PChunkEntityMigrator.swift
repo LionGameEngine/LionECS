@@ -8,5 +8,4 @@
 
 public protocol PChunkEntityMigrator {
     func migrate(fromChunk: PChunk, toChunk: PChunk, entity: Entity) throws
-    func migrate(fromChunk: PChunk, toChunk: PChunk, entity: Entity, shouldFreeMemory: Bool) throws
 }

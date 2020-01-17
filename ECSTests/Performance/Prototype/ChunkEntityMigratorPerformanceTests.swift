@@ -24,7 +24,7 @@ class ChunkEntityMigratorPerformanceTests: XCTestCase {
     override func setUp() {
         let fromDescription = ChunkMemoryLayoutDescriptionBuilder().add(Component1.self).add(Component2.self).build()
         let toDescription = ChunkMemoryLayoutDescriptionBuilder().add(Component2.self).add(Component1.self).build()
-        sut = ChunkEntityMigrator()
+        sut = ChunkEntityMigrator(shouldFreeMemory: true)
         fromChunk = PChunkMock()
         toChunk = PChunkMock()
         fromChunk.memoryLayoutDescription = fromDescription

@@ -31,7 +31,7 @@ extension Chunk {
     public func setComponents{% call getComponentTemplateParameters x %}({% call functionParameters %}, atIndex index: Int) throws {
         {% call verifyComponents %}
         {% for y in 1...x %}
-        componentAccessor.set(component: r{{y}}, index: index)
+        componentAccessorFactory.create(R{{y}}.self).set(component: r{{y}}, index: index)
         {% endfor %}
     }
     {% endfor %}

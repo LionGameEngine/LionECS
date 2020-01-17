@@ -39,15 +39,7 @@ class EntityDataAccessorPerformanceTests: XCTestCase {
         }
         memoryManager.free(pointer: UnsafeRawBufferPointer(pointer))
     }
-    
-    func testAccess() {
-        measure {
-            for i in 0..<numberOfEntities {
-                _ = sut.access(index: i)
-            }
-        }
-    }
-        
+            
     func testClear() {
         measure {
             for i in 0..<numberOfEntities {
@@ -58,8 +50,11 @@ class EntityDataAccessorPerformanceTests: XCTestCase {
     
     func testSet() {
         measure {
-            for i in 0..<numberOfEntities {
-                sut.set(entityData: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], index: i)
+            let data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            data.withUnsafeBytes { bytes in
+                for i in 0..<numberOfEntities {
+                    sut.set(entityDataPointer: bytes, index: i)
+                }
             }
         }
     }

@@ -9,14 +9,16 @@
 import Foundation
 
 public final class ChunkEntityMigrator: PChunkEntityMigrator {
-    public func migrate(fromChunk: PChunk, toChunk: PChunk, entity: Entity) throws {
-        try migrate(fromChunk: fromChunk, toChunk: toChunk, entity: entity, shouldFreeMemory: true)
+    private let shouldFreeMemory: Bool
+    
+    init(shouldFreeMemory: Bool){
+        self.shouldFreeMemory = shouldFreeMemory
     }
     
     public func migrate(
         fromChunk: PChunk,
         toChunk: PChunk,
-        entity: Entity, shouldFreeMemory: Bool) throws {
+        entity: Entity) throws {
         let data = fromChunk.memoryManager.alloc(count: 1)
         let toData = toChunk.memoryManager.alloc(count: 1)
         defer {

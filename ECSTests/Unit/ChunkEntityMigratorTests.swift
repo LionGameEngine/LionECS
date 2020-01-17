@@ -32,7 +32,7 @@ class ChunkEntityMigratorTests: XCTestCase {
     let data: [UInt8] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
     
     override func setUp() {
-        sut = ChunkEntityMigrator()
+        sut = ChunkEntityMigrator(shouldFreeMemory: false)
         fromMock = PChunkMock()
         toMock = PChunkMock()
         fromMock.memoryLayoutDescription = ChunkMemoryLayoutDescription(
@@ -89,7 +89,7 @@ class ChunkEntityMigratorTests: XCTestCase {
         // given
         let entity = Entity(id: 1, version: 1)
         // when
-        try sut.migrate(fromChunk: fromMock, toChunk: toMock, entity: entity, shouldFreeMemory: false)
+        try sut.migrate(fromChunk: fromMock, toChunk: toMock, entity: entity)
         // then
         XCTAssertTrue(toMock.setEntityDataDataPointerCalled)
         XCTAssertEqual(entity, toMock.setEntityDataDataPointerReceivedArguments?.entity)

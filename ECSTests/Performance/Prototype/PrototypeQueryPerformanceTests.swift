@@ -47,31 +47,25 @@ class TestPrototypeQuery: XCTestCase {
         }
     }
         
-    func testPrototypeBetterQueryPerformance() {
+    func testPrototypeQueryPerformance() {
         measure {
             for _ in 1...runs {
                 let query = PrototypeQuery<PrototypeComponentManagers>(filters: [Requires<Component1>(), Requires<Component2>(), Requires<Component3>(), Excludes<PComponentMock>()])
                 guard let result = try? sut.queryEntities(query: query) else { return }
-                try? result.forEach { (entity: Entity, c1: Component1, c2: Component2, c3: Component3) in
+                result.forEach { (entity: Entity, c1: Component1, c2: Component2, c3: Component3) in
                 }
             }
         }
     }
     
-    func testPrototypeBetterQueryWritePerformance() {
+    func testPrototypeQueryWritePerformance() {
         measure {
             for _ in 1...runs {
                 let query = PrototypeQuery<PrototypeComponentManagers>(filters: [Requires<Component1>(), Requires<Component2>(), Requires<Component3>(), Excludes<PComponentMock>()])
                 guard let result = try? sut.queryEntities(query: query) else { return }
-                try? result.forEach { (entity: Entity, w1: inout Component1, c2: Component2, c3: Component3) in
+                result.forEach { (entity: Entity, w1: inout Component1, c2: Component2, c3: Component3) in
                     w1.x = 100
-                    w1.x = w1.y
-                }
-                try? result.forEach { (entity: Entity, c1: Component1, c2: Component2, c3: Component3) in
-                    if(c1.x==100) {
-//                        print(entity)
-                    }
-                    
+                    w1.y = c2.y
                 }
             }
         }

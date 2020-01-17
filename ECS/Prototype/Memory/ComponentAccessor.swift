@@ -8,9 +8,9 @@
 
 public final class ComponentAccessor: PComponentAccessor {
     private let memoryLayoutDescription: ChunkMemoryLayoutDescription
-    public var entries: UnsafeMutableRawBufferPointer
-    public let offset: Int
-    public let size: Int
+    private let entries: UnsafeMutableRawBufferPointer
+    private let offset: Int
+    private let size: Int
     
     public init(memoryLayoutDescription: ChunkMemoryLayoutDescription, entries: UnsafeMutableRawBufferPointer, offset: Int, size: Int) {
         self.memoryLayoutDescription = memoryLayoutDescription

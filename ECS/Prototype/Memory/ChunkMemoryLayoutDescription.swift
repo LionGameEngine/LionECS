@@ -7,10 +7,10 @@
 //
 
 public struct ChunkMemoryLayoutDescription: Equatable {
-    public let componentTypes: Set<ComponentIdentifier>
-    public let componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription]
     public let chunkEntrySize: Int
     public let entitySize: Int
+    let componentTypes: Set<ComponentIdentifier>
+    let componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription]
     
     init(entitySize: Int, componentDescriptions: [ComponentIdentifier: ComponentLayoutDescription], chunkEntrySize: Int) {
         self.entitySize = entitySize

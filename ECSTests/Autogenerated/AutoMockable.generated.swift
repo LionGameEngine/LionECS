@@ -175,6 +175,74 @@ class PEntityQueryMock<ComponentManagers: PComponentManagers, Result>: PEntityQu
     }
 
 }
+class PMemoryManagerMock: PMemoryManager {
+
+    //MARK: - free
+    var freePointerCallsCount = 0
+    var freePointerCalled: Bool {
+        return freePointerCallsCount > 0
+    }
+    var freePointerReceivedPointer: UnsafeRawBufferPointer?
+    var freePointerReceivedInvocations: [UnsafeRawBufferPointer] = []
+    var freePointerClosure: ((UnsafeRawBufferPointer) -> Void)?
+
+    func free(pointer: UnsafeRawBufferPointer) {
+        freePointerCallsCount += 1
+        freePointerReceivedPointer = pointer
+        freePointerReceivedInvocations.append(pointer)
+        freePointerClosure?(pointer)
+    }
+
+    //MARK: - copy
+    var copyFromToCallsCount = 0
+    var copyFromToCalled: Bool {
+        return copyFromToCallsCount > 0
+    }
+    var copyFromToReceivedArguments: (from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer)?
+    var copyFromToReceivedInvocations: [(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer)] = []
+    var copyFromToClosure: ((UnsafeMutableRawBufferPointer, UnsafeMutableRawBufferPointer) -> Void)?
+
+    func copy(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer) {
+        copyFromToCallsCount += 1
+        copyFromToReceivedArguments = (from: from, to: to)
+        copyFromToReceivedInvocations.append((from: from, to: to))
+        copyFromToClosure?(from, to)
+    }
+
+    //MARK: - alloc
+    var allocCountCallsCount = 0
+    var allocCountCalled: Bool {
+        return allocCountCallsCount > 0
+    }
+    var allocCountReceivedCount: Int?
+    var allocCountReceivedInvocations: [Int] = []
+    var allocCountReturnValue: UnsafeMutableRawBufferPointer!
+    var allocCountClosure: ((Int) -> UnsafeMutableRawBufferPointer)?
+
+    func alloc(count: Int) -> UnsafeMutableRawBufferPointer {
+        allocCountCallsCount += 1
+        allocCountReceivedCount = count
+        allocCountReceivedInvocations.append(count)
+        return allocCountClosure.map({ $0(count) }) ?? allocCountReturnValue
+    }
+
+    //MARK: - clear
+    var clearPointerCallsCount = 0
+    var clearPointerCalled: Bool {
+        return clearPointerCallsCount > 0
+    }
+    var clearPointerReceivedPointer: UnsafeMutableRawBufferPointer?
+    var clearPointerReceivedInvocations: [UnsafeMutableRawBufferPointer] = []
+    var clearPointerClosure: ((UnsafeMutableRawBufferPointer) -> Void)?
+
+    func clear(pointer: UnsafeMutableRawBufferPointer) {
+        clearPointerCallsCount += 1
+        clearPointerReceivedPointer = pointer
+        clearPointerReceivedInvocations.append(pointer)
+        clearPointerClosure?(pointer)
+    }
+
+}
 class PSystemMock: PSystem {
 
     //MARK: - update

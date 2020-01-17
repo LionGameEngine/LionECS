@@ -7,7 +7,6 @@
 //
 
 public protocol PEntityAccessor {
-    var entries: UnsafeMutableRawBufferPointer { get set }
     func access(index: Int) -> Entity
     func accessMutable(index: Int) -> UnsafeMutablePointer<Entity>
     func clear(index: Int)

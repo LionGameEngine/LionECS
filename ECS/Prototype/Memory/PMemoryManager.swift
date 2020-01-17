@@ -6,6 +6,7 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
+// sourcery: AutoMockable
 public protocol PMemoryManager {
     func free(pointer: UnsafeRawBufferPointer)
     func copy(from: UnsafeMutableRawBufferPointer, to: UnsafeMutableRawBufferPointer)

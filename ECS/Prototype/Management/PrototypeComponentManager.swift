@@ -11,7 +11,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     private var entityMigrator: PChunkEntityMigrator
     
     public init() {
-        self.entityMigrator = ChunkEntityMigrator()
+        self.entityMigrator = ChunkEntityMigrator(shouldFreeMemory: true)
     }
 
     public init(entityMigrator: PChunkEntityMigrator) {

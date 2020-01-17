@@ -12,14 +12,15 @@ public final class Chunk: PChunk {
         prototype.layoutDescription
     }
     public let memoryManager: PMemoryManager
-    var allocatedEntities: Int = 1024
+    var allocatedEntities: Int {
+        return memoryBlob.blobItemsCount
+    }
     var freeIndicies: Set<Int> = Set(0..<1024)
     var managedEntities: [Entity: Int] = [:]
-    var entries: UnsafeMutableRawBufferPointer!
     var entityAccessor: PEntityAccessor
-    var componentAccessor: PComponentAccessor
     var componentAccessorFactory: PComponentAccessorFactory
-    let entityDataAccessor: PEntityDataAccessor
+    private let entityDataAccessor: PEntityDataAccessor
+    private let memoryBlob: ManagedMemoryBlob
     
     public init(
         prototype: Prototype,
@@ -28,20 +29,15 @@ public final class Chunk: PChunk {
         entityDataAccessor: PEntityDataAccessor? = nil,
         componentAccessorFactory: PComponentAccessorFactory? = nil) {
         self.prototype = prototype
-        self.memoryManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: prototype.layoutDescription)
-        let entries = self.memoryManager.alloc(count: allocatedEntities)
-        self.memoryManager.clear(pointer: entries)
-        self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
-        self.componentAccessor = ComponentAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries, offset: 10, size: 10)
-        self.componentAccessorFactory = componentAccessorFactory ?? ComponentAccessorFactory(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
-        self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: entries)
-        self.entries = entries
+        let memManager = memoryManager ?? ChunkMemoryManager(memoryLayoutDescription: prototype.layoutDescription)
+        self.memoryManager = memManager
+        let memoryBlob = ManagedMemoryBlob(memoryManager: memManager)
+        self.memoryBlob = memoryBlob
+        self.entityAccessor = entityAccessor ?? EntityAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: memoryBlob.pointer)
+        self.componentAccessorFactory = componentAccessorFactory ?? ComponentAccessorFactory(memoryLayoutDescription: prototype.layoutDescription, entries: memoryBlob.pointer)
+        self.entityDataAccessor = entityDataAccessor ?? EntityDataAccessor(memoryLayoutDescription: prototype.layoutDescription, entries: memoryBlob.pointer)
     }
     
-    deinit {
-        memoryManager.clear(pointer: entries)
-    }
-        
     public func getEntities() -> [Entity] {
         let entities = (0..<allocatedEntities).map { entityAccessor.access(index: $0) }
         return entities
@@ -71,23 +67,11 @@ public final class Chunk: PChunk {
         let index = managedEntities[entity]!
         entityDataAccessor.copyEntityData(index: index, into: into)
     }
-    
-    public func getEntityData(_ entity: Entity) throws -> [UInt8] {
-        try verify(entity: entity)
-        let index = managedEntities[entity]!
-        return entityDataAccessor.access(index: index)
-    }
-    
+        
     public func setEntityData(_ entity: Entity, dataPointer: UnsafeRawBufferPointer) throws {
         try verify(entity: entity)
         let index = managedEntities[entity]!
         entityDataAccessor.set(entityDataPointer: dataPointer, index: index)
-    }
-    
-    public func setEntityData(_ entity: Entity, data: [UInt8]) throws {
-        try verify(entity: entity)
-        let index = managedEntities[entity]!
-        entityDataAccessor.set(entityData: data, index: index)
     }
     
     func verify<R1: PComponent>(_ type: R1.Type) throws {
@@ -116,6 +100,6 @@ public final class Chunk: PChunk {
     
     public func getEntitiesWithComponents<Component>() throws -> [(entity: Entity, component: Component)] where Component: PComponent {
         try verify(Component.self)
-        return (0..<allocatedEntities).map { (entity: entityAccessor.access(index: $0), component: componentAccessor.access(index: $0)) }
+        return (0..<allocatedEntities).map { (entity: entityAccessor.access(index: $0), component: componentAccessorFactory.create(Component.self).access(index: $0)) }
     }
 }
