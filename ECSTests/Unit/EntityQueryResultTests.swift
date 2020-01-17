@@ -20,9 +20,9 @@ class EntityQueryResultTests: XCTestCase {
         let component2 = FooComponent(a: 100)
         let entititiesWithComponents = [Entity(id: 1): (component)]
         let invalidEntititiesWithComponents = [Entity(id: 1): (component2)]
-        let sut: EntityQueryResult<(FooComponent)> = EntityQueryResult(entititiesWithComponents)
+        let sut: NaiveQueryResult<(FooComponent)> = NaiveQueryResult(entititiesWithComponents)
         // when
-        let returnedEntitiesWithComponents = sut.entityWithComponents()
+        let returnedEntitiesWithComponents = sut.getEntityWithComponents()
         // then
         XCTAssertEqual(entititiesWithComponents, returnedEntitiesWithComponents)
         XCTAssertNotEqual(invalidEntititiesWithComponents, returnedEntitiesWithComponents)
@@ -33,9 +33,9 @@ class EntityQueryResultTests: XCTestCase {
         let component = FooComponent(a: 123)
         let component2 = FooComponent(a: 100)
         let entititiesWithComponents = [Entity(id: 1): (component)]
-        let sut: EntityQueryResult<(FooComponent)> = EntityQueryResult(entititiesWithComponents)
+        let sut: NaiveQueryResult<(FooComponent)> = NaiveQueryResult(entititiesWithComponents)
         // when
-        let returnedEntitiesWithComponents = sut.components()
+        let returnedEntitiesWithComponents = sut.getComponents()
         // then
         XCTAssertEqual([(component)], returnedEntitiesWithComponents)
         XCTAssertNotEqual([(component2)], returnedEntitiesWithComponents)

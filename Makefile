@@ -22,7 +22,7 @@ auto-chunk:
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk+PEntityIterable.sourcery.yml --disableCache
 
 auto-queries:
-	@$(SOURCERY) --config tools/sourcery/ECS/AutoQueries.sourcery.yml --disableCache
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoNaiveQuery.sourcery.yml --disableCache
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoPEntityIterable.sourcery.yml --disableCache
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoPrototypeQueryResult.sourcery.yml --disableCache
 

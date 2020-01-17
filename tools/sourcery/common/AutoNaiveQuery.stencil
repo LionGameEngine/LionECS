@@ -1,6 +1,6 @@
 {% for x in 0...10 %}
-public struct Requires{{x}}ComponentNaiveQuery<ComponentManagers: PComponentManagers{% if x > 0 %}{% for y in 1...x %}, R{{y}}: PComponent{% endfor %}{% endif %}>: PEntityQuery {
-    public typealias Result = EntityQueryResult<({% if x > 0 %}{% for y in 1...x %}R{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %})>
+public struct Requires{{x}}ComponentNaiveQuery<ComponentManagers: PComponentManagers{% if x > 0 %}{% for y in 1...x %}, R{{y}}: PComponent{% endfor %}{% endif %}>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<({% if x > 0 %}{% for y in 1...x %}R{{y}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %})>
 
     private var exclusionFilters: [PEntityFilter]
     

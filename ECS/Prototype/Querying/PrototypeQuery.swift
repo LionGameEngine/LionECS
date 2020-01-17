@@ -9,9 +9,9 @@
 public struct PrototypeQuery<ComponentManagers: PPrototypeComponentManagers>: PEntityQuery {
     public typealias Result = PrototypeQueryResult
         
-    let filters: [PEntityFilter]
+    let filters: [PChunkFilter]
     
-    init(filters: [PEntityFilter]) {
+    init(filters: [PChunkFilter]) {
         self.filters = filters
     }
     
@@ -20,15 +20,11 @@ public struct PrototypeQuery<ComponentManagers: PPrototypeComponentManagers>: PE
         guard let chunks = r1Manager?.chunks else { return Result(chunks: []) }
         return Result(chunks: chunks.filter({ shouldIncludeChunk(chunk: $0)}))
     }
-    
-    public func shouldIncludeChunk(chunk: Chunk) -> Bool {
-        for filter in getFilters() {
+        
+    private func shouldIncludeChunk(chunk: Chunk) -> Bool {
+        for filter in filters {
             guard (filter.filter(chunk: chunk)) != nil else { return false }
         }
         return true
-    }
-        
-    public func getFilters() -> [PEntityFilter] {
-        return filters
     }
 }

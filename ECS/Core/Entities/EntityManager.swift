@@ -10,7 +10,7 @@ public final class EntityManager<ComponentManagers: PComponentManagers> {
     private var lastEntityId: UInt64 = 0
     private var entities = Set<Entity>()
     private var reuseableEntities = Set<Entity>()
-    private let componentManagers: ComponentManagers
+    let componentManagers: ComponentManagers
     
     public init(componentManagers: ComponentManagers) {
         self.componentManagers = componentManagers
@@ -41,15 +41,5 @@ public final class EntityManager<ComponentManagers: PComponentManagers> {
     
     public func getExistingEntities() -> Set<Entity> {
         return entities
-    }
-}
-
-
-public extension EntityManager where ComponentManagers: PPrototypeComponentManagers {
-    func createEntity(withPrototype prototype: Prototype) throws -> Entity {
-        let entity = createEntity()
-        let chunk = componentManagers.prototypeComponentManager.existingOrNewChunk(forPrototype: prototype)
-        try chunk.manageEntity(entity: entity)
-        return entity
     }
 }

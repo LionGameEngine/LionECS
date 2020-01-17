@@ -35,14 +35,14 @@ class EntityRequesterTests: XCTestCase {
     
     func testQueryEntities_WhenCalledWithQuery_ShouldAskToPerformQueryWithThatRequester() throws {
         // given
-        let resultMock = PEntityQueryResultMock<()>()
-        let queryMock = PEntityQueryMock<ComponentManagers, PEntityQueryResultMock<()>>()
+        let resultMock = 7
+        let queryMock = PEntityQueryMock<ComponentManagers, Int>()
         queryMock.resolveWithRequesterReturnValue = resultMock
         // when
         let result = try sut.queryEntities(query: queryMock)
         // then
         XCTAssertTrue(queryMock.resolveWithRequesterCalled)
         XCTAssertTrue(queryMock.resolveWithRequesterReceivedRequester === sut)
-        XCTAssertTrue(resultMock === result)
+        XCTAssertTrue(resultMock == result)
     }    
 }

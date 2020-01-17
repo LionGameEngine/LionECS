@@ -3,8 +3,8 @@
 
 
 
-public struct Requires0ComponentNaiveQuery<ComponentManagers: PComponentManagers>: PEntityQuery {
-    public typealias Result = EntityQueryResult<()>
+public struct Requires0ComponentNaiveQuery<ComponentManagers: PComponentManagers>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<()>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -22,8 +22,8 @@ public struct Requires0ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return exclusionFilters
     }
 }
-public struct Requires1ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1)>
+public struct Requires1ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -43,8 +43,8 @@ public struct Requires1ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>()] + exclusionFilters
     }
 }
-public struct Requires2ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2)>
+public struct Requires2ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -66,8 +66,8 @@ public struct Requires2ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>()] + exclusionFilters
     }
 }
-public struct Requires3ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3)>
+public struct Requires3ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -91,8 +91,8 @@ public struct Requires3ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>()] + exclusionFilters
     }
 }
-public struct Requires4ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4)>
+public struct Requires4ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -118,8 +118,8 @@ public struct Requires4ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>()] + exclusionFilters
     }
 }
-public struct Requires5ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5)>
+public struct Requires5ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -147,8 +147,8 @@ public struct Requires5ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>()] + exclusionFilters
     }
 }
-public struct Requires6ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6)>
+public struct Requires6ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5, R6)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -178,8 +178,8 @@ public struct Requires6ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>()] + exclusionFilters
     }
 }
-public struct Requires7ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7)>
+public struct Requires7ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5, R6, R7)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -211,8 +211,8 @@ public struct Requires7ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>()] + exclusionFilters
     }
 }
-public struct Requires8ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8)>
+public struct Requires8ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -246,8 +246,8 @@ public struct Requires8ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>()] + exclusionFilters
     }
 }
-public struct Requires9ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9)>
+public struct Requires9ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
@@ -283,8 +283,8 @@ public struct Requires9ComponentNaiveQuery<ComponentManagers: PComponentManagers
         return [Requires<R1>(), Requires<R2>(), Requires<R3>(), Requires<R4>(), Requires<R5>(), Requires<R6>(), Requires<R7>(), Requires<R8>(), Requires<R9>()] + exclusionFilters
     }
 }
-public struct Requires10ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent, R10: PComponent>: PEntityQuery {
-    public typealias Result = EntityQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9, R10)>
+public struct Requires10ComponentNaiveQuery<ComponentManagers: PComponentManagers, R1: PComponent, R2: PComponent, R3: PComponent, R4: PComponent, R5: PComponent, R6: PComponent, R7: PComponent, R8: PComponent, R9: PComponent, R10: PComponent>: PNaiveQuery {
+    public typealias Result = NaiveQueryResult<(R1, R2, R3, R4, R5, R6, R7, R8, R9, R10)>
 
     private var exclusionFilters: [PEntityFilter]
     public init(exclusionFilters: [PEntityFilter] = []) {
