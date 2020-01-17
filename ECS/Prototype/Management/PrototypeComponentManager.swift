@@ -92,14 +92,7 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     public func verify<Component>(componentType: Component.Type) throws where Component: PComponent {
         // nothing to do, supports all entities
     }
-    
-    public func chunksContainingComponent<Component: PComponent, Component2: PComponent, Component3: PComponent>(type: Component.Type, type2: Component2.Type, type3: Component3.Type) -> [Chunk] {
-        return chunks.filter { (chunk) -> Bool in
-            return chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component2.componentIdentifier) && chunk.prototype.componentIdentifiers.contains(Component3.componentIdentifier)
-
-        }
-    }
-    
+        
     public func existingOrNewChunk(forPrototype prototype: Prototype) -> Chunk {
         guard let chunk = existingChunkWithFreeSlot(forPrototype: prototype) else {
             let chunk = Chunk(prototype: prototype)
@@ -132,16 +125,12 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
     private func createNewChunkByAdding<Component: PComponent>(type: Component.Type, toChunk existingChunk: Chunk) -> Chunk {
         let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
             .addComponentType(type)
-        let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
-            .add(type)
         return Chunk(prototype: prototypeBuilder.build())
     }
     
     private func createChunkByRemoving<Component: PComponent>(type: Component.Type, fromChunk existingChunk: Chunk) -> Chunk {
         let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
             .removeComponentType(type)
-        let layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: existingChunk.memoryLayoutDescription)
-            .remove(type)
         return Chunk(prototype: prototypeBuilder.build())
     }
     

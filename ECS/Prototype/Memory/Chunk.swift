@@ -116,6 +116,6 @@ public final class Chunk: PChunk {
     
     public func getEntitiesWithComponents<Component>() throws -> [(entity: Entity, component: Component)] where Component: PComponent {
         try verify(Component.self)
-        return []
+        return (0..<allocatedEntities).map { (entity: entityAccessor.access(index: $0), component: componentAccessor.access(index: $0)) }
     }
 }
