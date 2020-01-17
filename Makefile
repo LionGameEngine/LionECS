@@ -18,11 +18,12 @@ generate:
 sourcery: auto-chunk auto-queries auto-mocks
 
 auto-chunk:
-	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk.sourcery.yml --disableCache
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk+PComponentsSettable.sourcery.yml --disableCache
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk+PEntityIterable.sourcery.yml --disableCache
 
 auto-queries:
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoQueries.sourcery.yml --disableCache
-	@$(SOURCERY) --config tools/sourcery/ECS/AutoPPrototypeQueryResult.sourcery.yml --disableCache
+	@$(SOURCERY) --config tools/sourcery/ECS/AutoPEntityIterable.sourcery.yml --disableCache
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoPrototypeQueryResult.sourcery.yml --disableCache
 
 auto-mocks:

@@ -7,7 +7,7 @@
 //
 
 // sourcery: AutoMockable
-public protocol PChunk: class {
+public protocol PChunk: class, PEntityIterable {
     var memoryLayoutDescription: ChunkMemoryLayoutDescription { get }
     var memoryManager: PMemoryManager { get }
     func setEntityData(_ entity: Entity, data: [UInt8]) throws

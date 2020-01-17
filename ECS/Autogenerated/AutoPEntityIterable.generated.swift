@@ -4,7 +4,7 @@
 
 
 
-public protocol PPrototypeQueryResult {
+public protocol PEntityIterable {
     func forEach<R1: PComponent>(_ closure: (R1) -> Void)
     func forEach<R1: PComponent>(_ closure: (Entity, R1) -> Void)
     func forEach<W1: PComponent>(_ closure: (inout W1) -> Void)

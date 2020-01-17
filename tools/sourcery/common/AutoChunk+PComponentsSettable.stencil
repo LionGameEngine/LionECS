@@ -22,42 +22,6 @@
 
 extension Chunk {
     {% for x in 1...10 %}
-    public func getEntitiesWithComponents{% call getComponentTemplateParameters x %}() throws -> [(Entity, {% call tupleParameters %})] {
-        {% call verifyComponents %}
-        let entitiesWithComponents = (0..<allocatedEntities).map { index -> (Entity, {% call tupleParameters %}) in
-            return ( entityAccessor.access(index: index),
-                     {% call componentAccessors %}
-            )
-        }
-        return entitiesWithComponents
-    }
-    
-    public func getComponents{% call getComponentTemplateParameters x %}() throws -> [({% call tupleParameters %})] {
-        {% call verifyComponents %}
-        let components = (0..<allocatedEntities).map { index -> ({% call tupleParameters %}) in
-            return (
-                {% call componentAccessors %}
-            )
-        }
-        return components
-    }
-    
-    public func getUnsafeEntityWithComponents{% call getComponentTemplateParameters x %}() throws -> [(UnsafeMutablePointer<Entity>, {% call unsafeMutablePointersParameters %})] {
-        {% call verifyComponents %}
-        return (0..<allocatedEntities).map { index -> (UnsafeMutablePointer<Entity>, {% call unsafeMutablePointersParameters %}) in
-            return (
-                entityAccessor.accessMutable(index: index),
-                {% call componentMutableAccessors %}
-            )
-        }
-    }
-
-    public func getUnsafeComponents{% call getComponentTemplateParameters x %}() throws -> [({% call unsafeMutablePointersParameters %})] {
-        {% call verifyComponents %}
-        return (0..<allocatedEntities).map { index -> ({% call unsafeMutablePointersParameters %}) in
-            return ( {% call componentMutableAccessors %} )
-        }
-    }
 
     public func setComponents{% call getComponentTemplateParameters x %}(entity: Entity, {% call functionParameters %}) throws {
         try verify(entity: entity)

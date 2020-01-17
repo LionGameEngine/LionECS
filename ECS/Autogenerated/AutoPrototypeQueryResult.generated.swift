@@ -4,7 +4,7 @@
 
 
 
-public struct PrototypeQueryResult: PPrototypeQueryResult {
+public struct PrototypeQueryResult: PEntityIterable {
     let chunks: [Chunk]
     init(chunks: [Chunk]) {
         self.chunks = chunks

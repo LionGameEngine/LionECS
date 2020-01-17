@@ -113,38 +113,4 @@ public final class Chunk: PChunk {
         entityDataAccessor.clear(index: index)
         setEntity(entity, atIndex: index)
     }
-    
-    public func forEach<R1, R2, R3>(_ closure: (Entity, R1, R2, R3) -> Void) where R1 : PComponent, R2 : PComponent, R3 : PComponent
-    {
-        var index = 0
-        let r1Accessor = componentAccessorFactory.create(R1.self)
-        let r2Accessor = componentAccessorFactory.create(R2.self)
-        let r3Accessor = componentAccessorFactory.create(R3.self)
-        while index < allocatedEntities {
-            let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
-            closure(entity,
-                    r1Accessor.access(index: index),
-                    r2Accessor.access(index: index),
-                    r3Accessor.access(index: index))
-            index += 1
-        }
-    }
-    
-    public func forEach<W1, R2, R3>(_ closure: (Entity, inout W1, R2, R3) -> Void) where W1 : PComponent, R2 : PComponent, R3 : PComponent
-    {
-        var index = 0
-        let w1Accessor = componentAccessorFactory.create(W1.self)
-        let r2Accessor = componentAccessorFactory.create(R2.self)
-        let r3Accessor = componentAccessorFactory.create(R3.self)
-        while index < allocatedEntities {
-            let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
-            closure(entity,
-                    &w1Accessor.accessMutable(index: index).pointee,
-                    r2Accessor.access(index: index),
-                    r3Accessor.access(index: index))
-            index += 1
-        }
-    }
 }
