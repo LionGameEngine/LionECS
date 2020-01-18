@@ -6,16 +6,16 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class World<ComponentManagers: PComponentManagers> {
+public final class World<ComponentManager: PComponentManager> {
     var systems: [PSystem] = []
-    public let entityManager: EntityManager<ComponentManagers>
-    public let componentManagers: ComponentManagers
-    public let entityRequester: EntityRequester<ComponentManagers>
+    public let entityManager: EntityManager<ComponentManager>
+    public let componentManager: ComponentManager
+    public let entityRequester: EntityRequester<ComponentManager>
     
-    public init(componentManagers: ComponentManagers) {
-        self.componentManagers = componentManagers
-        self.entityManager = EntityManager<ComponentManagers>(componentManagers: componentManagers)
-        self.entityRequester = EntityRequester(entityManager: entityManager, componentManagers: componentManagers)
+    public init(componentManager: ComponentManager) {
+        self.componentManager = componentManager
+        self.entityManager = EntityManager<ComponentManager>(componentManager: componentManager)
+        self.entityRequester = EntityRequester(entityManager: entityManager, componentManager: componentManager)
     }
     
     public func update() {
@@ -24,9 +24,9 @@ public final class World<ComponentManagers: PComponentManagers> {
         }
     }
     
-    public func getOrCreateSystem<System: PCreatableSystem>() -> System where System.ComponentManagers == ComponentManagers {
+    public func getOrCreateSystem<System: PCreatableSystem>() -> System where System.ComponentManager == ComponentManager {
         guard let system: System = getExistingSystem() else {
-            let system = System(world: self, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester)
+            let system = System(world: self, entityManager: entityManager, componentManager: componentManager, entityRequester: entityRequester)
             systems.append(system)
             return system
         }

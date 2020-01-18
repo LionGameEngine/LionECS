@@ -6,24 +6,24 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class EntityRequester<ComponentManagers: PComponentManagers> {
-    private let entityManager: EntityManager<ComponentManagers>
-    private let componentManagers: ComponentManagers
+public final class EntityRequester<ComponentManager: PComponentManager> {
+    private let entityManager: EntityManager<ComponentManager>
+    private let componentManager: ComponentManager
     
-    public init(entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers) {
+    public init(entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager) {
         self.entityManager = entityManager
-        self.componentManagers = componentManagers
+        self.componentManager = componentManager
     }
     
-    public func getEntityManager() -> EntityManager<ComponentManagers> {
+    public func getEntityManager() -> EntityManager<ComponentManager> {
         return entityManager
     }
     
-    public func getComponentManagers() -> ComponentManagers {
-        return componentManagers
+    public func getComponentManager() -> ComponentManager {
+        return componentManager
     }
     
-    public func queryEntities<Query: PEntityQuery>(query: Query) throws -> Query.Result where Query.ComponentManagers == ComponentManagers {
+    public func queryEntities<Query: PEntityQuery>(query: Query) throws -> Query.Result where Query.ComponentManager == ComponentManager {
         return try query.resolveWith(requester: self)
     }
 }

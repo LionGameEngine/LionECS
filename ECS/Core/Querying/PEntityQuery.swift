@@ -7,9 +7,9 @@
 //
 
 // sourcery: AutoMockable
-// sourcery: AutoMockableGenerics="<ComponentManagers: PComponentManagers, Result>"
+// sourcery: AutoMockableGenerics="<ComponentManager: PComponentManager, Result>"
 public protocol PEntityQuery {
-    associatedtype ComponentManagers: PComponentManagers
+    associatedtype ComponentManager: PComponentManager
     associatedtype Result
-    func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result
+    func resolveWith(requester: EntityRequester<ComponentManager>) throws -> Result
 }

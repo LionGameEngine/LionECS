@@ -1,5 +1,5 @@
 //
-//  PrototypeComponentManagersPerformanceTests.swift
+//  ComponentManagerPerformanceTests.swift
 //  LionECSTests
 //
 //  Created by Tomasz Lewandowski on 16/01/2020.
@@ -9,7 +9,7 @@
 import XCTest
 import LionECS
 
-class PrototypeComponentManagersPerformanceTests: XCTestCase {
+class ComponentManagerPerformanceTests: XCTestCase {
     struct Component1: PComponent {
         let x: Int64
         let y: Int64
@@ -29,9 +29,8 @@ class PrototypeComponentManagersPerformanceTests: XCTestCase {
     func testAddingComponentsPerformance() {
         measure {
             for _ in 1...runs {
-                let managers = PrototypeComponentManagers()
-                let sut = EntityRequester<PrototypeComponentManagers>(entityManager: EntityManager<PrototypeComponentManagers>(componentManagers: managers), componentManagers: managers)
-                let manager: PrototypeComponentManager = managers.getOrCreateManagerOfType(Component1.self)
+                let manager = ComponentManager()
+                let sut = EntityRequester<ComponentManager>(entityManager: EntityManager<ComponentManager>(componentManager: manager), componentManager: manager)
                 for _ in 0...entitiesCount {
                     let entity = sut.getEntityManager().createEntity()
                     try? manager.addComponent(Component1(x: 100, y: 200), toEntity: entity)
@@ -50,9 +49,8 @@ class PrototypeComponentManagersPerformanceTests: XCTestCase {
             .build()
         measure {
             for _ in 1...runs {
-                let managers = PrototypeComponentManagers()
-                let sut = EntityRequester<PrototypeComponentManagers>(entityManager: EntityManager<PrototypeComponentManagers>(componentManagers: managers), componentManagers: managers)
-                let manager: PrototypeComponentManager = managers.getOrCreateManagerOfType(Component1.self)
+                let manager = ComponentManager()
+                let sut = EntityRequester<ComponentManager>(entityManager: EntityManager<ComponentManager>(componentManager: manager), componentManager: manager)
                 for _ in 0...entitiesCount {
                     let entity = try! sut.getEntityManager().createEntity(withPrototype: prototype)
                 }

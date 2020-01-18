@@ -1,12 +1,12 @@
 //
-//  PrototypeComponentManager.swift
+//  ComponentManager.swift
 //  ECS
 //
 //  Created by Tomasz Lewandowski on 03/01/2020.
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class PrototypeComponentManager: PPrototypeComponentManager {
+public final class ComponentManager: PComponentManager {
     public var chunks: [Chunk] = []
     private var entityMigrator: PChunkEntityMigrator
     
@@ -16,14 +16,6 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
 
     public init(entityMigrator: PChunkEntityMigrator) {
         self.entityMigrator = entityMigrator
-    }
-
-    public func getEntities<Component>(withComponent: Component.Type) -> Set<Entity> where Component: PComponent {
-        return Set<Entity>(
-            chunks.filter {
-                $0.prototype.componentIdentifiers.contains(Component.componentIdentifier)
-            }.flatMap { chunk -> [Entity] in return chunk.getEntities().filter { !$0.isNull } }
-        )
     }
     
     public func hasComponent<Component>(entity: Entity, component: Component.Type) -> Bool where Component: PComponent {
@@ -49,9 +41,11 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
             let newChunk = createNewChunkByAdding(type: Component.self, toChunk: chunk)
             try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
             chunks.append(newChunk)
+            try newChunk.setComponents(entity: entity, r1: component)
             return
         }
         try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
+        try newChunk.setComponents(entity: entity, r1: component)
     }
     
     public func getComponent<Component>(ofEntity entity: Entity) throws -> Component where Component: PComponent {
@@ -59,14 +53,6 @@ public final class PrototypeComponentManager: PPrototypeComponentManager {
         let entitiesWithComponents: [(entity: Entity, component: Component)] = try chunk.getEntitiesWithComponents()
         guard let component = entitiesWithComponents.first(where: { $0.entity == entity } )?.component else { throw ComponentManagerError.componentMissing }
         return component
-    }
-    
-    public func getEntitiesWithComponents<Component>() throws -> [Entity: Component] where Component: PComponent {
-        return [Entity: Component](
-            uniqueKeysWithValues:
-            try chunksContainingComponent(type: Component.self).flatMap { chunk -> [(entity: Entity, component: Component)] in return try chunk.getEntitiesWithComponents() }
-                    .filter({ !$0.entity.isNull })
-        )
     }
     
     public func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component: PComponent {

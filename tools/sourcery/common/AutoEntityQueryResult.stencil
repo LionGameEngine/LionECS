@@ -3,7 +3,7 @@
 {% macro getComponentTemplateParameters x inoutCount %}<{% for y in 1...x %}{% call getTemplateParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endmacro %}
 {% macro getClosureParameters x inoutCount %}{% for y in 1...x %}{% call getClosureParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
 
-public extension PrototypeQueryResult {
+public extension EntityQueryResult {
     {% for componentsCount in 1...10 %}
     {% for inoutComponentsCount in 0...componentsCount %}
     func forEach{% call getComponentTemplateParameters componentsCount inoutComponentsCount %}(_ closure: ({% call getClosureParameters componentsCount inoutComponentsCount %}) -> Void) {

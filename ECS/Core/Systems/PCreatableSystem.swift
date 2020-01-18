@@ -7,8 +7,8 @@
 //
 
 // sourcery: AutoMockable
-// sourcery: AutoMockableGenerics="<ComponentManagers: PComponentManagers>"
+// sourcery: AutoMockableGenerics="<ComponentManager: PComponentManager>"
 public protocol PCreatableSystem: PSystem {
-    associatedtype ComponentManagers: PComponentManagers
-    init(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)
+    associatedtype ComponentManager: PComponentManager
+    init(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>)
 }

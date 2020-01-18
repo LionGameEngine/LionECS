@@ -19,7 +19,10 @@ extension Chunk: PEntityIterable {
         {% call defineAccessors componentsCount inoutComponentsCount %}
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure({% call useAccessors componentsCount inoutComponentsCount  %})
             index += 1
         }
@@ -30,7 +33,10 @@ extension Chunk: PEntityIterable {
         {% call defineAccessors componentsCount inoutComponentsCount %}
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     {% call useAccessors componentsCount inoutComponentsCount %})
             index += 1

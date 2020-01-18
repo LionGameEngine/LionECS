@@ -10,33 +10,33 @@ import XCTest
 @testable import LionECS
 
 class EntityRequesterTests: XCTestCase {
-    var sut: EntityRequester<ComponentManagers>!
+    var sut: EntityRequester<ComponentManager>!
 
     override func setUp() {
-        let managers = ComponentManagers()
-        sut = EntityRequester(entityManager: EntityManager<ComponentManagers>(componentManagers: managers), componentManagers: managers)
+        let manager = ComponentManager()
+        sut = EntityRequester(entityManager: EntityManager<ComponentManager>(componentManager: manager), componentManager: manager)
     }
     
     func testGetEntityManager_WhenCreatedWithEntityManager_ShouldReturnThatEntityManager() {
         // given
-        let entityManager = EntityManager<ComponentManagers>(componentManagers: sut.getComponentManagers())
-        sut = EntityRequester(entityManager: entityManager, componentManagers: ComponentManagers())
+        let entityManager = EntityManager<ComponentManager>(componentManager: sut.getComponentManager())
+        sut = EntityRequester(entityManager: entityManager, componentManager: ComponentManager())
         // then
         XCTAssertTrue(entityManager === sut.getEntityManager())
     }
     
-    func testGetComponentManagers_WhenCreatedWithEntityManager_ShouldReturnThatEntityManager() {
+    func testGetComponentManager_WhenCreatedWithEntityManager_ShouldReturnThatComponentManager() {
         // given
-        let componentManagers = ComponentManagers()
-        sut = EntityRequester(entityManager: EntityManager<ComponentManagers>(componentManagers: componentManagers), componentManagers: componentManagers)
+        let componentManager = ComponentManager()
+        sut = EntityRequester(entityManager: EntityManager<ComponentManager>(componentManager: componentManager), componentManager: componentManager)
         // then
-        XCTAssertTrue(componentManagers === sut.getComponentManagers())
+        XCTAssertTrue(componentManager === sut.getComponentManager())
     }
     
     func testQueryEntities_WhenCalledWithQuery_ShouldAskToPerformQueryWithThatRequester() throws {
         // given
         let resultMock = 7
-        let queryMock = PEntityQueryMock<ComponentManagers, Int>()
+        let queryMock = PEntityQueryMock<ComponentManager, Int>()
         queryMock.resolveWithRequesterReturnValue = resultMock
         // when
         let result = try sut.queryEntities(query: queryMock)

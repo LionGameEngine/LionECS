@@ -11,7 +11,7 @@ import Foundation
 public final class ChunkEntityMigrator: PChunkEntityMigrator {
     private let shouldFreeMemory: Bool
     
-    init(shouldFreeMemory: Bool){
+    init(shouldFreeMemory: Bool) {
         self.shouldFreeMemory = shouldFreeMemory
     }
     

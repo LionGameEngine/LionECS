@@ -6,14 +6,14 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-public final class EntityManager<ComponentManagers: PComponentManagers> {
+public final class EntityManager<ComponentManager: PComponentManager> {
     private var lastEntityId: UInt64 = 0
     private var entities = Set<Entity>()
     private var reuseableEntities = Set<Entity>()
-    let componentManagers: ComponentManagers
+    let componentManager: ComponentManager
     
-    public init(componentManagers: ComponentManagers) {
-        self.componentManagers = componentManagers
+    public init(componentManager: ComponentManager) {
+        self.componentManager = componentManager
     }
     
     @discardableResult public func createEntity() -> Entity {
@@ -26,6 +26,13 @@ public final class EntityManager<ComponentManagers: PComponentManagers> {
             lastEntityId += 1
         }
         entities.insert(entity)
+        return entity
+    }
+    
+    @discardableResult public func createEntity(withPrototype prototype: Prototype) throws -> Entity {
+        let entity = createEntity()
+        let chunk = componentManager.existingOrNewChunk(forPrototype: prototype)
+        try chunk.manageEntity(entity: entity)
         return entity
     }
     

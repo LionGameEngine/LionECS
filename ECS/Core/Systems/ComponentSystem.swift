@@ -6,16 +6,16 @@
 //  Copyright © 2020 LionSoftware. All rights reserved.
 //
 
-open class ComponentSystem<ComponentManagers: PComponentManagers>: PCreatableSystem {
-    public private(set) weak var world: World<ComponentManagers>!
-    public private(set) weak var entityManager: EntityManager<ComponentManagers>!
-    public private(set) weak var componentManagers: ComponentManagers!
-    public private(set) weak var entityRequester: EntityRequester<ComponentManagers>!
+open class ComponentSystem<ComponentManager: PComponentManager>: PCreatableSystem {
+    public private(set) weak var world: World<ComponentManager>!
+    public private(set) weak var entityManager: EntityManager<ComponentManager>!
+    public private(set) weak var componentManager: ComponentManager!
+    public private(set) weak var entityRequester: EntityRequester<ComponentManager>!
     
-    public required init(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>) {
+    public required init(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>) {
         self.world = world
         self.entityManager = entityManager
-        self.componentManagers = componentManagers
+        self.componentManager = componentManager
         self.entityRequester = entityRequester
     }
     

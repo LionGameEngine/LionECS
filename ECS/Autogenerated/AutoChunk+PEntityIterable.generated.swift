@@ -12,7 +12,10 @@ extension Chunk: PEntityIterable {
         let r1Accessor = componentAccessorFactory.create(R1.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index))
             index += 1
         }
@@ -22,7 +25,10 @@ extension Chunk: PEntityIterable {
         let r1Accessor = componentAccessorFactory.create(R1.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index))
             index += 1
@@ -33,7 +39,10 @@ extension Chunk: PEntityIterable {
         let w1Accessor = componentAccessorFactory.create(W1.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee)
             index += 1
         }
@@ -43,7 +52,10 @@ extension Chunk: PEntityIterable {
         let w1Accessor = componentAccessorFactory.create(W1.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee)
             index += 1
@@ -55,7 +67,10 @@ extension Chunk: PEntityIterable {
         let r2Accessor = componentAccessorFactory.create(R2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index))
             index += 1
@@ -67,7 +82,10 @@ extension Chunk: PEntityIterable {
         let r2Accessor = componentAccessorFactory.create(R2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index))
@@ -80,7 +98,10 @@ extension Chunk: PEntityIterable {
         let r2Accessor = componentAccessorFactory.create(R2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index))
             index += 1
@@ -92,7 +113,10 @@ extension Chunk: PEntityIterable {
         let r2Accessor = componentAccessorFactory.create(R2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index))
@@ -105,7 +129,10 @@ extension Chunk: PEntityIterable {
         let w2Accessor = componentAccessorFactory.create(W2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee)
             index += 1
@@ -117,7 +144,10 @@ extension Chunk: PEntityIterable {
         let w2Accessor = componentAccessorFactory.create(W2.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee)
@@ -131,7 +161,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index))
@@ -145,7 +178,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -160,7 +196,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index))
@@ -174,7 +213,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -189,7 +231,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index))
@@ -203,7 +248,10 @@ extension Chunk: PEntityIterable {
         let r3Accessor = componentAccessorFactory.create(R3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -218,7 +266,10 @@ extension Chunk: PEntityIterable {
         let w3Accessor = componentAccessorFactory.create(W3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee)
@@ -232,7 +283,10 @@ extension Chunk: PEntityIterable {
         let w3Accessor = componentAccessorFactory.create(W3.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -248,7 +302,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -264,7 +321,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -281,7 +341,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -297,7 +360,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -314,7 +380,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -330,7 +399,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -347,7 +419,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -363,7 +438,10 @@ extension Chunk: PEntityIterable {
         let r4Accessor = componentAccessorFactory.create(R4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -380,7 +458,10 @@ extension Chunk: PEntityIterable {
         let w4Accessor = componentAccessorFactory.create(W4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -396,7 +477,10 @@ extension Chunk: PEntityIterable {
         let w4Accessor = componentAccessorFactory.create(W4.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -414,7 +498,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -432,7 +519,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -451,7 +541,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -469,7 +562,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -488,7 +584,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -506,7 +605,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -525,7 +627,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -543,7 +648,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -562,7 +670,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -580,7 +691,10 @@ extension Chunk: PEntityIterable {
         let r5Accessor = componentAccessorFactory.create(R5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -599,7 +713,10 @@ extension Chunk: PEntityIterable {
         let w5Accessor = componentAccessorFactory.create(W5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -617,7 +734,10 @@ extension Chunk: PEntityIterable {
         let w5Accessor = componentAccessorFactory.create(W5.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -637,7 +757,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -657,7 +780,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -678,7 +804,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -698,7 +827,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -719,7 +851,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -739,7 +874,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -760,7 +898,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -780,7 +921,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -801,7 +945,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -821,7 +968,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -842,7 +992,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -862,7 +1015,10 @@ extension Chunk: PEntityIterable {
         let r6Accessor = componentAccessorFactory.create(R6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -883,7 +1039,10 @@ extension Chunk: PEntityIterable {
         let w6Accessor = componentAccessorFactory.create(W6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -903,7 +1062,10 @@ extension Chunk: PEntityIterable {
         let w6Accessor = componentAccessorFactory.create(W6.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -925,7 +1087,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -947,7 +1112,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -970,7 +1138,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -992,7 +1163,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -1015,7 +1189,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -1037,7 +1214,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1060,7 +1240,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1082,7 +1265,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1105,7 +1291,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1127,7 +1316,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1150,7 +1342,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1172,7 +1367,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1195,7 +1393,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1217,7 +1418,10 @@ extension Chunk: PEntityIterable {
         let r7Accessor = componentAccessorFactory.create(R7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1240,7 +1444,10 @@ extension Chunk: PEntityIterable {
         let w7Accessor = componentAccessorFactory.create(W7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1262,7 +1469,10 @@ extension Chunk: PEntityIterable {
         let w7Accessor = componentAccessorFactory.create(W7.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1286,7 +1496,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -1310,7 +1523,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -1335,7 +1551,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -1359,7 +1578,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -1384,7 +1606,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -1408,7 +1633,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1433,7 +1661,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1457,7 +1688,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1482,7 +1716,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1506,7 +1743,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1531,7 +1771,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1555,7 +1798,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1580,7 +1826,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1604,7 +1853,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1629,7 +1881,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1653,7 +1908,10 @@ extension Chunk: PEntityIterable {
         let r8Accessor = componentAccessorFactory.create(R8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1678,7 +1936,10 @@ extension Chunk: PEntityIterable {
         let w8Accessor = componentAccessorFactory.create(W8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1702,7 +1963,10 @@ extension Chunk: PEntityIterable {
         let w8Accessor = componentAccessorFactory.create(W8.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1728,7 +1992,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -1754,7 +2021,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -1781,7 +2051,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -1807,7 +2080,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -1834,7 +2110,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -1860,7 +2139,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1887,7 +2169,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1913,7 +2198,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1940,7 +2228,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -1966,7 +2257,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -1993,7 +2287,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2019,7 +2316,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2046,7 +2346,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2072,7 +2375,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2099,7 +2405,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2125,7 +2434,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2152,7 +2464,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2178,7 +2493,10 @@ extension Chunk: PEntityIterable {
         let r9Accessor = componentAccessorFactory.create(R9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2205,7 +2523,10 @@ extension Chunk: PEntityIterable {
         let w9Accessor = componentAccessorFactory.create(W9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2231,7 +2552,10 @@ extension Chunk: PEntityIterable {
         let w9Accessor = componentAccessorFactory.create(W9.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2259,7 +2583,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -2287,7 +2614,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     r1Accessor.access(index: index),
                 r2Accessor.access(index: index),
@@ -2316,7 +2646,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
                 r3Accessor.access(index: index),
@@ -2344,7 +2677,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 r2Accessor.access(index: index),
@@ -2373,7 +2709,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 r3Accessor.access(index: index),
@@ -2401,7 +2740,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2430,7 +2772,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2458,7 +2803,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2487,7 +2835,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2515,7 +2866,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2544,7 +2898,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2572,7 +2929,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2601,7 +2961,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2629,7 +2992,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2658,7 +3024,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2686,7 +3055,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2715,7 +3087,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2743,7 +3118,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2772,7 +3150,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2800,7 +3181,10 @@ extension Chunk: PEntityIterable {
         let r10Accessor = componentAccessorFactory.create(R10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
@@ -2829,7 +3213,10 @@ extension Chunk: PEntityIterable {
         let w10Accessor = componentAccessorFactory.create(W10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(&w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,
                 &w3Accessor.accessMutable(index: index).pointee,
@@ -2857,7 +3244,10 @@ extension Chunk: PEntityIterable {
         let w10Accessor = componentAccessorFactory.create(W10.self)
         while index < allocatedEntities {
             let entity = entityAccessor.access(index: index)
-            guard !entity.isNull else { return }
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
             closure(entity,
                     &w1Accessor.accessMutable(index: index).pointee,
                 &w2Accessor.accessMutable(index: index).pointee,

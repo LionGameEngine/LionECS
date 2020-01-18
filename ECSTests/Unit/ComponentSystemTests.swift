@@ -10,12 +10,12 @@ import XCTest
 @testable import LionECS
 
 class ComponentSystemTests: XCTestCase {
-    var sut: ComponentSystem<ComponentManagers>!
+    var sut: ComponentSystem<ComponentManager>!
     
     override func setUp() {
-        let componentManagers = ComponentManagers()
-        let world = World(componentManagers: componentManagers)
-        sut = ComponentSystem(world: world, entityManager: world.entityManager, componentManagers: world.componentManagers, entityRequester: world.entityRequester)
+        let componentManager = ComponentManager()
+        let world = World(componentManager: componentManager)
+        sut = ComponentSystem(world: world, entityManager: world.entityManager, componentManager: world.componentManager, entityRequester: world.entityRequester)
     }
     
     func testUpdate_WhenCalled_ShouldDoNothing() {

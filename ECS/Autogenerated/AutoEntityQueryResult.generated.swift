@@ -4,7 +4,7 @@
 
 
 
-public extension PrototypeQueryResult {
+public extension EntityQueryResult {
     func forEach<R1: PComponent>(_ closure: (R1) -> Void) {
         for chunk in chunks {
             chunk.forEach(closure)

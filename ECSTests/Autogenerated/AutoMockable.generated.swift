@@ -126,17 +126,17 @@ class PComponentMock: PComponent {
     var underlyingComponentIdentifier: ComponentIdentifier!
 
 }
-class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSystem {
+class PCreatableSystemMock<ComponentManager: PComponentManager>: PCreatableSystem {
 
     //MARK: - init
-    var initWorldEntityManagerComponentManagersEntityRequesterReceivedArguments: (world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)?
-    var initWorldEntityManagerComponentManagersEntityRequesterReceivedInvocations: [(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>)] = []
-    var initWorldEntityManagerComponentManagersEntityRequesterClosure: ((World<ComponentManagers>, EntityManager<ComponentManagers>, ComponentManagers, EntityRequester<ComponentManagers>) -> Void)?
+    var initWorldEntityManagerComponentManagerEntityRequesterReceivedArguments: (world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>)?
+    var initWorldEntityManagerComponentManagerEntityRequesterReceivedInvocations: [(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>)] = []
+    var initWorldEntityManagerComponentManagerEntityRequesterClosure: ((World<ComponentManager>, EntityManager<ComponentManager>, ComponentManager, EntityRequester<ComponentManager>) -> Void)?
 
-    required init(world: World<ComponentManagers>, entityManager: EntityManager<ComponentManagers>, componentManagers: ComponentManagers, entityRequester: EntityRequester<ComponentManagers>) {
-        initWorldEntityManagerComponentManagersEntityRequesterReceivedArguments = (world: world, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester)
-        initWorldEntityManagerComponentManagersEntityRequesterReceivedInvocations.append((world: world, entityManager: entityManager, componentManagers: componentManagers, entityRequester: entityRequester))
-        initWorldEntityManagerComponentManagersEntityRequesterClosure?(world, entityManager, componentManagers, entityRequester)
+    required init(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>) {
+        initWorldEntityManagerComponentManagerEntityRequesterReceivedArguments = (world: world, entityManager: entityManager, componentManager: componentManager, entityRequester: entityRequester)
+        initWorldEntityManagerComponentManagerEntityRequesterReceivedInvocations.append((world: world, entityManager: entityManager, componentManager: componentManager, entityRequester: entityRequester))
+        initWorldEntityManagerComponentManagerEntityRequesterClosure?(world, entityManager, componentManager, entityRequester)
     }
     //MARK: - update
     var updateCallsCount = 0
@@ -151,7 +151,7 @@ class PCreatableSystemMock<ComponentManagers: PComponentManagers>: PCreatableSys
     }
 
 }
-class PEntityQueryMock<ComponentManagers: PComponentManagers, Result>: PEntityQuery {
+class PEntityQueryMock<ComponentManager: PComponentManager, Result>: PEntityQuery {
 
     //MARK: - resolveWith
     var resolveWithRequesterThrowableError: Error?
@@ -159,12 +159,12 @@ class PEntityQueryMock<ComponentManagers: PComponentManagers, Result>: PEntityQu
     var resolveWithRequesterCalled: Bool {
         return resolveWithRequesterCallsCount > 0
     }
-    var resolveWithRequesterReceivedRequester: EntityRequester<ComponentManagers>?
-    var resolveWithRequesterReceivedInvocations: [EntityRequester<ComponentManagers>] = []
+    var resolveWithRequesterReceivedRequester: EntityRequester<ComponentManager>?
+    var resolveWithRequesterReceivedInvocations: [EntityRequester<ComponentManager>] = []
     var resolveWithRequesterReturnValue: Result!
-    var resolveWithRequesterClosure: ((EntityRequester<ComponentManagers>) throws -> Result)?
+    var resolveWithRequesterClosure: ((EntityRequester<ComponentManager>) throws -> Result)?
 
-    func resolveWith(requester: EntityRequester<ComponentManagers>) throws -> Result {
+    func resolveWith(requester: EntityRequester<ComponentManager>) throws -> Result {
         if let error = resolveWithRequesterThrowableError {
             throw error
         }

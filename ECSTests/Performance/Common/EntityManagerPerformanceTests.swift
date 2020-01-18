@@ -20,12 +20,12 @@ class EntityManagerPerformanceTests: XCTestCase {
         let x: UInt64
     }
     
-    var sut: EntityManager<ComponentManagers>!
+    var sut: EntityManager<ComponentManager>!
     let runs: Int = 100000
     
     override func setUp() {
-        let managers = ComponentManagers()
-        sut = EntityManager<ComponentManagers>(componentManagers: managers)
+        let manager = ComponentManager()
+        sut = EntityManager<ComponentManager>(componentManager: manager)
     }
     
     func testCreateEntity() {
@@ -75,9 +75,8 @@ class EntityManagerPerformanceTests: XCTestCase {
             .addComponentType(Component2.self)
             .addComponentType(Component3.self).build()
         measure {
-            let managers = PrototypeComponentManagers()
-            let _: PrototypeComponentManager = managers.getOrCreateManagerOfType(Component1.self)
-            let sut: EntityManager<PrototypeComponentManagers> = EntityManager<PrototypeComponentManagers>(componentManagers: managers)
+            let manager = ComponentManager()
+            let sut: EntityManager<ComponentManager> = EntityManager<ComponentManager>(componentManager: manager)
             for _ in 1...runs {
                 try? sut.createEntity(withPrototype: prototype)
             }

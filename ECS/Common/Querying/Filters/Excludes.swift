@@ -14,14 +14,6 @@ public struct Excludes<Component: PComponent>: PEntityFilter, PChunkFilter {
     public init() {
     }
     
-    public func filter<ComponentManagers: PComponentManagers>(requester: EntityRequester<ComponentManagers>, entities: Set<Entity>) throws -> Set<Entity> {
-        return try entities.subtracting(
-            requester.getComponentManagers()
-                .getExistingManager(withIdentifier: Component.componentIdentifier)
-                .getEntities(withComponent: Component.self)
-        )
-    }
-    
     public func filter(chunk: Chunk) -> Chunk? {
         return chunk.prototype.componentIdentifiers.contains(componentIdentifier) ? nil : chunk
     }

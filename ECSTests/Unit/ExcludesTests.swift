@@ -10,32 +10,5 @@ import XCTest
 @testable import LionECS
 
 class ExcludesTests: XCTestCase {
-    func testFilter_WhenCalledAndEntityHasComponent_ShouldFilterOutThatEntity() throws {
-        // given
-        let sut = Excludes<PComponentMock>()
-        let componentManagers = ComponentManagers()
-        let entityManager = EntityManager<ComponentManagers>(componentManagers: componentManagers)
-        let entity = entityManager.createEntity()
-        let componentManager: ComponentManager<PComponentMock> = componentManagers.getOrCreateManagerOfType(PComponentMock.self)
-        try componentManager.addComponent(PComponentMock(), toEntity: entity)
-        let requester = EntityRequester<ComponentManagers>(entityManager: entityManager, componentManagers: componentManagers)
-        // when
-        let filteredEntities = try sut.filter(requester: requester, entities: Set([entity]))
-        // then
-        XCTAssertEqual(Set([]), filteredEntities)
-    }
     
-    func testFilter_WhenCalledAndEntityHasComponent_ShouldNotFilterOutTheEntity() throws {
-        // given
-        let sut = Excludes<PComponentMock>()
-        let componentManagers = ComponentManagers()
-        let entityManager = EntityManager(componentManagers: componentManagers)
-        let entity = entityManager.createEntity()
-        let _: ComponentManager<PComponentMock> = componentManagers.getOrCreateManagerOfType(PComponentMock.self)
-        let requester = EntityRequester<ComponentManagers>(entityManager: entityManager, componentManagers: componentManagers)
-        // when
-        let filteredEntities = try sut.filter(requester: requester, entities: Set([entity]))
-        // then
-        XCTAssertEqual(Set([entity]), filteredEntities)
-    }
 }

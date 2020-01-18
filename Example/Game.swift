@@ -1,5 +1,5 @@
 //
-//  PrototypeGame.swift
+//  Game.swift
 //  Example
 //
 //  Created by Tomasz Lewandowski on 03/01/2020.
@@ -8,9 +8,9 @@
 
 import LionECS
 
-class PrototypeGame {
-    var world: World<PrototypeComponentManagers>
-    var damageSystem: PrototypeDamageSystem
+class Game {
+    var world: World<ComponentManager>
+    var damageSystem: DamageSystem
     var entity: Entity
     
     init() {
@@ -22,13 +22,12 @@ class PrototypeGame {
         print("2. damage - applies damage component to entity")
         print("3. exit - exits the game")
         print("########")
-        let managers: PrototypeComponentManagers = PrototypeComponentManagers()
-        let _: PrototypeComponentManager = managers.getOrCreateManagerOfType(HealthComponent.self)
-        world = World<PrototypeComponentManagers>(componentManagers: managers)
+        let manager: ComponentManager = ComponentManager()
+        world = World<ComponentManager>(componentManager: manager)
         damageSystem = world.getOrCreateSystem()
         entity = world.entityManager.createEntity()
-        try! world.componentManagers.prototypeComponentManager?.addComponent(HealthComponent(health: 123), toEntity: entity)
-        try! world.componentManagers.prototypeComponentManager?.addComponent(DamageComponent(damage: 23), toEntity: entity)
+        try! world.componentManager.addComponent(HealthComponent(health: 123), toEntity: entity)
+        try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: entity)
         gameloop {
             world.update()
         }
@@ -40,7 +39,7 @@ class PrototypeGame {
             if line == "1" {
                 update()
             } else if line == "2" {
-                try! world.componentManagers.prototypeComponentManager?.addComponent(DamageComponent(damage: 23), toEntity: entity)
+                try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: entity)
             } else if line == "3" {
                 break
             }
