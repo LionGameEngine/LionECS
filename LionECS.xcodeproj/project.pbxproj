@@ -64,7 +64,7 @@
 		9E1D79204746E3292A1D9497 /* PComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B01F1EAD197C29EFF011EC7 /* PComponent.swift */; };
 		9F3ADD26950D9D7697DDCA48 /* PCreatableSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDFA40754A88120B7147B99 /* PCreatableSystem.swift */; };
 		A34D2891C61BA020F7D0D69B /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FBAF01CEDFF0130045D8D5 /* AutoMockable.generated.swift */; };
-		A47996CA86EA5A772F072CFE /* PrototypeComponentManagersPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAD754D7B6C9403904F27 /* PrototypeComponentManagersPerformanceTests.swift */; };
+		A47996CA86EA5A772F072CFE /* ComponentManagerPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAD754D7B6C9403904F27 /* ComponentManagerPerformanceTests.swift */; };
 		A4853CD245B914122720E48D /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245A727E0F378FC56BA7332F /* Pods_Example.framework */; };
 		A7BF49359504E10A39C6BCDF /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3BCD3FF8F873F08BDFDB9F /* Chunk.swift */; };
 		ABAE1F7B7756CAABF4D1F2B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 131147088A662A27414C62A4 /* Assets.xcassets */; };
@@ -194,7 +194,7 @@
 		9858EAB55B04CF060040755F /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		9B01F1EAD197C29EFF011EC7 /* PComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PComponent.swift; sourceTree = "<group>"; };
 		9B7C13446133AC091EA9B4C3 /* DeadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadComponent.swift; sourceTree = "<group>"; };
-		9C6AAD754D7B6C9403904F27 /* PrototypeComponentManagersPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeComponentManagersPerformanceTests.swift; sourceTree = "<group>"; };
+		9C6AAD754D7B6C9403904F27 /* ComponentManagerPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerPerformanceTests.swift; sourceTree = "<group>"; };
 		A49B975AEE38F2B692A60905 /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
 		A4FBAF01CEDFF0130045D8D5 /* AutoMockable.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
 		A537C3E16316AAC9B6406606 /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 				F8DEB6051093852B832869C4 /* EntityAccessorPerformanceTests.swift */,
 				BA11DEF63CD5CCE08496B44E /* EntityDataAccessorPerformanceTests.swift */,
 				CFA394129E1E6FF93E544AE0 /* EntityQueryPerformanceTests.swift */,
-				9C6AAD754D7B6C9403904F27 /* PrototypeComponentManagersPerformanceTests.swift */,
+				9C6AAD754D7B6C9403904F27 /* ComponentManagerPerformanceTests.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -888,7 +888,7 @@
 				86DB7BC1538109750270A8DF /* ExcludesTests.swift in Sources */,
 				CF02D40A329468CE6BEA2D3F /* ManagedMemoryBlobTests.swift in Sources */,
 				0B93AB82FC2E75CA67D3FA90 /* PrototypeBuilderTests.swift in Sources */,
-				A47996CA86EA5A772F072CFE /* PrototypeComponentManagersPerformanceTests.swift in Sources */,
+				A47996CA86EA5A772F072CFE /* ComponentManagerPerformanceTests.swift in Sources */,
 				2FA3FB0A2EA9217C577C9106 /* RequiresTests.swift in Sources */,
 				9D489CE34C380D7B44701022 /* WorldTests.swift in Sources */,
 			);
