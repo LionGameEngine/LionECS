@@ -11,6 +11,7 @@ import LionECS
 class Game {
     var world: World<ComponentManager>
     var damageSystem: DamageSystem
+    var deathSystem: DeathSystem
     var entity: Entity
     
     init() {
@@ -25,6 +26,7 @@ class Game {
         let manager: ComponentManager = ComponentManager()
         world = World<ComponentManager>(componentManager: manager)
         damageSystem = world.getOrCreateSystem()
+        deathSystem = world.getOrCreateSystem()
         entity = world.entityManager.createEntity()
         try! world.componentManager.addComponent(HealthComponent(health: 123), toEntity: entity)
         try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: entity)

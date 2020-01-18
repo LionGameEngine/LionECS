@@ -87,6 +87,7 @@
 		EA2A6F64EC7735EC98CA250B /* EntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7615CCDE8495A857EA0D529 /* EntityTests.swift */; };
 		EBDB487A5FEA142D04ECA700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDB8D1E8F6C0FA235848949 /* AppDelegate.swift */; };
 		F0C83026C3BC1455F3CB74B7 /* ECS.h in Headers */ = {isa = PBXBuildFile; fileRef = A49B975AEE38F2B692A60905 /* ECS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F19A033623D3A14500BE92A6 /* DeathSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033523D3A14500BE92A6 /* DeathSystem.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 		F416160C95D81DE9A0407999 /* PChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A54BCA67A80890F0466D9 /* PChunk.swift */; };
 		FCD6C375DB3D586BFD0688D9 /* EntityQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A640344B7D4C95C28372C /* EntityQuery.swift */; };
@@ -227,6 +228,7 @@
 		E22B469284C6DFDA558B0C35 /* ComponentAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentAccessor.swift; sourceTree = "<group>"; };
 		E3FCB2318077F33A3F59F53D /* ChunkMemoryLayoutDescriptionBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilderTests.swift; sourceTree = "<group>"; };
 		F18480C0289CED1856FA9AAB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		F19A033523D3A14500BE92A6 /* DeathSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathSystem.swift; sourceTree = "<group>"; };
 		F7615CCDE8495A857EA0D529 /* EntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTests.swift; sourceTree = "<group>"; };
 		F7F0D9C4CEFB15DFD577B38A /* ComponentManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerError.swift; sourceTree = "<group>"; };
 		F8388C527B40F0BD64B07749 /* ChunkEntityMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorTests.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				BFFB6ACBF0E9FB448AD5ED11 /* DamageSystem.swift */,
+				F19A033523D3A14500BE92A6 /* DeathSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				06E37D5CC752ECEFFC5AA196 /* DeadComponent.swift in Sources */,
 				8B3152115324817A00C6D410 /* Game.swift in Sources */,
 				1240CAB71C1F2A16627C78A9 /* HealthComponent.swift in Sources */,
+				F19A033623D3A14500BE92A6 /* DeathSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

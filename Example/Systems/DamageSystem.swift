@@ -19,9 +19,6 @@ class DamageSystem: ComponentSystem<ComponentManager> {
             print("Entity \(entity) health \(health.health)")
             health.health -= damage.damage
             print("Entity \(entity) damaged: \(damage.damage) remaining health: \(health.health)")
-            if health.health <= 0 {
-                try? componentManager.addComponent(DeadComponent(), toEntity: entity)
-            }
         }
     }
 }
