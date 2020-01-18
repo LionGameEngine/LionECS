@@ -17,12 +17,12 @@ public class PrototypeBuilder {
         self.layoutBuilder = ChunkMemoryLayoutDescriptionBuilder(baseDescription: prototype.layoutDescription)
     }
     
-    public func addComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
+    public func add<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
         layoutBuilder.add(Component.self)
         return self
     }
     
-    public func removeComponentType<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
+    public func remove<Component: PComponent>(_ type: Component.Type) -> PrototypeBuilder {
         layoutBuilder.remove(Component.self)
         return self
     }

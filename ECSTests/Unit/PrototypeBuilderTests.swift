@@ -35,25 +35,25 @@ class PrototypeBuilderTests: XCTestCase {
         
     func testAdd_WhenCalled_ShouldAddGivenComponentIdentifier() {
         // when
-        let sut = PrototypeBuilder().addComponentType(PComponentMock.self)
+        let sut = PrototypeBuilder().add(PComponentMock.self)
         // then
         XCTAssertEqual([PComponentMock.componentIdentifier], sut.build().componentIdentifiers)
     }
     
     func testAdd_WhenCalledMoreThanOnce_ShouldAddComponentIdentifierJustOnce() {
         // when
-        let sut = PrototypeBuilder().addComponentType(PComponentMock.self)
-            .addComponentType(PComponentMock.self)
-            .addComponentType(PComponentMock.self)
+        let sut = PrototypeBuilder().add(PComponentMock.self)
+            .add(PComponentMock.self)
+            .add(PComponentMock.self)
         // then
         XCTAssertEqual([PComponentMock.componentIdentifier], sut.build().componentIdentifiers)
     }
     
     func testRemove_WhenCalled_ShouldRemoveGivenComponentIdentifier() {
         // given
-        var sut = PrototypeBuilder().addComponentType(PComponentMock.self)
+        var sut = PrototypeBuilder().add(PComponentMock.self)
         // when
-        sut = sut.removeComponentType(PComponentMock.self)
+        sut = sut.remove(PComponentMock.self)
         // then
         XCTAssertEqual([], sut.build().componentIdentifiers)
     }
@@ -62,7 +62,7 @@ class PrototypeBuilderTests: XCTestCase {
         // given
         var sut = PrototypeBuilder()
         // when
-        sut = sut.removeComponentType(PComponentMock.self)
+        sut = sut.remove(PComponentMock.self)
         // then
         XCTAssertEqual([], sut.build().componentIdentifiers)
     }

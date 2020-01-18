@@ -71,9 +71,9 @@ class EntityManagerPerformanceTests: XCTestCase {
     
     func testCreateEntityFromPrototype() {
         let prototype: Prototype = PrototypeBuilder()
-            .addComponentType(Component1.self)
-            .addComponentType(Component2.self)
-            .addComponentType(Component3.self).build()
+            .add(Component1.self)
+            .add(Component2.self)
+            .add(Component3.self).build()
         measure {
             let manager = ComponentManager()
             let sut: EntityManager<ComponentManager> = EntityManager<ComponentManager>(componentManager: manager)

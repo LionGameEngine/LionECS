@@ -9,10 +9,10 @@
 import LionECS
 
 class Game {
-    var world: World<ComponentManager>
-    var damageSystem: DamageSystem
-    var deathSystem: DeathSystem
-    var entity: Entity
+    let world: World<ComponentManager>
+    let damageSystem: DamageSystem
+    let deathSystem: DeathSystem
+    let player: Entity
     
     init() {
         print("########")
@@ -23,13 +23,16 @@ class Game {
         print("2. damage - applies damage component to entity")
         print("3. exit - exits the game")
         print("########")
+        let playerPrototype = PrototypeBuilder()
+            .add(HealthComponent.self)
+            .build()
         let manager: ComponentManager = ComponentManager()
         world = World<ComponentManager>(componentManager: manager)
         damageSystem = world.getOrCreateSystem()
         deathSystem = world.getOrCreateSystem()
-        entity = world.entityManager.createEntity()
-        try! world.componentManager.addComponent(HealthComponent(health: 123), toEntity: entity)
-        try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: entity)
+        player = world.entityManager.createEntity(withPrototype: playerPrototype)
+        try! world.componentManager.updateComponent(HealthComponent(health: 123), ofEntity: player)
+        try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: player)
         gameloop {
             world.update()
         }
@@ -41,7 +44,7 @@ class Game {
             if line == "1" {
                 update()
             } else if line == "2" {
-                try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: entity)
+                try! world.componentManager.addComponent(DamageComponent(damage: 23), toEntity: player)
             } else if line == "3" {
                 break
             }

@@ -29,10 +29,10 @@ public final class EntityManager<ComponentManager: PComponentManager> {
         return entity
     }
     
-    @discardableResult public func createEntity(withPrototype prototype: Prototype) throws -> Entity {
+    @discardableResult public func createEntity(withPrototype prototype: Prototype) -> Entity {
         let entity = createEntity()
         let chunk = componentManager.existingOrNewChunk(forPrototype: prototype)
-        try chunk.manageEntity(entity: entity)
+        try! chunk.manageEntity(entity: entity)
         return entity
     }
     

@@ -43,9 +43,9 @@ class ComponentManagerPerformanceTests: XCTestCase {
     
     func testCreatingEntityWithPrototype() {
         let prototype = PrototypeBuilder()
-            .addComponentType(Component1.self)
-            .addComponentType(Component2.self)
-            .addComponentType(Component3.self)
+            .add(Component1.self)
+            .add(Component2.self)
+            .add(Component3.self)
             .build()
         measure {
             for _ in 1...runs {

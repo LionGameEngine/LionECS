@@ -27,7 +27,7 @@ public final class ComponentManager: PComponentManager {
     
     public func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component: PComponent {
         guard let chunk = chunkManagingEntity(entity: entity) else {
-            let prototype = PrototypeBuilder().addComponentType(Component.self).build()
+            let prototype = PrototypeBuilder().add(Component.self).build()
             let chunk = existingOrNewChunk(forPrototype: prototype)
             try chunk.manageEntity(entity: entity)
             try chunk.setComponents(entity: entity, r1: component)
@@ -35,7 +35,7 @@ public final class ComponentManager: PComponentManager {
         }
         guard !chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.alreadyHasComponent }
         let newPrototype = PrototypeBuilder(prototype: chunk.prototype)
-            .addComponentType(Component.self)
+            .add(Component.self)
             .build()
         guard let newChunk = existingChunkWithFreeSlot(forPrototype: newPrototype) else {
             let newChunk = createNewChunkByAdding(type: Component.self, toChunk: chunk)
@@ -65,7 +65,7 @@ public final class ComponentManager: PComponentManager {
         guard let chunk = chunkManagingEntity(entity: entity) else { throw ComponentManagerError.entityMissing }
         guard chunk.prototype.componentIdentifiers.contains(Component.componentIdentifier) else { throw ComponentManagerError.componentMissing }
         let newPrototype = PrototypeBuilder(prototype: chunk.prototype)
-            .removeComponentType(Component.self)
+            .remove(Component.self)
             .build()
         guard let newChunk = existingChunkWithFreeSlot(forPrototype: newPrototype) else {
             let newChunk = createChunkByRemoving(type: Component.self, fromChunk: chunk)
@@ -110,13 +110,13 @@ public final class ComponentManager: PComponentManager {
     
     private func createNewChunkByAdding<Component: PComponent>(type: Component.Type, toChunk existingChunk: Chunk) -> Chunk {
         let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
-            .addComponentType(type)
+            .add(type)
         return Chunk(prototype: prototypeBuilder.build())
     }
     
     private func createChunkByRemoving<Component: PComponent>(type: Component.Type, fromChunk existingChunk: Chunk) -> Chunk {
         let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
-            .removeComponentType(type)
+            .add(type)
         return Chunk(prototype: prototypeBuilder.build())
     }
     
