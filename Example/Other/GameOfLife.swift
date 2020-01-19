@@ -11,7 +11,7 @@ import LionECS
 class GameOfLife {
     let world: World<ComponentManager>
     
-    init() {
+    init(width: Int, height: Int) {
         print("########")
         print("Welcome to Game of Life Example!")
         print("########")
@@ -19,23 +19,14 @@ class GameOfLife {
         print("1. update - runs single update")
         print("2. exit - exits the game")
         print("########")
-        let aliveCellPrototype = PrototypeBuilder()
-            .add(CellComponent.self)
-            .add(NeighboursComponent.self)
-            .add(AliveComponent.self)
-            .build()
-        let deadCellPrototype = PrototypeBuilder()
-            .add(CellComponent.self)
-            .add(NeighboursComponent.self)
-            .add(AliveComponent.self)
-            .build()
         let manager: ComponentManager = ComponentManager()
         world = World<ComponentManager>(componentManager: manager)
-        let _: NeighboursSystem = world.getOrCreateSystem()
+        let golStateSystem: GameOfLifeStateSystem = world.getOrCreateSystem()
+        let neighboursSystem: NeighboursSystem = world.getOrCreateSystem()
         let _: DeathSystem = world.getOrCreateSystem()
         let _: BornSystem = world.getOrCreateSystem()
-        let _: StateRenderSystem = world.getOrCreateSystem()
-        world.entityManager.createEntity(withPrototype: aliveCellPrototype)
+        golStateSystem.prepareStateMatrix(width: width, height: height)
+        neighboursSystem.createCellsMatrix(width: width, height: height)
         gameloop {
             world.update()
         }
@@ -50,5 +41,5 @@ class GameOfLife {
                 break
             }
         }
-    }
+    }    
 }

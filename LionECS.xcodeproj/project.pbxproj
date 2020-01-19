@@ -89,7 +89,7 @@
 		F19A033823D3D59300BE92A6 /* BornSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033723D3D59300BE92A6 /* BornSystem.swift */; };
 		F19A033A23D3D5B800BE92A6 /* CellComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033923D3D5B800BE92A6 /* CellComponent.swift */; };
 		F19A033C23D3D89100BE92A6 /* NeighboursSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */; };
-		F19A033E23D3DBD000BE92A6 /* StateRenderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */; };
+		F19A033E23D3DBD000BE92A6 /* GameOfLifeStateSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033D23D3DBD000BE92A6 /* GameOfLifeStateSystem.swift */; };
 		F19A034123D3DD3300BE92A6 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A034023D3DD3300BE92A6 /* GameState.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 		F416160C95D81DE9A0407999 /* PChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A54BCA67A80890F0466D9 /* PChunk.swift */; };
@@ -233,7 +233,7 @@
 		F19A033723D3D59300BE92A6 /* BornSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BornSystem.swift; sourceTree = "<group>"; };
 		F19A033923D3D5B800BE92A6 /* CellComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellComponent.swift; sourceTree = "<group>"; };
 		F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighboursSystem.swift; sourceTree = "<group>"; };
-		F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRenderSystem.swift; sourceTree = "<group>"; };
+		F19A033D23D3DBD000BE92A6 /* GameOfLifeStateSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeStateSystem.swift; sourceTree = "<group>"; };
 		F19A034023D3DD3300BE92A6 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		F7615CCDE8495A857EA0D529 /* EntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTests.swift; sourceTree = "<group>"; };
 		F7F0D9C4CEFB15DFD577B38A /* ComponentManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerError.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 				F19A033523D3A14500BE92A6 /* DeathSystem.swift */,
 				F19A033723D3D59300BE92A6 /* BornSystem.swift */,
 				F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */,
-				F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */,
+				F19A033D23D3DBD000BE92A6 /* GameOfLifeStateSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -921,7 +921,7 @@
 				F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */,
 				7C07A6017A121649B155707F /* NeighboursComponent.swift in Sources */,
 				8B3152115324817A00C6D410 /* GameOfLife.swift in Sources */,
-				F19A033E23D3DBD000BE92A6 /* StateRenderSystem.swift in Sources */,
+				F19A033E23D3DBD000BE92A6 /* GameOfLifeStateSystem.swift in Sources */,
 				1240CAB71C1F2A16627C78A9 /* AliveComponent.swift in Sources */,
 				F19A034123D3DD3300BE92A6 /* GameState.swift in Sources */,
 				F19A033623D3A14500BE92A6 /* DeathSystem.swift in Sources */,
