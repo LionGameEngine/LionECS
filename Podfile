@@ -9,7 +9,12 @@ target 'Example' do
   pod 'SwiftLint'
 end
 
-target 'LionECS' do
+target 'ExampleIOS' do
+  pod 'Sourcery'
+  pod 'SwiftLint'
+end
+
+target 'LionECS_macOS' do
   # Comment the next line if you don't want to use dynamic frameworks
   pod 'Sourcery'
   pod 'SwiftLint'

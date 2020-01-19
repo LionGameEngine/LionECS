@@ -6,7 +6,7 @@ options:
   xcodeVersion: 11.3
   groupSortPosition: top
   deploymentTarget:
-    iOS: "11.0"
+    iOS: "13.0"
     macOS: "10.15"
 configs:
   Debug: debug
@@ -20,23 +20,10 @@ schemes:
   LionECS:
     build:
       targets:
-        LionECS: all
-    run:
-      config: Debug
-    test:
-      config: Debug
-      targets: [LionECSTests]
-      gatherCoverageData: true
-    profile:
-      config: Release
-    analyze:
-      config: Debug
-    archive:
-      config: Release
-  Example:
-    build:
-      targets:
-        Example: all
+        LionECS_iOS: all
+        LionECS_tvOS: all
+        LionECS_watchOS: all
+        LionECS_macOS: all
     run:
       config: Debug
     test:
@@ -53,7 +40,7 @@ schemes:
 targets:
   LionECS:
     type: framework
-    platform: macOS
+    platform: [macOS, iOS, tvOS, watchOS]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(ECS_BUNDLE_IDENTIFIER)
@@ -71,17 +58,39 @@ targets:
     sources:
       - path: ECSTests
     dependencies:
-      - target: LionECS
+      - target: LionECS_macOS
   Example:
     type: application
     platform: macOS
     settings:
       base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.example
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER:
         CURRENT_PROJECT_VERSION: 1
     sources:
       - path: Example
+      - path: ExampleCommon
     dependencies:
-      - target: LionECS
+      - target: LionECS_macOS
+    postBuildScripts:
+      - script: |
+                "${PODS_ROOT}/SwiftLint/swiftlint"
+        name: SwiftLint
+  ExampleIOS:
+    type: application
+    platform: iOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.example
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER:
+        CURRENT_PROJECT_VERSION: 1
+    sources:
+      - path: ExampleIOS
+      - path: ExampleCommon
+    dependencies:
+      - target: LionECS_iOS
     postBuildScripts:
       - script: |
                 "${PODS_ROOT}/SwiftLint/swiftlint"
