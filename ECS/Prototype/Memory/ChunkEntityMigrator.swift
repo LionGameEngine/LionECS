@@ -28,7 +28,11 @@ public final class ChunkEntityMigrator: PChunkEntityMigrator {
             }
         }
         try fromChunk.copyEntityData(entity, into: data)
-        translateData(fromChunkDescription: fromChunk.memoryLayoutDescription, toChunkDescription: toChunk.memoryLayoutDescription, data: UnsafeRawBufferPointer(data), toData: toData)
+        translateData(
+            fromChunkDescription: fromChunk.memoryLayoutDescription,
+            toChunkDescription: toChunk.memoryLayoutDescription,
+            data: UnsafeRawBufferPointer(data),
+            toData: toData)
         try toChunk.manageEntity(entity: entity)
         try toChunk.setEntityData(entity, dataPointer: UnsafeRawBufferPointer(toData))
         try fromChunk.unmanageEntity(entity)

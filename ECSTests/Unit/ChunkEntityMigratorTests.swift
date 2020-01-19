@@ -99,4 +99,3 @@ class ChunkEntityMigratorTests: XCTestCase {
         toMock.memoryManager.free(pointer: toMock.setEntityDataDataPointerReceivedArguments!.dataPointer)
     }
 }
-

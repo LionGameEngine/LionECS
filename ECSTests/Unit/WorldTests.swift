@@ -22,35 +22,35 @@ class WorldTest: XCTestCase {
             return chunks.first!
         }
         
-        func getEntities<Component>(withComponent: Component.Type) -> Set<Entity> where Component : PComponent {
+        func getEntities<Component>(withComponent: Component.Type) -> Set<Entity> where Component: PComponent {
             return Set([])
         }
         
-        func hasComponent<Component>(entity: Entity, component: Component.Type) -> Bool where Component : PComponent {
+        func hasComponent<Component>(entity: Entity, component: Component.Type) -> Bool where Component: PComponent {
             return false
         }
         
-        func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component : PComponent {
+        func addComponent<Component>(_ component: Component, toEntity entity: Entity) throws where Component: PComponent {
             
         }
         
-        func getComponent<Component>(ofEntity entity: Entity) throws -> Component where Component : PComponent {
+        func getComponent<Component>(ofEntity entity: Entity) throws -> Component where Component: PComponent {
             throw ComponentManagerError.componentMissing
         }
         
-        func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component : PComponent {
+        func updateComponent<Component>(_ component: Component, ofEntity entity: Entity) throws where Component: PComponent {
             
         }
         
-        func removeComponent<Component>(_ componentType: Component.Type, fromEntity: Entity) throws where Component : PComponent {
+        func removeComponent<Component>(_ componentType: Component.Type, fromEntity: Entity) throws where Component: PComponent {
             
         }
         
-        func getEntitiesWithComponents<Component>() throws -> [Entity : Component] where Component : PComponent {
+        func getEntitiesWithComponents<Component>() throws -> [Entity: Component] where Component: PComponent {
             return [:]
         }
         
-        func verify<Component>(componentType: Component.Type) throws where Component : PComponent {
+        func verify<Component>(componentType: Component.Type) throws where Component: PComponent {
             
         }
     }

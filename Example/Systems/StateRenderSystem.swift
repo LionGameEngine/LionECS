@@ -11,7 +11,10 @@ import LionECS
 class StateRenderSystem: ComponentSystem<ComponentManager> {
     var state: GameState
     
-    required init(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>) {
+    required init(world: World<ComponentManager>,
+                  entityManager: EntityManager<ComponentManager>,
+                  componentManager: ComponentManager,
+                  entityRequester: EntityRequester<ComponentManager>) {
         state = GameState(cells: [[true, true, true, true], [true, true, true, true], [true, true, true, true], [true, true, true, true], [true, true, true, true]])
         super.init(world: world, entityManager: entityManager, componentManager: componentManager, entityRequester: entityRequester)
     }
@@ -28,6 +31,15 @@ class StateRenderSystem: ComponentSystem<ComponentManager> {
         result2.forEach { (entity: Entity, cellComponent: CellComponent) in
             state.cells[cellComponent.x][cellComponent.y] = false
         }
-        print(state)
+        for rows in state.cells {
+            for cell in rows {
+                if cell == true {
+                    print(1, terminator: "")
+                } else {
+                    print(0, terminator: "")
+                }
+            }
+            print("")
+        }
     }
 }

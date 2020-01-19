@@ -78,7 +78,7 @@ class EntityManagerPerformanceTests: XCTestCase {
             let manager = ComponentManager()
             let sut: EntityManager<ComponentManager> = EntityManager<ComponentManager>(componentManager: manager)
             for _ in 1...runs {
-                try? sut.createEntity(withPrototype: prototype)
+                sut.createEntity(withPrototype: prototype)
             }
         }
     }

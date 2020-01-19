@@ -15,7 +15,7 @@ class ManagedMemoryBlobTests: XCTestCase {
         let managerMock = PMemoryManagerMock()
         managerMock.allocCountReturnValue = UnsafeMutableRawBufferPointer.allocate(byteCount: 1, alignment: 0)
         // when
-        let _ = ManagedMemoryBlob(memoryManager: managerMock)
+        _ = ManagedMemoryBlob(memoryManager: managerMock)
         // then
         XCTAssertTrue(managerMock.allocCountCalled)
         XCTAssertEqual(1024, managerMock.allocCountReceivedCount)
@@ -26,7 +26,7 @@ class ManagedMemoryBlobTests: XCTestCase {
         let managerMock = PMemoryManagerMock()
         managerMock.allocCountReturnValue = UnsafeMutableRawBufferPointer.allocate(byteCount: 1, alignment: 0)
         // when
-        let _ = ManagedMemoryBlob(memoryManager: managerMock)
+        _ = ManagedMemoryBlob(memoryManager: managerMock)
         // then
         XCTAssertTrue(managerMock.clearPointerCalled)
     }

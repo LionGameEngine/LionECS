@@ -16,6 +16,10 @@ public final class ComponentAccessorFactory: PComponentAccessorFactory {
     }
 
     public func create<C: PComponent>(_ type: C.Type) -> PComponentAccessor {
-        return ComponentAccessor(memoryLayoutDescription: memoryLayoutDescription, entries: entries, offset: memoryLayoutDescription.offset(C.self), size: memoryLayoutDescription.size(C.self))
+        return ComponentAccessor(
+            memoryLayoutDescription: memoryLayoutDescription,
+            entries: entries,
+            offset: memoryLayoutDescription.offset(C.self),
+            size: memoryLayoutDescription.size(C.self))
     }
 }

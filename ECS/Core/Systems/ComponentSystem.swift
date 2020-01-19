@@ -12,7 +12,11 @@ open class ComponentSystem<ComponentManager: PComponentManager>: PCreatableSyste
     public private(set) weak var componentManager: ComponentManager!
     public private(set) weak var entityRequester: EntityRequester<ComponentManager>!
     
-    public required init(world: World<ComponentManager>, entityManager: EntityManager<ComponentManager>, componentManager: ComponentManager, entityRequester: EntityRequester<ComponentManager>) {
+    public required init(
+        world: World<ComponentManager>,
+        entityManager: EntityManager<ComponentManager>,
+        componentManager: ComponentManager,
+        entityRequester: EntityRequester<ComponentManager>) {
         self.world = world
         self.entityManager = entityManager
         self.componentManager = componentManager

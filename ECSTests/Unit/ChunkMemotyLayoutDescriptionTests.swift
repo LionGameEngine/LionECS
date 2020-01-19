@@ -21,7 +21,10 @@ class ChunkMemoryLayoutDescriptionests: XCTestCase {
     
     func testHasComponent_WhenCalledAndHasComponent_ShouldReturnFalse() {
         // given
-        let sut = ChunkMemoryLayoutDescription(entitySize: 16, componentDescriptions: [PComponentMock.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4)], chunkEntrySize: 20)
+        let sut = ChunkMemoryLayoutDescription(
+            entitySize: 16,
+            componentDescriptions: [PComponentMock.componentIdentifier: ComponentLayoutDescription(offset: 16, size: 4)],
+            chunkEntrySize: 20)
         // when
         let hasComponent = sut.hasComponent(PComponentMock.self)
         // them

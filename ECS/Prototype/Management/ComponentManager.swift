@@ -51,7 +51,7 @@ public final class ComponentManager: PComponentManager {
     public func getComponent<Component>(ofEntity entity: Entity) throws -> Component where Component: PComponent {
         guard let chunk = chunkManagingEntity(entity: entity) else { throw ComponentManagerError.entityMissing }
         let entitiesWithComponents: [(entity: Entity, component: Component)] = try chunk.getEntitiesWithComponents()
-        guard let component = entitiesWithComponents.first(where: { $0.entity == entity } )?.component else { throw ComponentManagerError.componentMissing }
+        guard let component = entitiesWithComponents.first(where: { $0.entity == entity })?.component else { throw ComponentManagerError.componentMissing }
         return component
     }
     
@@ -99,7 +99,7 @@ public final class ComponentManager: PComponentManager {
         return chunks.withUnsafeBufferPointer { (pointer) -> Chunk? in
             var i = 0
             let count = pointer.count
-            while(i < count) {
+            while i < count {
                 if pointer[i].prototype == prototype && !pointer[i].freeIndicies.isEmpty {
                     return pointer[i]
                 }
@@ -125,7 +125,7 @@ public final class ComponentManager: PComponentManager {
         return chunks.withUnsafeBufferPointer { (pointer) -> Chunk? in
             var i = 0
             let count = pointer.count
-            while(i < count) {
+            while i < count {
                 if pointer[i].managesEntity(entity: entity) {
                     return pointer[i]
                 }

@@ -18,7 +18,7 @@ public struct EntityQuery<ComponentManager: PComponentManager>: PEntityQuery {
     public func resolveWith(requester: EntityRequester<ComponentManager>) throws -> Result {
         let r1Manager = requester.getComponentManager()
         let chunks = r1Manager.chunks
-        return Result(chunks: chunks.filter({ shouldIncludeChunk(chunk: $0)}))
+        return Result(chunks: chunks.filter { shouldIncludeChunk(chunk: $0) })
     }
         
     private func shouldIncludeChunk(chunk: Chunk) -> Bool {

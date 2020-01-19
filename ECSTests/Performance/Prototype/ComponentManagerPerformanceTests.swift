@@ -52,7 +52,7 @@ class ComponentManagerPerformanceTests: XCTestCase {
                 let manager = ComponentManager()
                 let sut = EntityRequester<ComponentManager>(entityManager: EntityManager<ComponentManager>(componentManager: manager), componentManager: manager)
                 for _ in 0...entitiesCount {
-                    let entity = try! sut.getEntityManager().createEntity(withPrototype: prototype)
+                    _ = sut.getEntityManager().createEntity(withPrototype: prototype)
                 }
             }
         }
