@@ -1,5 +1,5 @@
 //
-//  GameOfLifeStateSystem.swift
+//  StateSystem.swift
 //  Example
 //
 //  Created by Tomasz Lewandowski on 19/01/2020.
@@ -8,7 +8,7 @@
 
 import LionECS
 
-class GameOfLifeStateSystem: ComponentSystem<ComponentManager> {
+class StateSystem: ComponentSystem<ComponentManager> {
     var state: GameState!
     
     required init(world: World<ComponentManager>,
@@ -21,7 +21,6 @@ class GameOfLifeStateSystem: ComponentSystem<ComponentManager> {
     override func update() {
         updateStateWithAliveCells()
         updateStateWithDeadCells()
-        renderState()
     }
     
     func prepareStateMatrix(width: Int, height: Int) {
@@ -49,19 +48,6 @@ class GameOfLifeStateSystem: ComponentSystem<ComponentManager> {
         guard let result = try? entityRequester.queryEntities(query: query) else { return }
         result.forEach { (entity: Entity, cellComponent: CellComponent) in
             state.cells[cellComponent.y][cellComponent.x] = false
-        }
-    }
-    
-    private func renderState() {
-        for rows in state.cells {
-            for cell in rows {
-                if cell == true {
-                    print(1, terminator: "")
-                } else {
-                    print(0, terminator: "")
-                }
-            }
-            print("")
         }
     }
 }

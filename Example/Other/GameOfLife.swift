@@ -7,39 +7,22 @@
 //
 
 import LionECS
+import Foundation
 
 class GameOfLife {
     let world: World<ComponentManager>
+    let stateSystem: StateSystem
+    let info: GameOfLifeInfo
     
-    init(width: Int, height: Int) {
-        print("########")
-        print("Welcome to Game of Life Example!")
-        print("########")
-        print("Following options are available:")
-        print("1. update - runs single update")
-        print("2. exit - exits the game")
-        print("########")
+    init(info: GameOfLifeInfo) {
+        self.info = info
         let manager: ComponentManager = ComponentManager()
         world = World<ComponentManager>(componentManager: manager)
-        let golStateSystem: GameOfLifeStateSystem = world.getOrCreateSystem()
+        stateSystem = world.getOrCreateSystem()
         let neighboursSystem: NeighboursSystem = world.getOrCreateSystem()
         let _: DeathSystem = world.getOrCreateSystem()
         let _: BornSystem = world.getOrCreateSystem()
-        golStateSystem.prepareStateMatrix(width: width, height: height)
-        neighboursSystem.createCellsMatrix(width: width, height: height)
-        gameloop {
-            world.update()
-        }
+        stateSystem.prepareStateMatrix(width: info.width, height: info.height)
+        neighboursSystem.createCellsMatrix(width: info.width, height: info.height)
     }
-    
-    func gameloop(update: () -> Void) {
-        while true {
-            let line = readLine(strippingNewline: true)
-            if line == "1" {
-                update()
-            } else if line == "2" {
-                break
-            }
-        }
-    }    
 }
