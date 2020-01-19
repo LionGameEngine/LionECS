@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		02CDEA5B2E30AAC919B4FCAB /* LionECS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5960CC6B177C4A44ED7FAEFF /* LionECS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		06E37D5CC752ECEFFC5AA196 /* DeadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7C13446133AC091EA9B4C3 /* DeadComponent.swift */; };
 		07CAE9E1002602E6A782301C /* Excludes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599546CD714D2F161CED2319 /* Excludes.swift */; };
 		08FBB359D1C0E860D68AA3D7 /* ChunkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89117BADF1A45F8077945555 /* ChunkError.swift */; };
 		0B7B647E66F85257D7718262 /* ComponentLayoutDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E95E1438B7CAC5AD5F8142D /* ComponentLayoutDescription.swift */; };
@@ -16,7 +15,7 @@
 		0EAC7A854964A32D90A1DB00 /* EntityManagerPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E30B53F614A43D5E397667 /* EntityManagerPerformanceTests.swift */; };
 		10A47ED851B8DE7B3D0A7C66 /* ComponentManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F0D9C4CEFB15DFD577B38A /* ComponentManagerError.swift */; };
 		1221837E4402D8ED6102CFAF /* PComponentAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EE47BAEF03B432DA43F0B8 /* PComponentAccessor.swift */; };
-		1240CAB71C1F2A16627C78A9 /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537C3E16316AAC9B6406606 /* HealthComponent.swift */; };
+		1240CAB71C1F2A16627C78A9 /* AliveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537C3E16316AAC9B6406606 /* AliveComponent.swift */; };
 		1865C79E9E6B08E13847BCA5 /* ComponentAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B469284C6DFDA558B0C35 /* ComponentAccessor.swift */; };
 		2114E968C26B9403D8639803 /* PComponentAccesorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD206A147C125DAE2E7D1F /* PComponentAccesorFactory.swift */; };
 		2A5FF638A9F2ACC748569B73 /* EntityRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD954F6ED0FDDFEE0862A3D /* EntityRequesterTests.swift */; };
@@ -45,7 +44,7 @@
 		7557967BEAEF961BA722D71E /* LionECS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5960CC6B177C4A44ED7FAEFF /* LionECS.framework */; };
 		755933B9DF42651A1AD2C831 /* AutoEntityQueryResult.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FAFEB7246814960270139 /* AutoEntityQueryResult.generated.swift */; };
 		7BD9321ED764E231B9891FE1 /* AutoChunk+PEntityIterable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D722ABA520781D398B206472 /* AutoChunk+PEntityIterable.generated.swift */; };
-		7C07A6017A121649B155707F /* DamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F634C97A679EF89DE65C196 /* DamageComponent.swift */; };
+		7C07A6017A121649B155707F /* NeighboursComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F634C97A679EF89DE65C196 /* NeighboursComponent.swift */; };
 		7CFEB34FCA8486271F00D39A /* LionECS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5960CC6B177C4A44ED7FAEFF /* LionECS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7F00BC84E9DACE2433EBCFC9 /* ChunkMemoryLayoutDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C905057339B93C21B30980 /* ChunkMemoryLayoutDescriptionBuilder.swift */; };
 		80A952D558F482E44A8B8A1C /* PSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88EA79F60513B35C7D27BEB /* PSystem.swift */; };
@@ -54,7 +53,7 @@
 		84F8AC252D076602128BB11B /* PMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850521BFF40EC16E513A4A8D /* PMemoryManager.swift */; };
 		86DB7BC1538109750270A8DF /* ExcludesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF73E4A6EE9A6A878363FC /* ExcludesTests.swift */; };
 		8B2CCFDCA5B3D16A26E8DA24 /* ComponentAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654FA7B5EE3CC852808EC82 /* ComponentAccessorPerformanceTests.swift */; };
-		8B3152115324817A00C6D410 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18480C0289CED1856FA9AAB /* Game.swift */; };
+		8B3152115324817A00C6D410 /* GameOfLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18480C0289CED1856FA9AAB /* GameOfLife.swift */; };
 		8DAFBBF56A80FCD64D8FA338 /* ComponentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581EE702C8BC757E785D31D2 /* ComponentManager.swift */; };
 		8E4A9306947B853E4FF83B37 /* ChunkEntityMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD700B3110C89AF148DA4BE /* ChunkEntityMigrator.swift */; };
 		8F32350F8A5288FA9E988D5F /* LionECS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5960CC6B177C4A44ED7FAEFF /* LionECS.framework */; };
@@ -75,7 +74,6 @@
 		C35E686B9DC97BF42B82D2E5 /* PEntityFIlter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2D62C24B42429D7426757 /* PEntityFIlter.swift */; };
 		C5D6754E6CEA1A0B943386EB /* ComponentIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842D716A5537513CCA58E39 /* ComponentIdentifier.swift */; };
 		CF02D40A329468CE6BEA2D3F /* ManagedMemoryBlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56920CD4A22B142E09CAFE56 /* ManagedMemoryBlobTests.swift */; };
-		CF51136928A58C94DF01BE9B /* DamageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB6ACBF0E9FB448AD5ED11 /* DamageSystem.swift */; };
 		D11D1F53CC56AAD308CDE9CE /* EntityDataAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11DEF63CD5CCE08496B44E /* EntityDataAccessorPerformanceTests.swift */; };
 		D31673E562C1EAF1E5909552 /* EntityAccessorPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEB6051093852B832869C4 /* EntityAccessorPerformanceTests.swift */; };
 		D393B4461F61E51638636D06 /* EntityAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AABE22B58587839AEAA2F66 /* EntityAccessor.swift */; };
@@ -88,6 +86,11 @@
 		EBDB487A5FEA142D04ECA700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDB8D1E8F6C0FA235848949 /* AppDelegate.swift */; };
 		F0C83026C3BC1455F3CB74B7 /* ECS.h in Headers */ = {isa = PBXBuildFile; fileRef = A49B975AEE38F2B692A60905 /* ECS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F19A033623D3A14500BE92A6 /* DeathSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033523D3A14500BE92A6 /* DeathSystem.swift */; };
+		F19A033823D3D59300BE92A6 /* BornSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033723D3D59300BE92A6 /* BornSystem.swift */; };
+		F19A033A23D3D5B800BE92A6 /* CellComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033923D3D5B800BE92A6 /* CellComponent.swift */; };
+		F19A033C23D3D89100BE92A6 /* NeighboursSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */; };
+		F19A033E23D3DBD000BE92A6 /* StateRenderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */; };
+		F19A034123D3DD3300BE92A6 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19A034023D3DD3300BE92A6 /* GameState.swift */; };
 		F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */; };
 		F416160C95D81DE9A0407999 /* PChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A54BCA67A80890F0466D9 /* PChunk.swift */; };
 		FCD6C375DB3D586BFD0688D9 /* EntityQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158A640344B7D4C95C28372C /* EntityQuery.swift */; };
@@ -181,7 +184,7 @@
 		769546E264F1714D7FDE1BAF /* PEntityAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityAccessor.swift; sourceTree = "<group>"; };
 		7E56C5F832DFD86C5CD8823A /* LionECSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LionECSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2740294881AC2723E1F65F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7F634C97A679EF89DE65C196 /* DamageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageComponent.swift; sourceTree = "<group>"; };
+		7F634C97A679EF89DE65C196 /* NeighboursComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighboursComponent.swift; sourceTree = "<group>"; };
 		84B9A8A214EF30CF43E9DE53 /* Pods_LionECSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LionECSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850521BFF40EC16E513A4A8D /* PMemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMemoryManager.swift; sourceTree = "<group>"; };
 		88D2D62C24B42429D7426757 /* PEntityFIlter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PEntityFIlter.swift; sourceTree = "<group>"; };
@@ -193,11 +196,10 @@
 		910A54BCA67A80890F0466D9 /* PChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PChunk.swift; sourceTree = "<group>"; };
 		9858EAB55B04CF060040755F /* EntityRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityRequester.swift; sourceTree = "<group>"; };
 		9B01F1EAD197C29EFF011EC7 /* PComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PComponent.swift; sourceTree = "<group>"; };
-		9B7C13446133AC091EA9B4C3 /* DeadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadComponent.swift; sourceTree = "<group>"; };
 		9C6AAD754D7B6C9403904F27 /* ComponentManagerPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerPerformanceTests.swift; sourceTree = "<group>"; };
 		A49B975AEE38F2B692A60905 /* ECS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
 		A4FBAF01CEDFF0130045D8D5 /* AutoMockable.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
-		A537C3E16316AAC9B6406606 /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
+		A537C3E16316AAC9B6406606 /* AliveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveComponent.swift; sourceTree = "<group>"; };
 		A842D716A5537513CCA58E39 /* ComponentIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentIdentifier.swift; sourceTree = "<group>"; };
 		ADDFA40754A88120B7147B99 /* PCreatableSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCreatableSystem.swift; sourceTree = "<group>"; };
 		AE9B3438094ABEC7F6A0B884 /* WorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTests.swift; sourceTree = "<group>"; };
@@ -212,7 +214,6 @@
 		BB431E639A9DC056DAD67E09 /* Pods-LionECSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LionECSTests.debug.xcconfig"; path = "Target Support Files/Pods-LionECSTests/Pods-LionECSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BBD0957372707432BFD9B21B /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		BD16017028F6289A6EB32B5D /* ComponentSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentSystem.swift; sourceTree = "<group>"; };
-		BFFB6ACBF0E9FB448AD5ED11 /* DamageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageSystem.swift; sourceTree = "<group>"; };
 		C0EB86BC9C31FE36A714EC4D /* Pods-LionECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LionECS.debug.xcconfig"; path = "Target Support Files/Pods-LionECS/Pods-LionECS.debug.xcconfig"; sourceTree = "<group>"; };
 		C0FC5F6B60050566ED4D4324 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		CB70EF919F77BA782C6EEA0E /* ChunkMemoryManagerPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryManagerPerformanceTests.swift; sourceTree = "<group>"; };
@@ -227,8 +228,13 @@
 		E078EE80F26136939256C36A /* ChunkEntityMigratorPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorPerformanceTests.swift; sourceTree = "<group>"; };
 		E22B469284C6DFDA558B0C35 /* ComponentAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentAccessor.swift; sourceTree = "<group>"; };
 		E3FCB2318077F33A3F59F53D /* ChunkMemoryLayoutDescriptionBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkMemoryLayoutDescriptionBuilderTests.swift; sourceTree = "<group>"; };
-		F18480C0289CED1856FA9AAB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		F18480C0289CED1856FA9AAB /* GameOfLife.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLife.swift; sourceTree = "<group>"; };
 		F19A033523D3A14500BE92A6 /* DeathSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathSystem.swift; sourceTree = "<group>"; };
+		F19A033723D3D59300BE92A6 /* BornSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BornSystem.swift; sourceTree = "<group>"; };
+		F19A033923D3D5B800BE92A6 /* CellComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellComponent.swift; sourceTree = "<group>"; };
+		F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighboursSystem.swift; sourceTree = "<group>"; };
+		F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRenderSystem.swift; sourceTree = "<group>"; };
+		F19A034023D3DD3300BE92A6 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		F7615CCDE8495A857EA0D529 /* EntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTests.swift; sourceTree = "<group>"; };
 		F7F0D9C4CEFB15DFD577B38A /* ComponentManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentManagerError.swift; sourceTree = "<group>"; };
 		F8388C527B40F0BD64B07749 /* ChunkEntityMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkEntityMigratorTests.swift; sourceTree = "<group>"; };
@@ -445,9 +451,9 @@
 		BA3EB53CC36F8F788EBD7E84 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7F634C97A679EF89DE65C196 /* DamageComponent.swift */,
-				9B7C13446133AC091EA9B4C3 /* DeadComponent.swift */,
-				A537C3E16316AAC9B6406606 /* HealthComponent.swift */,
+				7F634C97A679EF89DE65C196 /* NeighboursComponent.swift */,
+				A537C3E16316AAC9B6406606 /* AliveComponent.swift */,
+				F19A033923D3D5B800BE92A6 /* CellComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 		BDD7DD68069CB7F77C64DA95 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				F19A033F23D3DD1500BE92A6 /* Other */,
 				BA3EB53CC36F8F788EBD7E84 /* Components */,
 				D40B5C7F3DC62B8410A61263 /* Preview Content */,
 				CF1220B47378AB099CF89AE6 /* Systems */,
@@ -462,7 +469,6 @@
 				131147088A662A27414C62A4 /* Assets.xcassets */,
 				1B1F62EB8E4C73CA43FD4CC0 /* ContentView.swift */,
 				5B2B27C067B21C763BB2DBAB /* Example.entitlements */,
-				F18480C0289CED1856FA9AAB /* Game.swift */,
 				3E39ABA2CE4048F4066542F1 /* Info.plist */,
 				319218F95235E504B3CEA1CF /* Main.storyboard */,
 			);
@@ -482,8 +488,10 @@
 		CF1220B47378AB099CF89AE6 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				BFFB6ACBF0E9FB448AD5ED11 /* DamageSystem.swift */,
 				F19A033523D3A14500BE92A6 /* DeathSystem.swift */,
+				F19A033723D3D59300BE92A6 /* BornSystem.swift */,
+				F19A033B23D3D89100BE92A6 /* NeighboursSystem.swift */,
+				F19A033D23D3DBD000BE92A6 /* StateRenderSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -555,6 +563,15 @@
 				0580E1B0BCEC712593ABDE53 /* Pods-LionECSTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F19A033F23D3DD1500BE92A6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F19A034023D3DD3300BE92A6 /* GameState.swift */,
+				F18480C0289CED1856FA9AAB /* GameOfLife.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		F352CC0345F5EF25466D69F6 /* Frameworks */ = {
@@ -899,13 +916,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBDB487A5FEA142D04ECA700 /* AppDelegate.swift in Sources */,
+				F19A033823D3D59300BE92A6 /* BornSystem.swift in Sources */,
+				F19A033A23D3D5B800BE92A6 /* CellComponent.swift in Sources */,
 				F3C0812F7F5C1042E10DC4E2 /* ContentView.swift in Sources */,
-				7C07A6017A121649B155707F /* DamageComponent.swift in Sources */,
-				CF51136928A58C94DF01BE9B /* DamageSystem.swift in Sources */,
-				06E37D5CC752ECEFFC5AA196 /* DeadComponent.swift in Sources */,
-				8B3152115324817A00C6D410 /* Game.swift in Sources */,
-				1240CAB71C1F2A16627C78A9 /* HealthComponent.swift in Sources */,
+				7C07A6017A121649B155707F /* NeighboursComponent.swift in Sources */,
+				8B3152115324817A00C6D410 /* GameOfLife.swift in Sources */,
+				F19A033E23D3DBD000BE92A6 /* StateRenderSystem.swift in Sources */,
+				1240CAB71C1F2A16627C78A9 /* AliveComponent.swift in Sources */,
+				F19A034123D3DD3300BE92A6 /* GameState.swift in Sources */,
 				F19A033623D3A14500BE92A6 /* DeathSystem.swift in Sources */,
+				F19A033C23D3D89100BE92A6 /* NeighboursSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

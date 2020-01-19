@@ -1,5 +1,5 @@
 //
-//  FooComponent.swift
+//  AliveComponent.swift
 //  Example
 //
 //  Created by Tomasz Lewandowski on 01/01/2020.
@@ -8,6 +8,5 @@
 
 import LionECS
 
-struct HealthComponent: PComponent {
-    var health: Float
+struct AliveComponent: PComponent {
 }

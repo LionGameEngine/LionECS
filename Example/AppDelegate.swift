@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
         
-        _ = Game()
+        _ = GameOfLife()
 
         // Create the window and set the content view. 
         window = NSWindow(

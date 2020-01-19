@@ -1,5 +1,5 @@
 //
-//  DamageComponent.swift
+//  NeighboursComponent.swift
 //  Example
 //
 //  Created by Tomasz Lewandowski on 02/01/2020.
@@ -8,6 +8,6 @@
 
 import LionECS
 
-struct DamageComponent: PComponent {
-    var damage: Float
+struct NeighboursComponent: PComponent {
+    var aliveNeighbours: Int
 }

@@ -70,6 +70,7 @@ public final class ComponentManager: PComponentManager {
         guard let newChunk = existingChunkWithFreeSlot(forPrototype: newPrototype) else {
             let newChunk = createChunkByRemoving(type: Component.self, fromChunk: chunk)
             try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
+            chunks.append(newChunk)
             return
         }
         try entityMigrator.migrate(fromChunk: chunk, toChunk: newChunk, entity: entity)
@@ -116,7 +117,7 @@ public final class ComponentManager: PComponentManager {
     
     private func createChunkByRemoving<Component: PComponent>(type: Component.Type, fromChunk existingChunk: Chunk) -> Chunk {
         let prototypeBuilder = PrototypeBuilder(prototype: existingChunk.prototype)
-            .add(type)
+            .remove(type)
         return Chunk(prototype: prototypeBuilder.build())
     }
     
