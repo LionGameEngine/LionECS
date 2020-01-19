@@ -18,7 +18,6 @@ generate:
 sourcery: auto-chunk auto-queries auto-mocks
 
 auto-chunk:
-	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk+PComponentsSettable.sourcery.yml --disableCache
 	@$(SOURCERY) --config tools/sourcery/ECS/AutoChunk+PEntityIterable.sourcery.yml --disableCache
 
 auto-queries:

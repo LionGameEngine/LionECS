@@ -102,4 +102,15 @@ public final class Chunk: PChunk {
         try verify(Component.self)
         return (0..<allocatedEntities).map { (entity: entityAccessor.access(index: $0), component: componentAccessorFactory.create(Component.self).access(index: $0)) }
     }
+    
+    public func setComponents<R1: PComponent>(entity: Entity, r1: R1) throws {
+        try verify(entity: entity)
+        try setComponents(r1: r1, atIndex: managedEntities[entity]!)
+    }
+    
+    public func setComponents<R1: PComponent>(r1: R1, atIndex index: Int) throws {
+        try verify(R1.self)
+        componentAccessorFactory.create(R1.self).set(component: r1, index: index)
+    }
+
 }
