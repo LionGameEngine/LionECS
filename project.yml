@@ -1,6 +1,6 @@
 name: LionECS
 attributes:
-  ORGANIZATIONNAME: LionSoftware
+  ORGANIZATIONNAME: Lion Software Tomasz Lewandowski
 options:
   createIntermediateGroups: true
   xcodeVersion: 11.3

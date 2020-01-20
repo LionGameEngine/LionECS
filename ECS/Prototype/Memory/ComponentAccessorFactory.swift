@@ -3,7 +3,7 @@
 //  LionECS
 //
 //  Created by Tomasz Lewandowski on 14/01/2020.
-//  Copyright © 2020 LionSoftware. All rights reserved.
+//  Copyright © 2020 Lion Software Tomasz Lewandowski. All rights reserved.
 //
 
 public final class ComponentAccessorFactory: PComponentAccessorFactory {
