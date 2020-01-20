@@ -1,0 +1,13 @@
+{% macro getTemplateParameter y inoutCount %}{% if y <= inoutCount %}W{% else %}R{% endif %}{{y}}: PComponent{% endmacro %}
+{% macro getClosureParameter y inoutCount %}{% if y <= inoutCount %}inout W{% else %}R{% endif %}{{y}}{% endmacro %}
+{% macro getComponentTemplateParameters x inoutCount %}<{% for y in 1...x %}{% call getTemplateParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endmacro %}
+{% macro getClosureParameters x inoutCount %}{% for y in 1...x %}{% call getClosureParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+public protocol PEntityIterable {
+    {% for componentsCount in 1...10 %}
+    {% for inoutComponentsCount in 0...componentsCount %}
+    func forEach{% call getComponentTemplateParameters componentsCount inoutComponentsCount %}(_ closure: ({% call getClosureParameters componentsCount inoutComponentsCount %}) -> Void)
+    func forEach{% call getComponentTemplateParameters componentsCount inoutComponentsCount %}(_ closure: (Entity, {% call getClosureParameters componentsCount inoutComponentsCount %}) -> Void)
+    {% endfor %}
+    {% endfor %}
+}

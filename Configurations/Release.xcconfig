@@ -1,0 +1,15 @@
+//
+//  Release.xcconfig
+//  LionEngine
+//
+//  Created by Tomasz Lewandowski on 02/01/2020.
+//  Copyright © 2020 Lion Software Tomasz Lewandowski. All rights reserved.
+//
+
+#include "Common.xcconfig"
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+SWIFT_OPTIMIZATION_LEVEL = -O
+SWIFT_COMPILATION_MODE = wholemodule
+ONLY_ACTIVE_ARCH = NO
+GCC_OPTIMIZATION_LEVEL = s

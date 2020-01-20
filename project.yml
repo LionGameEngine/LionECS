@@ -1,0 +1,97 @@
+name: LionECS
+attributes:
+  ORGANIZATIONNAME: Lion Software Tomasz Lewandowski
+options:
+  createIntermediateGroups: true
+  xcodeVersion: 11.3
+  groupSortPosition: top
+  deploymentTarget:
+    iOS: "13.0"
+    macOS: "10.15"
+configs:
+  Debug: debug
+  Release: release
+fileGroups:
+  - Configurations
+configFiles:
+  Debug: Configurations/Debug.xcconfig
+  Release: Configurations/Release.xcconfig
+schemes:
+  LionECS:
+    build:
+      targets:
+        LionECS_iOS: all
+        LionECS_tvOS: all
+        LionECS_watchOS: all
+        LionECS_macOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [LionECSTests]
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+targets:
+  LionECS:
+    type: framework
+    platform: [macOS, iOS, tvOS, watchOS]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(ECS_BUNDLE_IDENTIFIER)
+        PROVISIONING_PROFILE_SPECIFIER: $(ECS_PROVISIONING_PROFILE_SPECIFIER)
+    sources:
+      - path: ECS
+  LionECSTests:
+    type: bundle.unit-test
+    platform: macOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.tests
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER: 
+    sources:
+      - path: ECSTests
+    dependencies:
+      - target: LionECS_macOS
+  Example:
+    type: application
+    platform: macOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.example
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER:
+        CURRENT_PROJECT_VERSION: 1
+    sources:
+      - path: Example
+      - path: ExampleCommon
+    dependencies:
+      - target: LionECS_macOS
+    postBuildScripts:
+      - script: |
+                "${PODS_ROOT}/SwiftLint/swiftlint"
+        name: SwiftLint
+  ExampleIOS:
+    type: application
+    platform: iOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.example
+        # empty specifier resolves to "Automatic"
+        PROVISIONING_PROFILE_SPECIFIER:
+        CURRENT_PROJECT_VERSION: 1
+    sources:
+      - path: ExampleIOS
+      - path: ExampleCommon
+    dependencies:
+      - target: LionECS_iOS
+    postBuildScripts:
+      - script: |
+                "${PODS_ROOT}/SwiftLint/swiftlint"
+        name: SwiftLint

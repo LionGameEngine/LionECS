@@ -1,0 +1,47 @@
+{% macro getTemplateParameter y inoutCount %}{% if y <= inoutCount %}W{% else %}R{% endif %}{{y}}: PComponent{% endmacro %}
+{% macro getClosureParameter y inoutCount %}{% if y <= inoutCount %}inout W{% else %}R{% endif %}{{y}}{% endmacro %}
+{% macro defineAccessor y inoutCount %}let {% if y <= inoutCount %}w{% else %}r{% endif %}{{y}}Accessor = componentAccessorFactory.create({% if y <= inoutCount %}W{% else %}R{% endif %}{{y}}.self){% endmacro %}
+{% macro useAccessor y inoutCount %}{% if y <= inoutCount %}&w{% else %}r{% endif %}{{y}}Accessor.access{% if y <= inoutCount %}Mutable{% endif %}(index: index){% if y <= inoutCount %}.pointee{% endif %}{% endmacro %}
+{% macro getComponentTemplateParameters x inoutCount %}<{% for y in 1...x %}{% call getTemplateParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endmacro %}
+{% macro getClosureParameters x inoutCount %}{% for y in 1...x %}{% call getClosureParameter y inoutCount %}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro defineAccessors x inoutCount %}{% for y in 1...x %}{% call defineAccessor y inoutCount %}{% if not forloop.last %}
+        {% endif %}{% endfor %}{% endmacro %}
+{% macro useAccessors x inoutCount %}{% for y in 1...x %}{% call useAccessor y inoutCount %}{% if not forloop.last %},
+                {% endif %}{% endfor %}{% endmacro %}
+
+
+
+extension Chunk: PEntityIterable {
+    {% for componentsCount in 1...10 %}
+    {% for inoutComponentsCount in 0...componentsCount %}
+    public func forEach{% call getComponentTemplateParameters componentsCount inoutComponentsCount %}(_ closure: ({% call getClosureParameters componentsCount inoutComponentsCount %}) -> Void) {
+        var index = 0
+        {% call defineAccessors componentsCount inoutComponentsCount %}
+        while index < allocatedEntities {
+            let entity = entityAccessor.access(index: index)
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
+            closure({% call useAccessors componentsCount inoutComponentsCount  %})
+            index += 1
+        }
+    }
+    
+    public func forEach{% call getComponentTemplateParameters componentsCount inoutComponentsCount %}(_ closure: (Entity, {% call getClosureParameters componentsCount inoutComponentsCount %}) -> Void) {
+        var index = 0
+        {% call defineAccessors componentsCount inoutComponentsCount %}
+        while index < allocatedEntities {
+            let entity = entityAccessor.access(index: index)
+            guard !entity.isNull else {
+                index+=1
+                continue
+            }
+            closure(entity,
+                    {% call useAccessors componentsCount inoutComponentsCount %})
+            index += 1
+        }
+    }
+    {% endfor %}
+    {% endfor %}
+}
