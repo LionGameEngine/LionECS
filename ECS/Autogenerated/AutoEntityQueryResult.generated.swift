@@ -657,4 +657,4 @@ public extension EntityQueryResult {
     }
 }
 
-//  Copyright © 2020 LionSoftware. All rights reserved.
+//  Copyright © 2020 Lion Software Tomasz Lewandowski. All rights reserved.
