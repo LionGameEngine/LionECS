@@ -31,7 +31,7 @@ To install LionECS using Carthage go through following steps:
 1. Add the following entry to your **Cartfile**
 
 ```
-github "LionGameEngine/LionECS"
+github "LionECS/LionECS"
 ```
 
 2. Then run ```carthage update```
@@ -40,7 +40,7 @@ github "LionGameEngine/LionECS"
 
 To install LionECS using **Swift Package Manager** go through following steps:
 
-1. Add following package dependency in you **Package.swift** ``` .package(url: "https://github.com/LionGameEngine/LionECS.git", from: "0.0.1") ```
+1. Add following package dependency in you **Package.swift** ``` .package(url: "https://github.com/LionECS/LionECS.git", from: "0.0.1") ```
 2. Add following tatget dependency in your **Package.swift** ``` dependencies: ["LionECS"]) ```
 
 ## Overview
