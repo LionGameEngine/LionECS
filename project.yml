@@ -18,18 +18,63 @@ configFiles:
   Debug: Configurations/Debug.xcconfig
   Release: Configurations/Release.xcconfig
 schemes:
-  LionECS:
+  LionECS_iOS:
     build:
       targets:
         LionECS_iOS: all
-        LionECS_tvOS: all
-        LionECS_watchOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [LionECSTests_iOS]
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  LionECS_macOS:
+    build:
+      targets:
         LionECS_macOS: all
     run:
       config: Debug
     test:
       config: Debug
-      targets: [LionECSTests]
+      targets: [LionECSTests_macOS]
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  LionECS_watchOS:
+    build:
+      targets:
+        LionECS_watchOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: []
+      gatherCoverageData: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  LionECS_tvOS:
+    build:
+      targets:
+        LionECS_tvOS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [LionECSTests_tvOS]
       gatherCoverageData: true
     profile:
       config: Release
@@ -50,7 +95,7 @@ targets:
       - path: ECS
   LionECSTests:
     type: bundle.unit-test
-    platform: macOS
+    platform: [macOS, iOS, tvOS]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.tests
@@ -61,7 +106,7 @@ targets:
     dependencies:
       - target: LionECS_macOS
   Example:
-    type: application
+    type: tool
     platform: macOS
     settings:
       base:
@@ -71,27 +116,8 @@ targets:
         CURRENT_PROJECT_VERSION: 1
     sources:
       - path: Example
-      - path: ExampleCommon
     dependencies:
       - target: LionECS_macOS
-    postBuildScripts:
-      - script: |
-                "${PODS_ROOT}/SwiftLint/swiftlint"
-        name: SwiftLint
-  ExampleIOS:
-    type: application
-    platform: iOS
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: org.lionsoftware.lionengine.ecs.example
-        # empty specifier resolves to "Automatic"
-        PROVISIONING_PROFILE_SPECIFIER:
-        CURRENT_PROJECT_VERSION: 1
-    sources:
-      - path: ExampleIOS
-      - path: ExampleCommon
-    dependencies:
-      - target: LionECS_iOS
     postBuildScripts:
       - script: |
                 "${PODS_ROOT}/SwiftLint/swiftlint"

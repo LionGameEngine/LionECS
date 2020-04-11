@@ -14,48 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "027266454639061044A6B46E"
-               BuildableName = "LionECS.framework"
-               BlueprintName = "LionECS_iOS"
-               ReferencedContainer = "container:LionECS.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F97256B3C552F17E40685781"
-               BuildableName = "LionECS.framework"
-               BlueprintName = "LionECS_macOS"
-               ReferencedContainer = "container:LionECS.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6850200B28BB9FE6862E5DF4"
-               BuildableName = "LionECS.framework"
-               BlueprintName = "LionECS_tvOS"
-               ReferencedContainer = "container:LionECS.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "4A4BD1A9FCF4208B3DC5C6FD"
                BuildableName = "LionECS.framework"
                BlueprintName = "LionECS_watchOS"
@@ -72,23 +30,13 @@
       onlyGenerateCoverageForSpecifiedTargets = "NO"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "159E2294DBE34D99C0317C27"
-               BuildableName = "LionECSTests.xctest"
-               BlueprintName = "LionECSTests"
-               ReferencedContainer = "container:LionECS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "027266454639061044A6B46E"
+            BlueprintIdentifier = "4A4BD1A9FCF4208B3DC5C6FD"
             BuildableName = "LionECS.framework"
-            BlueprintName = "LionECS_iOS"
+            BlueprintName = "LionECS_watchOS"
             ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -112,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "027266454639061044A6B46E"
+            BlueprintIdentifier = "4A4BD1A9FCF4208B3DC5C6FD"
             BuildableName = "LionECS.framework"
-            BlueprintName = "LionECS_iOS"
+            BlueprintName = "LionECS_watchOS"
             ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -133,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "027266454639061044A6B46E"
+            BlueprintIdentifier = "4A4BD1A9FCF4208B3DC5C6FD"
             BuildableName = "LionECS.framework"
-            BlueprintName = "LionECS_iOS"
+            BlueprintName = "LionECS_watchOS"
             ReferencedContainer = "container:LionECS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
