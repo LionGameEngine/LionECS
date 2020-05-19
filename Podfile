@@ -9,21 +9,52 @@ target 'Example' do
   pod 'SwiftLint'
 end
 
-target 'ExampleIOS' do
-  pod 'Sourcery'
-  pod 'SwiftLint'
-end
-
 target 'LionECS_macOS' do
-  # Comment the next line if you don't want to use dynamic frameworks
+  platform :macos, '10.10'
   pod 'Sourcery'
   pod 'SwiftLint'
 
   # Pods for LionECS
 
-  target 'LionECSTests' do
+  target 'LionECSTests_macOS' do
     # Pods for testing
-  	inherit! :search_paths
+    inherit! :search_paths
   end
 
+end
+
+target 'LionECS_iOS' do
+  platform :ios, '8.0'
+  pod 'Sourcery'
+  pod 'SwiftLint'
+
+  # Pods for LionECS
+
+  target 'LionECSTests_iOS' do
+    # Pods for testing
+    inherit! :search_paths
+  end
+
+end
+
+target 'LionECS_tvOS' do
+  platform :tvos, '9.0'
+  pod 'Sourcery'
+  pod 'SwiftLint'
+
+  # Pods for LionECS
+
+  target 'LionECSTests_tvOS' do
+    # Pods for testing
+    inherit! :search_paths
+  end
+
+end
+
+target 'LionECS_watchOS' do
+  platform :watchos, '2.0'
+  pod 'Sourcery'
+  pod 'SwiftLint'
+
+  # Pods for LionECS
 end

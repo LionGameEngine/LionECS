@@ -137,4 +137,4 @@ public protocol PEntityIterable {
     func forEach<W1: PComponent, W2: PComponent, W3: PComponent, W4: PComponent, W5: PComponent, W6: PComponent, W7: PComponent, W8: PComponent, W9: PComponent, W10: PComponent>(_ closure: (Entity, inout W1, inout W2, inout W3, inout W4, inout W5, inout W6, inout W7, inout W8, inout W9, inout W10) -> Void)
 }
 
-//  Copyright © 2020 LionSoftware. All rights reserved.
+//  Copyright © 2020 Lion Software Tomasz Lewandowski. All rights reserved.
