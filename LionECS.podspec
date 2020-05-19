@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LionECS"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "Multiplatform Entity Component System implementation in Swift"
   spec.homepage     = "https://github.com/LionECS/LionECS"
   spec.license      = { :type => "MIT", :file => "LICENSE.md" }
